@@ -13,12 +13,15 @@ const movieDto = {
  tags:'',
  summary:'',
  poster:'',
+ bannerPoster:'',
  budget:'',
  boxOffice: '',
  year: '',
  awards:'',
  conditions:'',
  series: '',
+ createdAt: '',
+ updatedAt: ''
 };
 
 module.exports = movieDto;

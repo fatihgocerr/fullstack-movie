@@ -1,24 +1,22 @@
-const baseResponse = require('../dto/baseResponse');
-const movieService = require('../services/movie.service');
-const {StatusCodes} = require('http-status-codes');
+const baseResponse = require("../dto/baseResponse");
+const scriptwriterService = require("../services/scriptwriter.service");
+const { StatusCodes } = require("http-status-codes");
 
 
-exports.createMovie = async (req, res) => {
+exports.createScriptwriter = async (req, res) => {
  try {
-  //invalid request
-
-  const json = await movieService.createMovie(req, res);
+  //invalid control here
+  const json = await scriptwriterService.createScriptwriter(req, res);
   res.status(StatusCodes.CREATED).json({
    ...baseResponse,
    data: json,
    success: true,
    timestamp: Date.now(),
    code: StatusCodes.CREATED,
-  });
 
+  });
  } catch (error) {
-  console.log(error);
-//log to error
+  //log to error
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -31,10 +29,10 @@ exports.createMovie = async (req, res) => {
 }
 
 
-exports.getAllMovies = async (req, res) => {
+exports.getAllScriptwriters = async (req, res) => {
  try {
   //invalid control here
-  const json = await movieService.getAllMovies();
+  const json = await scriptwriterService.getAllScriptwriters();
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -57,10 +55,10 @@ exports.getAllMovies = async (req, res) => {
 }
 
 
-exports.getAllMoviesWithPagination = async (req, res) => {
+exports.getAllScriptwriterWithPagination = async (req, res) => {
  try {
   //invalid control here
-  const json = await movieService.getAllMoviesWithPagination(req);
+  const json = await scriptwriterService.getAllScriptwriterWithPagination(req, res);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -83,10 +81,10 @@ exports.getAllMoviesWithPagination = async (req, res) => {
 }
 
 
-exports.getMovieById = async (req, res) => {
+exports.getScriptwriterById = async (req, res) => {
  try {
   //invalid control here
-  const json = await movieService.getMovieById(req);
+  const json = await scriptwriterService.getScriptwriterById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -107,10 +105,10 @@ exports.getMovieById = async (req, res) => {
 }
 
 
-exports.updateMovieById = async (req, res) => {
+exports.updateScriptwriterById = async (req, res) => {
  try {
   //invalid control here
-  const json = await movieService.updateMovieById(req);
+  const json = await scriptwriterService.updateScriptwriterById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -119,31 +117,6 @@ exports.updateMovieById = async (req, res) => {
    code: StatusCodes.OK
   });
 
- } catch (error) {
-  //log to error
-  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-   ...baseResponse,
-   error: true,
-   success: false,
-   timestamp: Date.now(),
-   code: StatusCodes.INTERNAL_SERVER_ERROR,
-   message: error.message
-  });
- }
-}
-
-
-exports.deleteMovieById = async (req, res) => {
- try {
-  //invalid control here
-  const json = await movieService.deleteMovieById(req);
-  res.status(StatusCodes.OK).json({
-   ...baseResponse,
-   data: json,
-   success: true,
-   timestamp: Date.now(),
-   code: StatusCodes.OK
-  });
  } catch (error) {
   //log to error
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
@@ -157,3 +130,27 @@ exports.deleteMovieById = async (req, res) => {
  }
 }
 
+
+exports.deleteScriptwriterById = async (req, res) => {
+ try {
+  //invalid control here
+  const json = await scriptwriterService.deleteScriptwriterById(req);
+  res.status(StatusCodes.OK).json({
+   ...baseResponse,
+   data: json,
+   success: true,
+   timestamp: Date.now(),
+   code: StatusCodes.OK
+  });
+ } catch (error) {
+  //log to error
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+   ...baseResponse,
+   error: true,
+   success: false,
+   timestamp: Date.now(),
+   code: StatusCodes.INTERNAL_SERVER_ERROR,
+   message: error.message
+  });
+ }
+}

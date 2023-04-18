@@ -1,24 +1,22 @@
-const baseResponse = require('../dto/baseResponse');
-const movieService = require('../services/movie.service');
-const {StatusCodes} = require('http-status-codes');
+const baseResponse = require("../dto/baseResponse");
+const starService = require("../services/star.service");
+const { StatusCodes } = require("http-status-codes");
 
 
-exports.createMovie = async (req, res) => {
+exports.createStar = async (req, res) => {
  try {
-  //invalid request
-
-  const json = await movieService.createMovie(req, res);
+  //invalid control here
+  const json = await starService.createStar(req, res);
   res.status(StatusCodes.CREATED).json({
    ...baseResponse,
    data: json,
    success: true,
    timestamp: Date.now(),
    code: StatusCodes.CREATED,
-  });
 
+  });
  } catch (error) {
-  console.log(error);
-//log to error
+  //log to error
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -31,10 +29,10 @@ exports.createMovie = async (req, res) => {
 }
 
 
-exports.getAllMovies = async (req, res) => {
+exports.getAllStars = async (req, res) => {
  try {
   //invalid control here
-  const json = await movieService.getAllMovies();
+  const json = await starService.getAllStars();
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -57,10 +55,10 @@ exports.getAllMovies = async (req, res) => {
 }
 
 
-exports.getAllMoviesWithPagination = async (req, res) => {
+exports.getAllStarWithPagination = async (req, res) => {
  try {
   //invalid control here
-  const json = await movieService.getAllMoviesWithPagination(req);
+  const json = await starService.getAllStarWithPagination(req, res);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -83,10 +81,10 @@ exports.getAllMoviesWithPagination = async (req, res) => {
 }
 
 
-exports.getMovieById = async (req, res) => {
+exports.getStarById = async (req, res) => {
  try {
   //invalid control here
-  const json = await movieService.getMovieById(req);
+  const json = await starService.getStarById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -107,10 +105,10 @@ exports.getMovieById = async (req, res) => {
 }
 
 
-exports.updateMovieById = async (req, res) => {
+exports.updateStarById = async (req, res) => {
  try {
   //invalid control here
-  const json = await movieService.updateMovieById(req);
+  const json = await starService.updateStarById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -119,31 +117,6 @@ exports.updateMovieById = async (req, res) => {
    code: StatusCodes.OK
   });
 
- } catch (error) {
-  //log to error
-  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-   ...baseResponse,
-   error: true,
-   success: false,
-   timestamp: Date.now(),
-   code: StatusCodes.INTERNAL_SERVER_ERROR,
-   message: error.message
-  });
- }
-}
-
-
-exports.deleteMovieById = async (req, res) => {
- try {
-  //invalid control here
-  const json = await movieService.deleteMovieById(req);
-  res.status(StatusCodes.OK).json({
-   ...baseResponse,
-   data: json,
-   success: true,
-   timestamp: Date.now(),
-   code: StatusCodes.OK
-  });
  } catch (error) {
   //log to error
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
@@ -157,3 +130,27 @@ exports.deleteMovieById = async (req, res) => {
  }
 }
 
+
+exports.deleteStarById = async (req, res) => {
+ try {
+  //invalid control here
+  const json = await starService.deleteStarById(req);
+  res.status(StatusCodes.OK).json({
+   ...baseResponse,
+   data: json,
+   success: true,
+   timestamp: Date.now(),
+   code: StatusCodes.OK
+  });
+ } catch (error) {
+  //log to error
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+   ...baseResponse,
+   error: true,
+   success: false,
+   timestamp: Date.now(),
+   code: StatusCodes.INTERNAL_SERVER_ERROR,
+   message: error.message
+  });
+ }
+}

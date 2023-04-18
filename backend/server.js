@@ -12,11 +12,15 @@ app.use(helmet());
 app.use(express.json());
 
 app.use(`${process.env.APP_PREFIX}/movies`, router.movieRouter);
-
+app.use(`${process.env.APP_PREFIX}/directors`, router.directorRouter);
+app.use(`${process.env.APP_PREFIX}/stars`, router.starRouter);
+app.use(`${process.env.APP_PREFIX}/scriptwriters`, router.scriptwriterRouter);
+app.use(`${process.env.APP_PREFIX}/genres`, router.genreRouter);
+app.use(`${process.env.APP_PREFIX}/comments`, router.commentRouter);
 
 //mongoose connection and server start
 db.dbConnection.connectToMongoDb(
- '127.0.0.1',
+ process.env.MONGODB_HOST,
  process.env.MONGODB_PORT,
  process.env.MONGODB_COLLECTION,
  process.env.MONGODB_MIN_POOL_SIZE,
