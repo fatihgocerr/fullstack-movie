@@ -16,13 +16,20 @@ const movieSchema = new Schema({
  tags: {type: String, required: true},
  summary: {type: String, required: true},
  poster: {type: String, required: true},
+ bannerPoster: {type: String, required: true},
  budget: {type: Number, required: true},
  boxOffice: {type: Number, required: true},
  year: {type: Number, required: true},
  awards: {type: String, required: true},
  conditions: {type: String, required: true},//genel izleyici , 15+ olumsuz öğeler vs diziden de gelebilir
- series: {type: Boolean, required: true}
-});
+ series: {type: Boolean, required: true},
+ country: {type: String, required: true},
+},
+ {
+  timestamps: true,
+  minimize:true,
+  autoIndex: true
+ });
 
 const Movie = mongoose.model('Movie', movieSchema, 'movies');
 module.exports = Movie;

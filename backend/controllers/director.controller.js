@@ -1,40 +1,38 @@
-const baseResponse = require('../dto/baseResponse');
-const movieService = require('../services/movie.service');
-const {StatusCodes} = require('http-status-codes');
+const baseResponse = require("../dto/baseResponse");
+const directorService = require("../services/director.service");
+const { StatusCodes } = require("http-status-codes");
 
 
-exports.createMovie = async (req, res) => {
+exports.createDirector = async (req, res) => {
  try {
-  //invalid request
+ //invalid control here
+ const json = await directorService.createDirector(req, res);
+ res.status(StatusCodes.CREATED).json({
+ ...baseResponse,
+ data: json,
+ success: true,
+ timestamp: Date.now(),
+ code: StatusCodes.CREATED,
 
-  const json = await movieService.createMovie(req, res);
-  res.status(StatusCodes.CREATED).json({
-   ...baseResponse,
-   data: json,
-   success: true,
-   timestamp: Date.now(),
-   code: StatusCodes.CREATED,
-  });
-
+ });
  } catch (error) {
-  console.log(error);
-//log to error
-  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-   ...baseResponse,
-   error: true,
-   success: false,
-   timestamp: Date.now(),
-   code: StatusCodes.INTERNAL_SERVER_ERROR,
-   message: error.message
-  });
+ //log to error
+ res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+ ...baseResponse,
+ error: true,
+ success: false,
+ timestamp: Date.now(),
+ code: StatusCodes.INTERNAL_SERVER_ERROR,
+ message: error.message
+ });
  }
 }
 
 
-exports.getAllMovies = async (req, res) => {
+exports.getAllDirectors = async (req, res) => {
  try {
   //invalid control here
-  const json = await movieService.getAllMovies();
+  const json = await directorService.getAllDirectors();
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -57,10 +55,10 @@ exports.getAllMovies = async (req, res) => {
 }
 
 
-exports.getAllMoviesWithPagination = async (req, res) => {
+exports.getAllDirectorWithPagination = async (req, res) => {
  try {
   //invalid control here
-  const json = await movieService.getAllMoviesWithPagination(req);
+  const json = await directorService.getAllDirectorWithPagination(req, res);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -83,10 +81,10 @@ exports.getAllMoviesWithPagination = async (req, res) => {
 }
 
 
-exports.getMovieById = async (req, res) => {
+exports.getDirectorById = async (req, res) => {
  try {
   //invalid control here
-  const json = await movieService.getMovieById(req);
+  const json = await directorService.getDirectorById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -107,10 +105,10 @@ exports.getMovieById = async (req, res) => {
 }
 
 
-exports.updateMovieById = async (req, res) => {
+exports.updateDirectorById = async (req, res) => {
  try {
   //invalid control here
-  const json = await movieService.updateMovieById(req);
+  const json = await directorService.updateDirectorById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -119,31 +117,6 @@ exports.updateMovieById = async (req, res) => {
    code: StatusCodes.OK
   });
 
- } catch (error) {
-  //log to error
-  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-   ...baseResponse,
-   error: true,
-   success: false,
-   timestamp: Date.now(),
-   code: StatusCodes.INTERNAL_SERVER_ERROR,
-   message: error.message
-  });
- }
-}
-
-
-exports.deleteMovieById = async (req, res) => {
- try {
-  //invalid control here
-  const json = await movieService.deleteMovieById(req);
-  res.status(StatusCodes.OK).json({
-   ...baseResponse,
-   data: json,
-   success: true,
-   timestamp: Date.now(),
-   code: StatusCodes.OK
-  });
  } catch (error) {
   //log to error
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
@@ -157,3 +130,27 @@ exports.deleteMovieById = async (req, res) => {
  }
 }
 
+
+exports.deleteDirectorById = async (req, res) => {
+ try {
+  //invalid control here
+  const json = await directorService.deleteDirectorById(req);
+  res.status(StatusCodes.OK).json({
+   ...baseResponse,
+   data: json,
+   success: true,
+   timestamp: Date.now(),
+   code: StatusCodes.OK
+  });
+ } catch (error) {
+  //log to error
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+   ...baseResponse,
+   error: true,
+   success: false,
+   timestamp: Date.now(),
+   code: StatusCodes.INTERNAL_SERVER_ERROR,
+   message: error.message
+  });
+ }
+}
