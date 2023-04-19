@@ -3,31 +3,39 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const movieSchema = new Schema({
- name: {type: String, required: true},
- genre: { type: Schema.Types.ObjectId, ref: 'Genres'},
- visionDate: {type: String, required: true},
- imdbScore: {type: Number, required: true},
- directorId: {type: Schema.Types.ObjectId, ref: 'Director'},
- stars: {type: Schema.Types.ObjectId, ref: 'Star'},
- scriptwriter: {type: Schema.Types.ObjectId, ref: 'Scriptwriter'},
- userScore: {type: Number, required: true},
- totalVotes: {type: Number, required: true},
- trailer: {type: String, required: true},
- tags: {type: String, required: true},
- summary: {type: String, required: true},
- poster: {type: String, required: true},
- bannerPoster: {type: String, required: true},
- budget: {type: Number, required: true},
- boxOffice: {type: Number, required: true},
- year: {type: Number, required: true},
- awards: {type: String, required: true},
- conditions: {type: String, required: true},//genel izleyici , 15+ olumsuz öğeler vs diziden de gelebilir
- series: {type: Boolean, required: true},
- country: {type: String, required: true},
-},
+  name: {type: String, required: true},
+  genre: [{type: Schema.Types.ObjectId, ref: 'Genre'}],
+  visionDate: {type: String, required: true},
+  imdbScore: {type: Number, required: true},
+  directorId: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Director'
+  }],
+  stars: [{type: Schema.Types.ObjectId, ref: 'Star'}],
+  scriptwriter: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Scriptwriter'
+  }],
+  userScore: {type: Number, required: true},
+  totalVotes: {type: Number, required: true},
+  trailer: {type: String, required: true},
+  tags: {type: String, required: true},
+  summary: {type: String, required: true},
+  poster: {type: String, required: true},
+  bannerPoster: {type: String, required: true},
+  budget: {type: Number, required: true},
+  boxOffice: {type: Number, required: true},
+  year: {type: Number, required: true},
+  awards: {type: String, required: true},
+  conditions: {type: String, required: true},//genel izleyici , 15+ olumsuz öğeler vs diziden de gelebilir
+  series: {type: Boolean, required: true},
+  country: {type: String, required: true},
+  language: {type: String, required: true},
+  producer: {type: String, required: true}
+ },
  {
   timestamps: true,
-  minimize:true,
+  minimize: true,
   autoIndex: true
  });
 

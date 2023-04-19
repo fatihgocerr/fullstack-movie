@@ -81,10 +81,10 @@ exports.getAllStarWithPagination = async (req, res) => {
 }
 
 
-exports.getStarById = async (req, res) => {
+exports.getById = async (req, res) => {
  try {
   //invalid control here
-  const json = await starService.getStarById(req);
+  const json = await starService.getById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -105,10 +105,10 @@ exports.getStarById = async (req, res) => {
 }
 
 
-exports.updateStarById = async (req, res) => {
+exports.updateById = async (req, res) => {
  try {
   //invalid control here
-  const json = await starService.updateStarById(req);
+  const json = await starService.updateById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -131,10 +131,10 @@ exports.updateStarById = async (req, res) => {
 }
 
 
-exports.deleteStarById = async (req, res) => {
+exports.deleteById = async (req, res) => {
  try {
   //invalid control here
-  const json = await starService.deleteStarById(req);
+  const json = await starService.deleteById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,

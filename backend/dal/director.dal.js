@@ -2,7 +2,7 @@ const Director = require('../models/director.model');
 
 
 const DirectorDataAccessLayer = {
- async createDirector(director) {
+ async create(director) {
   return await director.save();
  },
  async getAllDirector() {
@@ -15,13 +15,13 @@ const DirectorDataAccessLayer = {
    .sort(sort)
   // .populate(populate)
  },
- async getDirectorById(id) {
+ async getById(id) {
   return await Director.findById({_id: id});
  },
- async updateDirectorById(id, body) {
+ async updateById(id, body) {
   return await Director.findByIdAndUpdate({_id: id}, body);
  },
- async deleteDirectorById(id) {
+ async deleteById(id) {
   return await Director.findByIdAndDelete({_id: id})
  }
 }

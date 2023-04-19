@@ -5,7 +5,11 @@ const db = require('./db');
 const configs = require('./config');
 const app = express();
 const router = require('./routers');
+const helpers = require('./utils/helpers');
+
 configs.serverConfig.initialServerConfig();
+helpers.uploadsDirControl('./uploads');
+app.use('/uploads', express.static('uploads')); //dışarıdan erişim için
 
 app.use(cors());
 app.use(helmet());

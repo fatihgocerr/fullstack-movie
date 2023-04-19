@@ -79,10 +79,10 @@ exports.getAllGenresWithPagination = async (req, res) => {
 }
 
 
-exports.getGenreById = async (req,res) => {
+exports.getById = async (req,res) => {
  try {
  // valid control is here
-  const json = await genreService.getGenreById(req);
+  const json = await genreService.getById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -104,10 +104,10 @@ exports.getGenreById = async (req,res) => {
 }
 
 
-exports.updateGenreById = async (req, res) => {
+exports.updateById = async (req, res) => {
  try {
  //valid control here
-  const json = await genreService.updateGenreById(req);
+  const json = await genreService.updateById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -129,10 +129,10 @@ exports.updateGenreById = async (req, res) => {
 }
 
 
-exports.deleteGenreById = async (req, res) => {
+exports.deleteById = async (req, res) => {
  try {
   //invalid control here
-  const json = await genreService.deleteGenreById(req);
+  const json = await genreService.deleteById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,

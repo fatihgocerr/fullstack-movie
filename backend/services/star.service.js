@@ -21,7 +21,7 @@ exports.createStar = async (req, res) => {
    nationality,
    image
   });
-  const json = await starDal.createStar(star);
+  const json = await starDal.create(star);
   const jsonChange =await  helpers.jsonStarChange(json)
   console.log(jsonChange)
   return {
@@ -61,10 +61,10 @@ exports.getAllStarWithPagination = async (req,res) => {
 }
 
 
-exports.getStarById = async (req) => {
+exports.getById = async (req) => {
  try {
   const {id} = req.params;
-  const json = await starDal.getStarById(id);
+  const json = await starDal.getById(id);
   const jsonChange = await helpers.jsonStarChange(json);
   return {
    ...starDto,
@@ -75,12 +75,12 @@ exports.getStarById = async (req) => {
  }
 }
 
-exports.updateStarById = async (req) => {
+exports.updateById = async (req) => {
  try {
   const {id} = req.params;
   const {name, surname, birthDate, birthPlace, deathDate, deathPlace, gender,series,nationality, biography, image, awards, conditions, movies} = req.body;
 const jsonChange = await helpers.jsonStarChange(req.body);
-  const json = await starDal.updateStarById(id, {
+  const json = await starDal.updateById(id, {
    name, surname, birthDate, birthPlace, deathDate, deathPlace, gender,series,nationality, biography, image, awards, movies
   });
   return {
@@ -94,11 +94,11 @@ const jsonChange = await helpers.jsonStarChange(req.body);
  }
 }
 
-exports.deleteStarById = async (req) => {
+exports.deleteById = async (req) => {
  try {
   const {id} = req.params;
 // poster and order delete is here
-  const json = await starDal.deleteStarById(id);
+  const json = await starDal.deleteById(id);
 //eğer silme başarılıysa
   const jsonChange = await helpers.jsonStarChange(json);
   return {

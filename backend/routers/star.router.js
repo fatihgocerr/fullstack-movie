@@ -5,12 +5,12 @@ const {starController} = require('../controllers');
 
 router.get('/all', starController.getAllStars);
 router.get('/allPagination', starController.getAllStarWithPagination);
-router.get('/getById/:id', starController.getStarById);
+router.get('/getById/:id', starController.getById);
 
 router.post('/create', starController.createStar)
 
-router.put('/updateById/:id', starController.updateStarById);
-router.delete('/deleteById/:id', starController.deleteStarById);
+router.put('/updateById/:id', starController.updateById);
+router.delete('/deleteById/:id', starController.deleteById);
 
 
 module.exports = router;

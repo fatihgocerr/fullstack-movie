@@ -5,12 +5,12 @@ const {genreController} = require('../controllers');
 
 router.get('/all', genreController.getAllGenres);
 router.get('/allPagination', genreController.getAllGenresWithPagination);
-router.get('/getById/:id', genreController.getGenreById);
+router.get('/getById/:id', genreController.getById);
 
 router.post('/create', genreController.createGenre)
 
-router.put('/updateById/:id', genreController.updateGenreById);
-router.delete('/deleteById/:id', genreController.deleteGenreById);
+router.put('/updateById/:id', genreController.updateById);
+router.delete('/deleteById/:id', genreController.deleteById);
 
 
 module.exports = router;

@@ -1,20 +1,21 @@
 const Movie = require('../models/movie.model');
 
 const MovieDataAccessLayer = {
- async createMovie(movie) {
+ async create(movie) {
   return await movie.save();
  },
- async getAllMovies() {
-  return await Movie.find();
+ async getAllMovies(where= {}, populate) {
+  return await Movie.find(where)
+   .populate(populate);
  },
  async getAllMoviesWithPagination(where = {}, populate, limit, skip,sort) {
   return await Movie.find()
    .limit(limit)
    .skip(skip)
    .sort(sort)
-   // .populate(populate)
+   .populate(populate)
  },
- async getMovieById(id) {
+ async getById(id) {
   return await Movie.findById({_id: id});
  },
  async updateMovieById(id, body) {

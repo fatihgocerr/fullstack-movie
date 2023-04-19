@@ -81,10 +81,10 @@ exports.getAllDirectorWithPagination = async (req, res) => {
 }
 
 
-exports.getDirectorById = async (req, res) => {
+exports.getById = async (req, res) => {
  try {
   //invalid control here
-  const json = await directorService.getDirectorById(req);
+  const json = await directorService.getById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -131,10 +131,10 @@ exports.updateDirectorById = async (req, res) => {
 }
 
 
-exports.deleteDirectorById = async (req, res) => {
+exports.deleteById = async (req, res) => {
  try {
   //invalid control here
-  const json = await directorService.deleteDirectorById(req);
+  const json = await directorService.deleteById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,

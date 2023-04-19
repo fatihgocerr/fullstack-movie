@@ -2,7 +2,7 @@ const Genre = require('../models/genre.model');
 
 
 const GenreDataAccessLayer = {
- async createGenre(genre) {
+ async create(genre) {
   return await genre.save();
  },
  async getAllGenres() {
@@ -15,14 +15,13 @@ const GenreDataAccessLayer = {
    .sort(sort)
   // .populate(populate)
  },
- async getGenreById(id) {
-  console.log(id)
-  return await Genre.findById(id);
+ async getById(id) {
+  return await Genre.findById({_id:id});
  },
- async updateGenreById(id, body) {
+ async updateById(id, body) {
   return await Genre.findByIdAndUpdate(id, body);
  },
- async deleteGenreById(id) {
+ async deleteById(id) {
   return await Genre.findByIdAndDelete(id)
  }
 

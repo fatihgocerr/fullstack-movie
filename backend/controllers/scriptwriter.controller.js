@@ -81,10 +81,10 @@ exports.getAllScriptwriterWithPagination = async (req, res) => {
 }
 
 
-exports.getScriptwriterById = async (req, res) => {
+exports.getById = async (req, res) => {
  try {
   //invalid control here
-  const json = await scriptwriterService.getScriptwriterById(req);
+  const json = await scriptwriterService.getById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -105,10 +105,10 @@ exports.getScriptwriterById = async (req, res) => {
 }
 
 
-exports.updateScriptwriterById = async (req, res) => {
+exports.updateById = async (req, res) => {
  try {
   //invalid control here
-  const json = await scriptwriterService.updateScriptwriterById(req);
+  const json = await scriptwriterService.updateById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -131,10 +131,10 @@ exports.updateScriptwriterById = async (req, res) => {
 }
 
 
-exports.deleteScriptwriterById = async (req, res) => {
+exports.deleteById = async (req, res) => {
  try {
   //invalid control here
-  const json = await scriptwriterService.deleteScriptwriterById(req);
+  const json = await scriptwriterService.deleteById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,

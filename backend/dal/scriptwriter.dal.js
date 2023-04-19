@@ -2,7 +2,7 @@ const Scriptwriter = require('../models/scriptwriter.model');
 
 
 const ScriptwriterDataAccessLayer = {
- async createScriptwriter(scriptwriter) {
+ async create(scriptwriter) {
   return await scriptwriter.save();
  },
  async getAllScriptwriter() {
@@ -15,13 +15,13 @@ const ScriptwriterDataAccessLayer = {
    .sort(sort)
   // .populate(populate)
  },
- async getScriptwriterById(id) {
+ async getById(id) {
   return await Scriptwriter.findById({_id: id});
  },
- async updateScriptwriterById(id, body) {
+ async updateById(id, body) {
   return await Scriptwriter.findByIdAndUpdate({_id: id}, body);
  },
- async deleteScriptwriterById(id) {
+ async deleteById(id) {
   return await Scriptwriter.findByIdAndDelete({_id: id})
  }
 }
