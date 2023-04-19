@@ -7,7 +7,7 @@ exports.createGenre = async (req, res) => {
  try {
   const {name, description, image, movies, series, anime, tags} = req.body;
   const genre = new Genre({name, description, image, movies, series, anime, tags});
-  const json = await genreDal.createGenre(genre);
+  const json = await genreDal.create(genre);
   const jsonChange = await helpers.jsonGenreChange(json)
   return {
    ...genreDto,
@@ -45,10 +45,10 @@ exports.getAllGenresWithPagination = async (req,res) => {
  }
 }
 
-exports.getGenreById = async (req, res) => {
+exports.getById = async (req, res) => {
  try {
  const {id } = req.params;
- const json = await genreDal.getGenreById(id);
+ const json = await genreDal.getById(id);
  const jsonChange = await helpers.jsonGenreChange(json)
   return {
    ...genreDto,
@@ -60,11 +60,11 @@ exports.getGenreById = async (req, res) => {
 }
 
 
-exports.updateGenreById = async (req,res) => {
+exports.updateById = async (req,res) => {
  try {
  const {id} = req.params;
  const {name, description, image, movies, series, anime, tags} = req.body;
- const json = await genreDal.updateGenreById(id,
+ const json = await genreDal.updateById(id,
   {name, description, image, movies, series, anime, tags});
  const jsonChange = await helpers.jsonGenreChange(json)
   console.log('json',json)
@@ -85,11 +85,11 @@ exports.updateGenreById = async (req,res) => {
 }
 
 
-exports.deleteGenreById = async (req, res) => {
+exports.deleteById = async (req, res) => {
  try {
  const {id} = req.params;
  //file delete is here
-  const json = await genreDal.deleteGenreById(id);
+  const json = await genreDal.deleteById(id);
   // if file delete
   const jsonChange = await helpers.jsonGenreChange(json)
   return {

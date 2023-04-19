@@ -21,7 +21,7 @@ const director = new Director({
  nationality,
  image
 });
-const json = await directorDal.createDirector(director);
+const json = await directorDal.create(director);
 const jsonChange =await  helpers.jsonDirectorChange(json)
   console.log(jsonChange)
 return {
@@ -61,10 +61,10 @@ exports.getAllDirectorWithPagination = async (req,res) => {
 }
 
 
-exports.getDirectorById = async (req) => {
+exports.getById = async (req) => {
  try {
   const {id} = req.params;
-  const json = await directorDal.getDirectorById(id);
+  const json = await directorDal.getById(id);
   const jsonChange = await helpers.jsonDirectorChange(json);
   return {
    ...directorDto,
@@ -79,7 +79,7 @@ exports.updateDirectorById = async (req) => {
  try {
   const {id} = req.params;
   const body = req.body;
-  const json = await directorDal.updateDirectorById(id, {
+  const json = await directorDal.updateById(id, {
    body
   });
   return {
@@ -93,11 +93,11 @@ exports.updateDirectorById = async (req) => {
  }
 }
 
-exports.deleteDirectorById = async (req) => {
+exports.deleteById = async (req) => {
  try {
   const {id} = req.params;
 // poster and order delete is here
-  const json = await directorDal.deleteDirectorById(id);
+  const json = await directorDal.deleteById(id);
 //eğer silme başarılıysa
   const jsonChange = await helpers.jsonDirectorChange(json);
   return {

@@ -2,7 +2,7 @@ const Star = require('../models/star.model');
 
 
 const StarDataAccessLayer = {
- async createStar(star) {
+ async create(star) {
   return await star.save();
  },
  async getAllStar() {
@@ -15,14 +15,14 @@ const StarDataAccessLayer = {
    .sort(sort)
   // .populate(populate)
  },
- async getStarById(id) {
+ async getById(id) {
   return await Star.findById({_id: id});
  },
- async updateStarById(id, body) {
+ async updateById(id, body) {
   console.log(id, body)
   return await Star.findByIdAndUpdate({_id: id}, body);
  },
- async deleteStarById(id) {
+ async deleteById(id) {
   return await Star.findByIdAndDelete({_id: id})
  }
 }

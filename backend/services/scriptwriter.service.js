@@ -22,7 +22,7 @@ exports.createScriptwriter = async (req, res) => {
    image,
    isMangaka
   });
-  const json = await scriptwriterDal.createScriptwriter(scriptwriter);
+  const json = await scriptwriterDal.create(scriptwriter);
   const jsonChange =await  helpers.jsonScriptwriterChange(json)
   console.log(jsonChange)
   return {
@@ -62,10 +62,10 @@ exports.getAllScriptwriterWithPagination = async (req,res) => {
 }
 
 
-exports.getScriptwriterById = async (req) => {
+exports.getById = async (req) => {
  try {
   const {id} = req.params;
-  const json = await scriptwriterDal.getScriptwriterById(id);
+  const json = await scriptwriterDal.getById(id);
   const jsonChange = await helpers.jsonScriptwriterChange(json);
   return {
    ...scriptwriterDto,
@@ -76,11 +76,11 @@ exports.getScriptwriterById = async (req) => {
  }
 }
 
-exports.updateScriptwriterById = async (req) => {
+exports.updateById = async (req) => {
  try {
   const {id} = req.params;
   const {name, surname, birthDate, birthPlace, deathDate, deathPlace, gender,series,nationality, biography, image, awards, conditions, movies,isMangaka} = req.body;
-  const json = await scriptwriterDal.updateScriptwriterById(id, {
+  const json = await scriptwriterDal.updateById(id, {
    name, surname, birthDate, birthPlace, deathDate, deathPlace, gender,series,nationality, biography, image, awards, movies,isMangaka
   });
   const jsonChange = await helpers.jsonScriptwriterChange(req.body);
@@ -97,11 +97,11 @@ exports.updateScriptwriterById = async (req) => {
  }
 }
 
-exports.deleteScriptwriterById = async (req) => {
+exports.deleteById = async (req) => {
  try {
   const {id} = req.params;
 // poster and order delete is here
-  const json = await scriptwriterDal.deleteScriptwriterById(id);
+  const json = await scriptwriterDal.deleteById(id);
 //eğer silme başarılıysa
   const jsonChange = await helpers.jsonScriptwriterChange(json);
   return {

@@ -15,7 +15,7 @@ exports.createComment = async (req, res) => {
    like,
    dislike
   });
-  const json = await commentDal.createComment(comments);
+  const json = await commentDal.create(comments);
   return {
    ...commentDto,
    ...json
@@ -53,10 +53,10 @@ exports.getAllCommentsWithPagination = async (req, res) => {
 }
 
 
-exports.getCommentById = async (req) => {
+exports.getById = async (req) => {
  try {
   const {id} = req.params;
-  const json = await commentDal.getCommentById(id);
+  const json = await commentDal.getById(id);
   return {
    ...commentDto,
    ...json

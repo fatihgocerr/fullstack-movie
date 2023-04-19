@@ -2,7 +2,7 @@ const Comment = require('../models/comment.model');
 
 
 const commentDataAccessLayer = {
- async createComment(comment) {
+ async create(comment) {
   return await comment.save();
  },
  async getAllComments(){
@@ -15,7 +15,7 @@ const commentDataAccessLayer = {
    .sort(sort)
    // .populate(populate)
  },
- async getCommentById(id){
+ async getById(id){
   return await Comment.findById({_id: id});
  },
  async updateCommentById(id,body){

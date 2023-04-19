@@ -12,8 +12,8 @@ const scriptwriterSchema = new Schema({
   biography: {type: String, required: true},
   gender: {type: String, required: true},
   awards: {type: String, required: true},
-  movies: {type: Schema.Types.ObjectId, ref: 'Movie'},
-  series: {type: Schema.Types.ObjectId, ref: 'Series'},
+  movies: [{type: Schema.Types.ObjectId, ref: 'Movie'}],
+  series: [{type: Schema.Types.ObjectId, ref: 'Series'}],
   nationality: {type: String, required: true},
   image: {type: String, required: true},
   isMangaka: {type: Boolean, required: true}

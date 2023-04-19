@@ -5,12 +5,12 @@ const {scriptwriterController} = require('../controllers');
 
 router.get('/all', scriptwriterController.getAllScriptwriters);
 router.get('/allPagination', scriptwriterController.getAllScriptwriterWithPagination);
-router.get('/getById/:id', scriptwriterController.getScriptwriterById);
+router.get('/getById/:id', scriptwriterController.getById);
 
 router.post('/create', scriptwriterController.createScriptwriter)
 
-router.put('/updateById/:id', scriptwriterController.updateScriptwriterById);
-router.delete('/deleteById/:id', scriptwriterController.deleteScriptwriterById);
+router.put('/updateById/:id', scriptwriterController.updateById);
+router.delete('/deleteById/:id', scriptwriterController.deleteById);
 
 
 module.exports = router;

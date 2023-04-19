@@ -83,10 +83,10 @@ exports.getAllMoviesWithPagination = async (req, res) => {
 }
 
 
-exports.getMovieById = async (req, res) => {
+exports.getById = async (req, res) => {
  try {
   //invalid control here
-  const json = await movieService.getMovieById(req);
+  const json = await movieService.getById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -154,6 +154,55 @@ exports.deleteMovieById = async (req, res) => {
    code: StatusCodes.INTERNAL_SERVER_ERROR,
    message: error.message
   });
+ }
+}
+
+exports.uploadImage = async (req, res) => {
+ try {
+ //validation control here
+  const json = await movieService.uploadImage(req);
+  res.status(StatusCodes.OK).json({
+   ...baseResponse,
+   data: json,
+   success: true,
+   timestamp: Date.now(),
+   code: StatusCodes.OK
+  });
+ } catch (error) {
+ //log to error
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+   ...baseResponse,
+   error: true,
+   success: false,
+   timestamp: Date.now(),
+   code: StatusCodes.INTERNAL_SERVER_ERROR,
+   message: error.message
+  })
+ }
+}
+
+
+exports.updateImage = async (req, res) => {
+ try {
+ //validation control here
+  const json = await movieService.updateImage(req);
+  res.status(StatusCodes.OK).json({
+   ...baseResponse,
+   data: json,
+   success: true,
+   timestamp: Date.now(),
+   code: StatusCodes.OK
+  });
+ } catch (error) {
+ //log to error
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+   ...baseResponse,
+   error: true,
+   success: false,
+   timestamp: Date.now(),
+   code: StatusCodes.INTERNAL_SERVER_ERROR,
+   message: error.message
+  })
  }
 }
 
