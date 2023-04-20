@@ -16,16 +16,8 @@ exports.uploadImage = async (req, res) => {
    const filePath = process.env.FILE_PATH;
    const poster = await req.files?.['poster']?.[0].filename;
    const bannerPoster = await req.files?.['bannerPoster']?.[0].filename;
-   // console.log('fileName', !!poster, !!bannerPoster)
    const fileUrls = [!!poster && `${ip}${filePath}${poster}`, !!bannerPoster && `${ip}${filePath}${bannerPoster}`];
    resolve(fileUrls);
-   // console.log('fileUrls', fileUrls)
-   // return
-   // const poster = await req.files?.filename;
-   // const bannerPoster = await req.files?.filename;
-   // const fileUrls =[ `${ip}${filePath}${fileName}`, `${ip}${filePath}${fileName}`];
-
-   // resolve(fileUrls);
   })
  })
 }

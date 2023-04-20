@@ -274,11 +274,12 @@ exports.deleteMovieById = async (req) => {
 
   if (!isPosterDeleted || !isDeletedBannerPoster) {
    const json = await movieDal.deleteMovieById(id);
+   //filmin ilgili kısımlarından gelen gelen id'lere göre ilgili alanların bilgilerini çeker ör:movies.gere => genre
    const findedDirectors = await helpers.findedDataMap(findedMovie.directorId, directorDal);
    const findedGenres = await helpers.findedDataMap(findedMovie.genre, genreDal);
    const findedStars = await helpers.findedDataMap(findedMovie.stars, starDal);
    const findedScriptwriters = await helpers.findedDataMap(findedMovie.scriptwriter, scriptwriterDal);
-   console.log(findedDirectors, findedGenres, findedStars, findedScriptwriters)
+   //ilgili alanlardan filmin id'sini siler
    await Promise.all([
    helpers.deleteDatafilter(findedDirectors, directorDal,findedMovie._id),
    helpers.deleteDatafilter(findedGenres, genreDal,findedMovie._id),
@@ -289,11 +290,11 @@ exports.deleteMovieById = async (req) => {
    return {
     ...movieDto,
     id: json._id,
-    name: json.name
-    // ...jsonChange
+    name: json.name,
+    ...jsonChange
    }
   }
-  console.log('poster silinemedi')
+  throw new Error('poster silinemedi')
 //throw error poster silinemedi
  } catch (error) {
   throw new Error(error)
@@ -332,6 +333,7 @@ exports.updateImage = async (req) => {
  try {
   const {id} = req.params;
   const str = await fileService.uploadImage(req);
+  console.log(str)
   //multiple field upload
   const updateFields = {};
   if (str[0] !== false) {
@@ -341,7 +343,6 @@ exports.updateImage = async (req) => {
    updateFields.bannerPoster = str[1];
   }
   const findedMovie = await movieDal.getById(id);
-
   const isDeletedPoster = await helpers.deleteImageFromDisk(findedMovie.poster ? findedMovie.poster.split('/uploads/')[1] : '');
   const isDeletedBannerPoster = await helpers.deleteImageFromDisk(findedMovie.bannerPoster ? findedMovie.bannerPoster.split('/uploads/')[1] : '');
   if (!isDeletedPoster && !isDeletedBannerPoster) {
@@ -351,7 +352,8 @@ exports.updateImage = async (req) => {
     ...movieDto,
     id: json._id,
     name: json.name,
-    poster: str,
+    poster: str[0] !== false ? str[0] : movieDto.poster,
+    bannerPoster: str[1] !== false ? str[1] : movieDto.bannerPoster,
     createdAt: json.createdAt,
     updatedAt: json.updatedAt
    }

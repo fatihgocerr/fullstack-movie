@@ -155,6 +155,33 @@ const deleteImageFromDisk = (image) => {
  }
 }
 
+
+replaceImageName = (val) => {
+ const trChars = (val) => {
+  const letters = {
+   'ğ': 'g',
+   'ü': 'u',
+   'ş': 's',
+   'ı': 'i',
+   'ö': 'o',
+   'ç': 'c',
+   'Ğ': 'G',
+   'Ü': 'U',
+   'Ş': 'S',
+   'İ': 'I',
+   'Ö': 'O',
+   'Ç': 'C',
+  };
+
+  val = val.replace(/[ğüşıöçĞÜŞİÖÇ]/gu, letter => letters[letter]);
+
+  const uniqueSuffix = Date.now();
+  const values = uniqueSuffix + "-" + val.toLowerCase().replace(/\s+/g, '-');
+
+  return values;
+ };
+ return trChars(val);
+}
 module.exports = {
  jsonMovieChange,
  jsonDirectorChange,
@@ -166,5 +193,6 @@ module.exports = {
  getHost,
  uploadsDirControl,
  deleteImageFromDisk,
- deleteDatafilter
+ deleteDatafilter,
+ replaceImageName
 }
