@@ -17,8 +17,8 @@ router.put('/updateById/:id', movieController.updateMovieById);
 
 router.delete('/deleteById/:id', movieController.deleteMovieById);
 
-router.post('/uploadPoster/:id', movieController.uploadImage);
-router.post('/updatePoster/:id', movieController.updateImage);
+router.post('/uploadImage/:id', movieController.uploadImage);
+router.post('/updateImage/:id', movieController.updateImage);
 
 
 module.exports = router;

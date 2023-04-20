@@ -1,5 +1,5 @@
 const multer = require('multer');
-
+const helpers = require('../utils/helpers');
 const mimeTypes = [
  'image/jpeg',
  'image/jpg',
@@ -13,8 +13,9 @@ const storage = multer.diskStorage({
   cb(null, './uploads');
  },
  filename: function (req, file, cb) {
-  const randomName = `${Date.now()}_${file.fieldname}_${file.originalname}`;
-  cb(null, randomName);
+  const slugImageName = file.fieldname +'-'+ helpers.replaceImageName(file.originalname);
+  // const randomName = `${Date.now()}_${file.fieldname}_${file.originalname}`;
+  cb(null, slugImageName);
  }
 });
 
@@ -27,8 +28,6 @@ const fileFilter = (req, file, cb) => {
  }
 }
 
-// const upload = multer({storage,fileFilter,limits:{fileSize:"5mb"}}).single('poster');
-// const upload = multer({storage,fileFilter,limits:{fileSize:"5mb"}}).fields([{name:'poster'}, {name:'bannerPoster'}]);
 const upload = multer({
  storage,
  fileFilter,
