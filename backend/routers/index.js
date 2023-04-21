@@ -4,6 +4,7 @@ const starRouter = require('./star.router');
 const scriptwriterRouter = require('./scriptwriter.router');
 const genreRouter = require('./genre.router')
 const commentRouter = require('./comment.router')
+const userRouter = require('./user.router')
 
 module.exports = {
  movieRouter,
@@ -11,5 +12,6 @@ module.exports = {
  starRouter,
  scriptwriterRouter,
  genreRouter,
- commentRouter
+ commentRouter,
+ userRouter
 }

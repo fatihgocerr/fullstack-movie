@@ -2,10 +2,7 @@
 const dns = require('dns');
 const fs = require('fs');
 const os = require('os');
-
-const directorDal = require("../dal/director.dal");
-
-
+const bcrypt = require('bcrypt');
 
 const jsonMovieChange = async (json) => {
  const  jsonChange  = {
@@ -108,7 +105,7 @@ const jsonGenreChange = async (json) => {
 }
 
 // findedDataMap ile gelen id'lere göre mongoDB'den verileri çekip return ediyoruz.
-const findedDataMap =async (  id, dal,) => {
+const findedDataMap =async (id, dal,) => {
  const arr = (await Promise.all(id.toString().split(',').map(async (value) => {
   const data = await dal.getById(value);
   return data._id;
@@ -134,9 +131,29 @@ const deleteDatafilter = async (data, dal, id) => {
  }
 }
 
+const findedUserFriend =async (id, dal,) => {
+ const arr = (await Promise.all(id.toString().split(',').map(async (value) => {
+  const data = await dal.getById(value);
+  return data;
+ }))).filter(Boolean);
+ return arr;
+}
+
+const deleteUserFriendFilter = async (data, dal, id) => {
+
+ for (const value of data) {
+  const findData = await dal.getById(value);
+  const newData = findData.friends.filter((val) => val.toString() !== id.toString());
+  await dal.updateUserById(value, {friends: newData})
+ }
+}
+
 const uploadsDirControl = async (dir) => {
  if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir, {recursive: true});
+  fs.mkdirSync(`${dir}/pp`, {recursive: true});
+  fs.mkdirSync(`${dir}/poster`, {recursive: true});
+  fs.mkdirSync(`${dir}/bannerPoster`, {recursive: true});
  }
 }
 const getHost = (req) => {
@@ -147,8 +164,9 @@ const getHost = (req) => {
  })
 }
 const deleteImageFromDisk = (image) => {
- if (image && fs.existsSync(`uploads/${image}`)) {
-  fs.unlink(`uploads/${image}`, (err) => {
+
+ if (image && fs.existsSync(`uploads/${image.split('-')[0]}/${image}`)) {
+  fs.unlink(`uploads/${image.split('-')[0]}/${image}`, (err) => {
    console.log('err', err)
    return !err;
   });
@@ -182,6 +200,16 @@ replaceImageName = (val) => {
  };
  return trChars(val);
 }
+
+const encryptPassword = async (password) => {
+ return await bcrypt.hash(password, 10);
+}
+
+const decryptPassword = async (password, hash) => {
+ return await bcrypt.compare(password, hash);
+}
+
+
 module.exports = {
  jsonMovieChange,
  jsonDirectorChange,
@@ -194,5 +222,9 @@ module.exports = {
  uploadsDirControl,
  deleteImageFromDisk,
  deleteDatafilter,
- replaceImageName
+ replaceImageName,
+ findedUserFriend,
+ deleteUserFriendFilter,
+ encryptPassword,
+ decryptPassword
 }

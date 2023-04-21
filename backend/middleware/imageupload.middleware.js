@@ -10,11 +10,21 @@ const mimeTypes = [
 
 const storage = multer.diskStorage({
  destination: function (req, file, cb) {
+  if (file.fieldname === 'pp') {
+   cb(null, './uploads/pp');
+   return
+  } else if (file.fieldname === 'poster') {
+   cb(null, './uploads/poster');
+   return
+  } else if (file.fieldname === 'bannerPoster') {
+   cb(null, './uploads/bannerPoster');
+   return
+  }
   cb(null, './uploads');
  },
  filename: function (req, file, cb) {
-  const slugImageName = file.fieldname +'-'+ helpers.replaceImageName(file.originalname);
-  // const randomName = `${Date.now()}_${file.fieldname}_${file.originalname}`;
+  const slugImageName = file.fieldname + '-' + helpers.replaceImageName(file.originalname);
+
   cb(null, slugImageName);
  }
 });
@@ -28,10 +38,20 @@ const fileFilter = (req, file, cb) => {
  }
 }
 
-const upload = multer({
+const multipleUpload = multer({
  storage,
  fileFilter,
- limits: { fileSize: "5mb" }
-}).fields([{ name: 'poster',maxCount:1 }, { name: 'bannerPoster',maxCount:1 }])
+ limits: {fileSize: "5mb"}
+}).fields([{name: 'poster', maxCount: 1}, {name: 'bannerPoster', maxCount: 1}])
 
-module.exports = upload;
+const singleUpload = multer({
+ storage,
+ fileFilter,
+ limits: {fileSize: "5mb"}
+}).single('pp')
+
+
+module.exports = {
+ multipleUpload,
+ singleUpload
+};

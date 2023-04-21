@@ -21,6 +21,7 @@ app.use(`${process.env.APP_PREFIX}/stars`, router.starRouter);
 app.use(`${process.env.APP_PREFIX}/scriptwriters`, router.scriptwriterRouter);
 app.use(`${process.env.APP_PREFIX}/genres`, router.genreRouter);
 app.use(`${process.env.APP_PREFIX}/comments`, router.commentRouter);
+app.use(`${process.env.APP_PREFIX}/users`, router.userRouter);
 
 //mongoose connection and server start
 db.dbConnection.connectToMongoDb(

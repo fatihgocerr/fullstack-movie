@@ -304,7 +304,7 @@ exports.deleteMovieById = async (req) => {
 exports.uploadImage = async (req) => {
  try {
   const {id} = req.params;
-  const str = await fileService.uploadImage(req);
+  const str = await fileService.uploadMultipleImage(req);
   //multiple field upload
   const updateFields = {};
   if (str[0] !== false) {
@@ -332,7 +332,7 @@ exports.uploadImage = async (req) => {
 exports.updateImage = async (req) => {
  try {
   const {id} = req.params;
-  const str = await fileService.uploadImage(req);
+  const str = await fileService.uploadMultipleImage(req);
   console.log(str)
   //multiple field upload
   const updateFields = {};
