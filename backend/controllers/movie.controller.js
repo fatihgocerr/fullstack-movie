@@ -206,3 +206,55 @@ exports.updateImage = async (req, res) => {
  }
 }
 
+
+
+
+exports.updateScore = async (req, res) => {
+ try {
+  //validation control here
+  const json = await movieService.updateScore(req);
+  res.status(StatusCodes.OK).json({
+   ...baseResponse,
+   data: json,
+   success: true,
+   timestamp: Date.now(),
+   code: StatusCodes.OK
+  });
+ } catch (error) {
+  //log to error
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+   ...baseResponse,
+   error: true,
+   success: false,
+   timestamp: Date.now(),
+   code: StatusCodes.INTERNAL_SERVER_ERROR,
+   message: error.message
+  })
+ }
+}
+
+exports.getScore = async (req, res) => {
+ try {
+  //validation control here
+  const json = await movieService.getScore(req);
+  res.status(StatusCodes.OK).json({
+   ...baseResponse,
+   data: json,
+   success: true,
+   timestamp: Date.now(),
+   code: StatusCodes.OK
+  });
+ } catch (error) {
+  //log to error
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+   ...baseResponse,
+   error: true,
+   success: false,
+   timestamp: Date.now(),
+   code: StatusCodes.INTERNAL_SERVER_ERROR,
+   message: error.message
+  })
+ }
+}
+
+

@@ -1,9 +1,7 @@
 const commnetDto = {
  id:'',
  userId: null,
- movieId: null,
- seriesId: null,
- animeId: null,
+ contentId: null,
  comment: '',
  point: '',
  date: '',
