@@ -132,6 +132,23 @@ const deleteDatafilter = async (data, dal, id) => {
  }
 }
 
+const findedSeriesDataPush = async (data, dal, id) => {
+ await Promise.all(data.map(async (value) => {
+  const findedData = await dal.getById(value);
+  findedData.series.push(id);
+  await dal.create(findedData);
+ }));
+}
+const deleteSeriesDatafilter = async (data, dal, id) => {
+
+ for (const value of data) {
+  const findData = await dal.getById(value);
+  const newData = findData.series.filter((val) => val.toString() !== id.toString());
+  await dal.updateById(value, {movies: newData})
+ }
+}
+
+
 const findedUserFriend =async (id, dal,) => {
  const arr = (await Promise.all(id.toString().split(',').map(async (value) => {
   const data = await dal.getById(value);
@@ -151,10 +168,13 @@ const deleteUserFriendFilter = async (data, dal, id) => {
 
 const uploadsDirControl = async (dir) => {
  if (!fs.existsSync(dir)) {
+  const subdirs = ['series/poster', 'movies/poster', 'series/bannerPoster', 'movies/bannerPoster','anime/poster', 'anime/bannerPoster'];
   fs.mkdirSync(dir, {recursive: true});
   fs.mkdirSync(`${dir}/pp`, {recursive: true});
-  fs.mkdirSync(`${dir}/poster`, {recursive: true});
-  fs.mkdirSync(`${dir}/bannerPoster`, {recursive: true});
+
+  for (const subdir of subdirs) {
+   fs.mkdirSync(`${dir}/${subdir}`, { recursive: true });
+  }
  }
 }
 const getHost = (req) => {
@@ -165,9 +185,8 @@ const getHost = (req) => {
  })
 }
 const deleteImageFromDisk = (image) => {
-
- if (image && fs.existsSync(`uploads/${image.split('-')[0]}/${image}`)) {
-  fs.unlink(`uploads/${image.split('-')[0]}/${image}`, (err) => {
+ if (image && fs.existsSync(`uploads/${image.split('-')[0]}/${image.split('/')[1]}`)) {
+  fs.unlink(`uploads/${image.split('-')[0]}/${image.split('/')[1]}`, (err) => {
    console.log('err', err)
    return !err;
   });
@@ -227,5 +246,7 @@ module.exports = {
  findedUserFriend,
  deleteUserFriendFilter,
  encryptPassword,
- decryptPassword
+ decryptPassword,
+ findedSeriesDataPush,
+ deleteSeriesDatafilter
 }
