@@ -10,17 +10,17 @@ const mimeTypes = [
 
 const storage = multer.diskStorage({
  destination: function (req, file, cb) {
-  if (file.fieldname === 'pp') {
-   cb(null, './uploads/pp');
-   return
-  } else if (file.fieldname === 'poster') {
-   cb(null, './uploads/poster');
-   return
-  } else if (file.fieldname === 'bannerPoster') {
-   cb(null, './uploads/bannerPoster');
-   return
+  const destinations = {
+   pp: './uploads/pp',
+   poster: req.baseUrl === '/api/v1/series' ? './uploads/series/poster' :  req.baseUrl === '/api/v1/movies' ?  './uploads/movies/poster' : './uploads/anime/poster' ,
+   bannerPoster: req.baseUrl === '/api/v1/series' ? './uploads/series/bannerPoster' :  req.baseUrl === '/api/v1/movies' ?  './uploads/movies/bannerPoster' : './uploads/anime/bannerPoster' ,
+  };
+
+  if (file.fieldname in destinations) {
+   cb(null, destinations[file.fieldname]);
+  } else {
+   cb(null, './uploads');
   }
-  cb(null, './uploads');
  },
  filename: function (req, file, cb) {
   const slugImageName = file.fieldname + '-' + helpers.replaceImageName(file.originalname);

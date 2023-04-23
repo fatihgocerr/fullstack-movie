@@ -13,12 +13,12 @@ exports.uploadMultipleImage = async (req, res) => {
     reject(err);
    }
    const ip = await helpers.getHost(req);
-   const filePath = process.env.FILE_PATH;
-
+   const filePath =await (process.env.FILE_PATH+req.baseUrl.split('/v1/')[1]);
+   console.log('filePath', filePath)
    const poster = await req.files?.['poster']?.[0].filename;
    const bannerPoster = await req.files?.['bannerPoster']?.[0].filename;
 
-   const fileUrls = [!!poster && `${ip}${filePath}${poster}`, !!bannerPoster && `${ip}${filePath}${bannerPoster}`];
+   const fileUrls = [!!poster && `${ip}${filePath}/${poster}`, !!bannerPoster && `${ip}${filePath}/${bannerPoster}`];
    resolve(fileUrls);
   })
  })
