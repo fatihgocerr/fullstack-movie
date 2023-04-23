@@ -21,4 +21,7 @@ router.post('/uploadImage/:id', movieController.uploadImage);
 router.post('/updateImage/:id', movieController.updateImage);
 
 
+router.put('/updateScore/:id', movieController.updateScore);
+router.get('/getScore/:id', movieController.getScore);
+
 module.exports = router;

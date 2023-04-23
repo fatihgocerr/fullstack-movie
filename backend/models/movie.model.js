@@ -16,7 +16,7 @@ const movieSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Scriptwriter'
   }],
-  userScore: {type: Number, required: true},
+  userScore:[ {type: Number, required: true}],
   totalVotes: {type: Number, required: true},
   trailer: {type: String, required: true},
   tags: {type: String, required: true},

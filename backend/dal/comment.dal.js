@@ -5,25 +5,27 @@ const commentDataAccessLayer = {
  async create(comment) {
   return await comment.save();
  },
- async getAllComments(){
-  return await Comment.find();
+ async getAll(where={}, populate) {
+  return await Comment.find(where)
+   .populate(populate);
  },
- async getAllCommentsWithPagination(where = {},populate,limit,skip,sort){
+ async getAllWithPagination(where = {}, populate, limit, skip, sort) {
   return await Comment.find(where)
    .limit(limit)
    .skip(skip)
    .sort(sort)
-   // .populate(populate)
+   .populate(populate)
  },
- async getById(id){
-  return await Comment.findById({_id: id});
+ async getById(id,populate) {
+  return await Comment.findById({_id: id}).populate(populate);
  },
- async updateCommentById(id,body){
-  return await Comment.findByIdAndUpdate({_id: id},body);
+ async updateById(id, body) {
+  return await Comment.findByIdAndUpdate({_id: id}, body);
  },
- async deleteCommentById(id){
+ async deleteById(id) {
   return await Comment.findByIdAndDelete({_id: id})
- }
+ },
 }
 
 module.exports = commentDataAccessLayer;
+

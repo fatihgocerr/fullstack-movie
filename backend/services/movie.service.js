@@ -113,6 +113,8 @@ exports.createMovie = async (req, res) => {
 
 exports.getAllMovies = async () => {
  try {
+
+  const score = await movieDal.getScores();
   const json = await movieDal.getAllMovies(
    {},
    [
@@ -134,8 +136,18 @@ exports.getAllMovies = async () => {
     },
    ]
   );
-  return json
+
+  for (const item of json) {
+   const movieScore = score.find(s => s._id.toString() === item._id.toString());
+   if (movieScore) {
+    item.userScore = movieScore.average;
+    item.totalVotes = movieScore.totalVotes;
+   }
+  }
+
+  return  json
  } catch (error) {
+  console.log(error)
   throw new Error(error)
  }
 }
@@ -143,6 +155,7 @@ exports.getAllMovies = async () => {
 exports.getAllMoviesWithPagination = async (req) => {
  try {
   const {perpage, page, sortBy, sortDir} = req.query;
+  const score = await movieDal.getScores();
   const json = await movieDal.getAllMoviesWithPagination(
    {},
    [
@@ -168,7 +181,16 @@ exports.getAllMoviesWithPagination = async (req) => {
    perpage * page,
    {[sortBy]: sortDir}
   );
-  return json
+
+
+  for (const item of json) {
+   const movieScore = score.find(s => s._id.toString() === item._id.toString());
+   if (movieScore) {
+    item.userScore = movieScore.average;
+    item.totalVotes = movieScore.totalVotes;
+   }
+  }
+ return json
  } catch (error) {
   throw new Error(error)
  }
@@ -178,7 +200,9 @@ exports.getById = async (req) => {
  try {
   const {id} = req.params;
   const json = await movieDal.getById(id);
-  const jsonChange = await helpers.jsonMovieChange(json);
+  const score = await movieDal.getScore(id);
+
+  const jsonChange = await helpers.jsonMovieChange(json,score);
   return {
    ...movieDto,
    ...jsonChange
@@ -358,6 +382,64 @@ exports.updateImage = async (req) => {
     updatedAt: json.updatedAt
    }
   }
+
+ } catch (error) {
+  throw new Error(error)
+ }
+}
+
+
+exports.updateScore = async (req) => {
+ try {
+  const {id} = req.params;
+  const {userScore} = req.body;
+
+  const findedMovie = await movieDal.getById(id);
+  console.log(findedMovie.userScore)
+  console.log(userScore)
+
+  findedMovie.userScore.push(userScore);
+  await movieDal.create(findedMovie)
+
+return
+  const json = await movieDal.updateMovieById(id, {
+
+  });
+  return {
+   ...movieDto,
+   id: json._id,
+   poster: json.poster,
+   bannerPoster: json.bannerPoster,
+   name,
+   genre,
+   visionDate,
+   imdbScore,
+   directorId,
+   stars,
+   scriptwriter,
+   userScore,
+   totalVotes,
+   trailer,
+   tags,
+   summary,
+   budget,
+   boxOffice,
+   year,
+   awards,
+   conditions,
+   series
+  }
+ } catch (error) {
+  throw new Error(error)
+ }
+}
+
+exports.getScore = async (req) => {
+ try {
+  const {id} = req.params;
+  const scores = await movieDal.getScore(id);
+  console.log('scores',scores)
+  return scores
 
  } catch (error) {
   throw new Error(error)

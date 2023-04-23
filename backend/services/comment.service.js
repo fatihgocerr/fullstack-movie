@@ -15,10 +15,18 @@ exports.createComment = async (req, res) => {
    like,
    dislike
   });
+
   const json = await commentDal.create(comments);
   return {
    ...commentDto,
-   ...json
+   id:json._id,
+   userId: json.userId,
+   contentId: json.contentId,
+   contentComment: json.contentComment,
+   point: json.point,
+   date: json.date,
+   like: json.like,
+   dislike: json.dislike
   }
  } catch (error) {
   throw new Error(error)
@@ -28,7 +36,23 @@ exports.createComment = async (req, res) => {
 
 exports.getAllComments = async () => {
  try {
-  const json = await commentDal.getAllComments();
+  const json = await commentDal.getAll(
+   {},
+   [
+    {
+     path:'contentId.item',
+     select:'name genre',
+     populate:{
+      path:'genre',
+      select:'-_id name'
+     }
+    },
+    {
+     path:'userId',
+     select: 'username profile'
+    }
+   ]
+  );
   return json
  } catch (error) {
   throw new Error(error)
@@ -39,9 +63,21 @@ exports.getAllComments = async () => {
 exports.getAllCommentsWithPagination = async (req, res) => {
  try {
   const {perpage, page, sortBy, sortDir} = req.query;
-  const json = await commentDal.getAllCommentsWithPagination(
+  const json = await commentDal.getAllWithPagination(
    {},
-   {},
+   [{
+    path:'contentId.item',
+    select:'name genre',
+    populate:{
+     path:'genre',
+     select:'-_id name'
+    }
+   },
+    {
+     path:'userId',
+     select: 'username profile'
+    }
+   ],
    perpage,
    perpage * page,
    {[sortBy]: sortDir}
@@ -56,22 +92,39 @@ exports.getAllCommentsWithPagination = async (req, res) => {
 exports.getById = async (req) => {
  try {
   const {id} = req.params;
-  const json = await commentDal.getById(id);
+  const json = await commentDal.getById(
+   id,
+   [
+    {
+     path:'contentId.item',
+     select:'name genre',
+     populate: {
+      path:'genre',
+      select:'-_id name'
+     }
+    },
+    {
+     path: 'userId',
+     select: 'username, profile'
+    }
+   ]
+  );
   return {
    ...commentDto,
-   ...json
+   json
   }
  } catch (error) {
+  console.log(error)
   throw new Error(error)
  }
 }
 
 
-exports.updateDirectorById = async (req) => {
+exports.updateById = async (req) => {
  try {
   const {id} = req.params;
   const body = req.body;
-  const json = await commentDal.updateCommentById(id, {
+  const json = await commentDal.updateById(id, {
    body
   });
   return {
@@ -85,15 +138,11 @@ exports.updateDirectorById = async (req) => {
 }
 
 
-exports.deleteCommentById = async (req) => {
+exports.deleteById = async (req) => {
  try {
   const {id} = req.params;
-  const json = await commentDal.deleteCommentById(id);
-  return {
-   ...commentDto,
-   id: json._id,
-   ...json
-  }
+  const json = await commentDal.deleteById(id);
+  return json
  } catch (error) {
   throw new Error(error)
  }

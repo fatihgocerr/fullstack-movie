@@ -4,7 +4,8 @@ const fs = require('fs');
 const os = require('os');
 const bcrypt = require('bcrypt');
 
-const jsonMovieChange = async (json) => {
+const jsonMovieChange = async (json,score) => {
+ console.log('hlepers',score)
  const  jsonChange  = {
   id: json._id,
   name: json.name,
@@ -14,8 +15,8 @@ const jsonMovieChange = async (json) => {
   directorId: json.directorId,
   stars: json.stars,
   scriptwriter: json.scriptwriter,
-  userScore: json.userScore,
-  totalVotes: json.totalVotes,
+  userScore: score ? score.average : json.userScore,
+  totalVotes: score ? score.totalVotes : json.totalVotes,
   trailer: json.trailer,
   tags: json.tags,
   summary: json.summary,
