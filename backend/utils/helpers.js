@@ -109,6 +109,7 @@ const jsonGenreChange = async (json) => {
 const findedDataMap =async (id, dal,) => {
  const arr = (await Promise.all(id.toString().split(',').map(async (value) => {
   const data = await dal.getById(value);
+  console.log('data',data._id)
   return data._id;
  }))).filter(Boolean);
  return arr;
