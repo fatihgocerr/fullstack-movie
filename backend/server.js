@@ -15,6 +15,7 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
+
 app.use(`${process.env.APP_PREFIX}/movies`, router.movieRouter);
 app.use(`${process.env.APP_PREFIX}/series`, router.seriesRouter);
 app.use(`${process.env.APP_PREFIX}/anime`, router.animeRouter);

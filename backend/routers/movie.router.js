@@ -6,6 +6,9 @@ const {movieController} = require('../controllers');
 router.get('/', (req, res) => {
  res.send('Hello World!');
 })
+router.get('/yo', (req, res) => {
+ res.send('Bugün kendiniz için ne yaptınız?!');
+})
 
 router.get('/all', movieController.getAllMovies);
 router.get('/allPagination', movieController.getAllMoviesWithPagination);
