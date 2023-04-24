@@ -17,6 +17,7 @@ app.use(express.json());
 
 app.use(`${process.env.APP_PREFIX}/movies`, router.movieRouter);
 app.use(`${process.env.APP_PREFIX}/series`, router.seriesRouter);
+app.use(`${process.env.APP_PREFIX}/anime`, router.animeRouter);
 app.use(`${process.env.APP_PREFIX}/directors`, router.directorRouter);
 app.use(`${process.env.APP_PREFIX}/stars`, router.starRouter);
 app.use(`${process.env.APP_PREFIX}/scriptwriters`, router.scriptwriterRouter);

@@ -1,6 +1,6 @@
-const Series = require('../models/series.model');
-const seriesDal = require('../dal/series.dal');
-const seriesDto = require('../dto/series.dto');
+const Anime = require('../models/anime.model');
+const animeDal = require('../dal/anime.dal');
+const animeDto = require('../dto/anime.dto')
 const helpers = require('../utils/helpers');
 
 const directorDal = require('../dal/director.dal');
@@ -58,7 +58,7 @@ exports.create = async (req, res) => {
    language ,
    producer ,
   } = req.body;
-  const seriesData = new Series({
+  const animeData = new Anime({
    name,
    genre,
    visionDate ,
@@ -66,7 +66,7 @@ exports.create = async (req, res) => {
    directorId,
    stars,
    scriptwriter,
-   userScore,
+   userScore: await helpers.randomArray(6,1,10000),
    totalVotes,
    trailer ,
    tags,
@@ -109,15 +109,15 @@ exports.create = async (req, res) => {
   const findedStars = await helpers.findedDataMap(stars, starDal);
   const findedScriptwriters = await helpers.findedDataMap(scriptwriter, scriptwriterDal);
 
-  const json = await seriesDal.create(seriesData)
+  const json = await animeDal.create(animeData)
   try {
    await Promise.all([
-    helpers.findedSeriesDataPush(findedDirectors, directorDal, json._id),
-    helpers.findedSeriesDataPush(findedGenres, genreDal, json._id),
-    helpers.findedSeriesDataPush(findedStars, starDal, json._id),
-    helpers.findedSeriesDataPush(findedScriptwriters, scriptwriterDal, json._id)
+    helpers.findedAnimeDataPush(findedDirectors, directorDal, json._id),
+    helpers.findedAnimeDataPush(findedGenres, genreDal, json._id),
+    helpers.findedAnimeDataPush(findedStars, starDal, json._id),
+    helpers.findedAnimeDataPush(findedScriptwriters, scriptwriterDal, json._id)
    ])
-   console.log('Series created successfully')
+   console.log('Anime created successfully')
   } catch (error) {
    console.log(error)
   }
@@ -158,8 +158,8 @@ exports.create = async (req, res) => {
 exports.getAll = async () => {
  try {
 
-  const score = await seriesDal.getScores();
-  const json = await seriesDal.getAll(
+  const score = await animeDal.getScores();
+  const json = await animeDal.getAll(
    {},
    [
     {
@@ -182,10 +182,10 @@ exports.getAll = async () => {
   );
 
   for (const item of json) {
-   const movieScore = score.find(s => s._id.toString() === item._id.toString());
-   if (movieScore) {
-    item.userScore = movieScore.average;
-    item.totalVotes = movieScore.totalVotes;
+   const animeScore = score.find(s => s._id.toString() === item._id.toString());
+   if (animeScore) {
+    item.userScore = animeScore.average;
+    item.totalVotes = animeScore.totalVotes;
    }
   }
   return  json
@@ -199,8 +199,8 @@ exports.getAll = async () => {
 exports.getAllWithPagination = async (req) => {
  try {
   const {perpage, page, sortBy, sortDir} = req.query;
-  const score = await seriesDal.getScores();
-  const json = await seriesDal.getAllWithPagination(
+  const score = await animeDal.getScores();
+  const json = await animeDal.getAllWithPagination(
    {},
    [
     {
@@ -228,10 +228,10 @@ exports.getAllWithPagination = async (req) => {
 
 
   for (const item of json) {
-   const movieScore = score.find(s => s._id.toString() === item._id.toString());
-   if (movieScore) {
-    item.userScore = movieScore.average;
-    item.totalVotes = movieScore.totalVotes;
+   const animeScore = score.find(s => s._id.toString() === item._id.toString());
+   if (animeScore) {
+    item.userScore = animeScore.average;
+    item.totalVotes = animeScore.totalVotes;
    }
   }
   return json
@@ -243,12 +243,12 @@ exports.getAllWithPagination = async (req) => {
 exports.getById = async (req) => {
  try {
   const {id} = req.params;
-  const json = await seriesDal.getById(id);
-  const score = await seriesDal.getScore(id);
+  const json = await animeDal.getById(id);
+  const score = await animeDal.getScore(id);
 
   const jsonChange = await helpers.jsonMovieChange(json,score);
   return {
-   ...seriesDto,
+   ...animeDto,
    ...jsonChange
   }
  } catch (error) {
@@ -304,7 +304,7 @@ exports.updateById = async (req) => {
    language ,
    producer ,
   } = req.body;
-  const json = await seriesDal.updateById(id, {
+  const json = await animeDal.updateById(id, {
    name,
    genre,
    visionDate ,
@@ -350,7 +350,7 @@ exports.updateById = async (req) => {
    producer ,
   });
   return {
-   ...seriesDto,
+   ...animeDto,
    id: json._id,
    poster: json.poster,
    bannerPoster: json.bannerPoster,
@@ -404,30 +404,29 @@ exports.updateById = async (req) => {
 exports.deleteById = async (req) => {
  try {
   const {id} = req.params;
-  const findedSeries = await seriesDal.getById(id);
-
-  const isPosterDeleted = await helpers.deleteImageFromDisk(findedSeries.poster ? findedSeries.poster.split('/uploads/')[1] : '');
-  const isDeletedBannerPoster = await helpers.deleteImageFromDisk(findedSeries.bannerPoster ? findedSeries.bannerPoster.split('/uploads/')[1] : '');
+  const findedAnime = await animeDal.getById(id);
+  const isPosterDeleted = await helpers.deleteImageFromDisk(findedAnime.poster ? findedAnime.poster.split('/uploads/')[1] : '');
+  const isDeletedBannerPoster = await helpers.deleteImageFromDisk(findedAnime.bannerPoster ? findedAnime.bannerPoster.split('/uploads/')[1] : '');
 
   if (!isPosterDeleted || !isDeletedBannerPoster) {
-   const json = await seriesDal.deleteById(id);
+   const json = await animeDal.deleteById(id);
    //filmin ilgili kısımlarından gelen gelen id'lere göre ilgili alanların bilgilerini çeker ör:movies.gere => genre
-   const findedDirectors = await helpers.findedDataMap(findedSeries.directorId, directorDal);
-   const findedGenres = await helpers.findedDataMap(findedSeries.genre, genreDal);
-   const findedStars = await helpers.findedDataMap(findedSeries.stars, starDal);
-   const findedScriptwriters = await helpers.findedDataMap(findedSeries.scriptwriter, scriptwriterDal);
+   const findedDirectors = await helpers.findedDataMap(findedAnime.directorId, directorDal);
+   const findedGenres = await helpers.findedDataMap(findedAnime.genre, genreDal);
+   const findedStars = await helpers.findedDataMap(findedAnime.stars, starDal);
+   const findedScriptwriters = await helpers.findedDataMap(findedAnime.scriptwriter, scriptwriterDal);
 
    //ilgili alanlardan dizinin id'sini siler
    await Promise.all([
-    helpers.deleteSeriesDatafilter(findedDirectors, directorDal,findedSeries._id),
-    helpers.deleteSeriesDatafilter(findedGenres, genreDal,findedSeries._id),
-    helpers.deleteSeriesDatafilter(findedStars, starDal,findedSeries._id),
-    helpers.deleteSeriesDatafilter(findedScriptwriters, scriptwriterDal,findedSeries._id)
+    helpers.deleteAnimeDatafilter(findedDirectors, directorDal,findedAnime._id),
+    helpers.deleteAnimeDatafilter(findedGenres, genreDal,findedAnime._id),
+    helpers.deleteAnimeDatafilter(findedStars, starDal,findedAnime._id),
+    helpers.deleteAnimeDatafilter(findedScriptwriters, scriptwriterDal,findedAnime._id)
    ]);
 
    const jsonChange = await helpers.jsonMovieChange(json);
    return {
-    ...seriesDto,
+    ...animeDal,
     id: json._id,
     name: json.name,
     ...jsonChange
@@ -452,13 +451,13 @@ exports.uploadImage = async (req) => {
    updateFields.bannerPoster = str[1];
   }
   console.log(updateFields.bannerPoster)
-  const json = await seriesDal.updateById(id, updateFields);
+  const json = await animeDal.updateById(id, updateFields);
   return {
-   ...seriesDto,
+   ...animeDto,
    id: json._id,
    name: json.name,
-   poster: str[0] !== false ? str[0] : seriesDto.poster,
-   bannerPoster: str[1] !== false ? str[1] : seriesDto.bannerPoster,
+   poster: str[0] !== false ? str[0] : animeDto.poster,
+   bannerPoster: str[1] !== false ? str[1] : animeDto.bannerPoster,
    createdAt: json.createdAt,
    updatedAt: json.updatedAt
   };
@@ -481,21 +480,21 @@ exports.updateImage = async (req) => {
   if (str[1] !== false) {
    updateFields.bannerPoster = str[1];
   }
-  const findedSeries = await seriesDal.getById(id);
-  console.log('my', findedSeries.poster.split('/uploads/')[1])
+  const findedAnime = await animeDal.getById(id);
+  console.log('my', findedAnime.poster.split('/uploads/')[1])
 
-  const isDeletedPoster = await helpers.deleteImageFromDisk(findedSeries.poster ? findedSeries.poster.split('/uploads/')[1] : '');
-  const isDeletedBannerPoster = await helpers.deleteImageFromDisk(findedSeries.bannerPoster ? findedSeries.bannerPoster.split('/uploads/')[1] : '');
+  const isDeletedPoster = await helpers.deleteImageFromDisk(findedAnime.poster ? findedAnime.poster.split('/uploads/')[1] : '');
+  const isDeletedBannerPoster = await helpers.deleteImageFromDisk(findedAnime.bannerPoster ? findedAnime.bannerPoster.split('/uploads/')[1] : '');
 
   if (!isDeletedPoster && !isDeletedBannerPoster) {
-   const json = await seriesDal.updateById(id, updateFields);
+   const json = await animeDal.updateById(id, updateFields);
 
    return {
-    ...seriesDto,
+    ...animeDto,
     id: json._id,
     name: json.name,
-    poster: str[0] !== false ? str[0] : seriesDto.poster,
-    bannerPoster: str[1] !== false ? str[1] : seriesDto.bannerPoster,
+    poster: str[0] !== false ? str[0] : animeDto.poster,
+    bannerPoster: str[1] !== false ? str[1] : animeDto.bannerPoster,
     createdAt: json.createdAt,
     updatedAt: json.updatedAt
    }
@@ -512,19 +511,19 @@ exports.updateScore = async (req) => {
   const {id} = req.params;
   const {userScore} = req.body;
 
-  const findedSeries = await seriesDal.getById(id);
-  console.log(findedSeries.userScore)
+  const findedAnime = await animeDal.getById(id);
+  console.log(findedAnime.userScore)
   console.log(userScore)
 
-  findedSeries.userScore.push(userScore);
-  await seriesDal.create(findedSeries)
+  findedAnime.userScore.push(userScore);
+  await animeDal.create(findedAnime)
 
-  return
-  const json = await seriesDal.updateById(id, {
-
-  });
+  // return
+  // const json = await animeDal.updateById(id, {
+  //
+  // });
   return {
-   ...seriesDto,
+   ...animeDto,
    id: json._id,
    poster: json.poster,
    bannerPoster: json.bannerPoster,
@@ -537,7 +536,7 @@ exports.updateScore = async (req) => {
 exports.getScore = async (req) => {
  try {
   const {id} = req.params;
-  const scores = await seriesDal.getScore(id);
+  const scores = await animeDal.getScore(id);
   console.log('scores',scores)
   return scores
 

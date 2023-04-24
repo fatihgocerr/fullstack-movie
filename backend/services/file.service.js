@@ -14,11 +14,10 @@ exports.uploadMultipleImage = async (req, res) => {
    }
    const ip = await helpers.getHost(req);
    const filePath =await (process.env.FILE_PATH+req.baseUrl.split('/v1/')[1]);
-   console.log('filePath', filePath)
    const poster = await req.files?.['poster']?.[0].filename;
    const bannerPoster = await req.files?.['bannerPoster']?.[0].filename;
-
-   const fileUrls = [!!poster && `${ip}${filePath}/${poster}`, !!bannerPoster && `${ip}${filePath}/${bannerPoster}`];
+   // console.log(`${poster.split('-')[0]}`)
+   const fileUrls = [!!poster && `${ip}${filePath}/${poster.split('-')[0]}/${poster}`, !!bannerPoster && `${ip}${filePath}/${bannerPoster.split('-')[0]}/${bannerPoster}`];
    resolve(fileUrls);
   })
  })
