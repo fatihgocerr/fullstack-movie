@@ -140,11 +140,26 @@ const findedSeriesDataPush = async (data, dal, id) => {
  }));
 }
 const deleteSeriesDatafilter = async (data, dal, id) => {
-
  for (const value of data) {
   const findData = await dal.getById(value);
+
   const newData = findData.series.filter((val) => val.toString() !== id.toString());
-  await dal.updateById(value, {movies: newData})
+  await dal.updateById(value, {series: newData})
+ }
+}
+
+const findedAnimeDataPush = async (data, dal, id) => {
+ await Promise.all(data.map(async (value) => {
+  const findedData = await dal.getById(value);
+  findedData.anime.push(id);
+  await dal.create(findedData);
+ }));
+}
+const deleteAnimeDatafilter = async (data, dal, id) => {
+ for (const value of data) {
+  const findData = await dal.getById(value);
+  const newData = findData.anime.filter((val) => val.toString() !== id.toString());
+  await dal.updateById(value, {anime: newData})
  }
 }
 
@@ -185,8 +200,16 @@ const getHost = (req) => {
  })
 }
 const deleteImageFromDisk = (image) => {
- if (image && fs.existsSync(`uploads/${image.split('-')[0]}/${image.split('/')[1]}`)) {
-  fs.unlink(`uploads/${image.split('-')[0]}/${image.split('/')[1]}`, (err) => {
+ console.log('image',image)
+ console.log('data',`${image.split('-')[0]}/${image.split('/')[1]}`)
+ // if (image && fs.existsSync(`uploads/${image.split('-')[0]}/${image.split('/')[1]}`)) {
+ //  fs.unlink(`uploads/${image.split('-')[0]}/${image.split('/')[1]}`, (err) => {
+ //   console.log('err', err)
+ //   return !err;
+ //  });
+ // }
+ if (image && fs.existsSync(`uploads/${image}`)) {
+  fs.unlink(`uploads/${image}`, (err) => {
    console.log('err', err)
    return !err;
   });
@@ -230,6 +253,21 @@ const decryptPassword = async (password, hash) => {
 }
 
 
+const randomArray =async (max, min, length = 3) => {
+ const arr = [];
+ for(let i = 0; i <  length; i++){
+  const random =Math.floor( Math.random() * (max - min) + min);
+  // random < 2 ? arr.push(random+2) : arr.push(random)
+  arr.push(random)
+ }
+ console.log(arr)
+ const total = arr.reduce((a,b) => a+b)
+ console.log(total)
+ console.log(total/ arr.length)
+ return await arr
+}
+
+
 module.exports = {
  jsonMovieChange,
  jsonDirectorChange,
@@ -248,5 +286,8 @@ module.exports = {
  encryptPassword,
  decryptPassword,
  findedSeriesDataPush,
- deleteSeriesDatafilter
+ deleteSeriesDatafilter,
+ findedAnimeDataPush,
+ deleteAnimeDatafilter,
+ randomArray
 }

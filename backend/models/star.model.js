@@ -14,6 +14,7 @@ const starSchema = new Schema({
   awards: {type: String, required: true},
   movies: [{type: Schema.Types.ObjectId, ref: 'Movie'}],
   series: [{type: Schema.Types.ObjectId, ref: 'Series'}],
+  anime: [{ type: Schema.Types.ObjectId, ref: 'Anime' }],
   nationality: {type: String, required: true},
   image: {type: String, required: true}
  },
