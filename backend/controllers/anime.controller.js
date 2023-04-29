@@ -1,11 +1,18 @@
 const {animeService} = require('../services')
 const baseResponse = require('../dto/baseResponse');
 const {StatusCodes}  = require('http-status-codes')
-
+const helpers = require('../utils/helpers')
 
 exports.create= async (req,res) => {
  try {
- //valid control is here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await animeService.create(req,res)
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -16,7 +23,7 @@ exports.create= async (req,res) => {
    code:StatusCodes.OK
   })
  } catch (error) {
- //log to error
+   helpers.logToError(error,req,'Error in Create Anime')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    success:false,
@@ -31,7 +38,14 @@ exports.create= async (req,res) => {
 
 exports.getAll = async (req, res) => {
  try {
-  //invalid control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await animeService.getAll();
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -41,7 +55,7 @@ exports.getAll = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error,req,'Error in Get All Anime')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -57,7 +71,14 @@ exports.getAll = async (req, res) => {
 
 exports.getAllWithPagination = async (req, res) => {
  try {
-  //invalid control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await animeService.getAllWithPagination(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -67,7 +88,7 @@ exports.getAllWithPagination = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error,req,'Error in Get All With Pagination Anime')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -83,7 +104,14 @@ exports.getAllWithPagination = async (req, res) => {
 
 exports.getById = async (req, res) => {
  try {
-  //invalid control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await animeService.getById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -93,6 +121,7 @@ exports.getById = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
+  helpers.logToError(error,req,'Error in Get By Id Anime')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -107,7 +136,14 @@ exports.getById = async (req, res) => {
 
 exports.updateById = async (req, res) => {
  try {
-  //invalid control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await animeService.updateById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -118,7 +154,7 @@ exports.updateById = async (req, res) => {
   });
 
  } catch (error) {
-  //log to error
+  helpers.logToError(error,req,'Error in updateById Anime')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -133,7 +169,14 @@ exports.updateById = async (req, res) => {
 
 exports.deleteById = async (req, res) => {
  try {
-  //invalid control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await animeService.deleteById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -143,7 +186,7 @@ exports.deleteById = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error,req,'Error in deleteById Anime')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -157,7 +200,14 @@ exports.deleteById = async (req, res) => {
 
 exports.uploadImage = async (req, res) => {
  try {
-  //validation control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await animeService.uploadImage(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -167,7 +217,7 @@ exports.uploadImage = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error,req,'Error in uploadImage Anime')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -182,7 +232,14 @@ exports.uploadImage = async (req, res) => {
 
 exports.updateImage = async (req, res) => {
  try {
-  //validation control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await animeService.updateImage(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -192,7 +249,7 @@ exports.updateImage = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error,req,'Error in updateImage Anime')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -207,7 +264,14 @@ exports.updateImage = async (req, res) => {
 
 exports.updateScore = async (req, res) => {
  try {
-  //validation control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await animeService.updateScore(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -217,7 +281,7 @@ exports.updateScore = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error,req,'Error in updateScore Anime')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -231,7 +295,14 @@ exports.updateScore = async (req, res) => {
 
 exports.getScore = async (req, res) => {
  try {
-  //validation control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await animeService.getScore(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -241,7 +312,7 @@ exports.getScore = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error,req,'Error in getScore Anime')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,

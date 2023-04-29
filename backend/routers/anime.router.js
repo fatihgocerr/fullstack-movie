@@ -4,24 +4,24 @@ const {animeService} = require("../services");
 const router = express.Router();
 
 const {animeController} = require('../controllers');
-
+const {animeValidator} = require('../validations');
 
 router.get('/all', animeController.getAll)
-router.get('/allPagination',animeController.getAllWithPagination)
-router.get('/getById/:id',animeController.getById)
+router.get('/allPagination',animeValidator.validateListPagination(),animeController.getAllWithPagination)
+router.get('/getById/:id',animeValidator.validateGetById(),animeController.getById)
 
-router.post('/create', animeController.create)
-router.put('/updateById/:id', animeController.updateById)
+router.post('/create',animeValidator.validateCreate(), animeController.create)
+router.put('/updateById/:id',animeValidator.validateUpdateById(), animeController.updateById)
 
-router.delete('/deleteById/:id',animeController.deleteById)
-
-
-router.post('/uploadImage/:id', animeController.uploadImage)
-router.post('/updateImage/:id', animeController.updateImage)
+router.delete('/deleteById/:id',animeValidator.validateDeleteById(),animeController.deleteById)
 
 
-router.put('/updateScore/:id', animeController.updateScore);
-router.get('/getScore/:id', animeController.getScore);
+router.post('/uploadImage/:id', animeController.uploadImage) //Ayrı Middleware yazılacak
+router.post('/updateImage/:id', animeController.updateImage) //Ayrı Middleware yazılacak
+
+
+router.put('/updateScore/:id', animeController.updateScore); //Ayrı Middleware yazılacak
+router.get('/getScore/:id', animeController.getScore); //Ayrı Middleware yazılacak
 
 
 

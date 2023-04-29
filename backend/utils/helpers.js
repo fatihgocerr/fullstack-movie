@@ -3,7 +3,40 @@ const dns = require('dns');
 const fs = require('fs');
 const os = require('os');
 const bcrypt = require('bcrypt');
+const logger = require('./logger');
+const {validationResult} = require('express-validator');
+const {StatusCodes} = require('http-status-codes');
 
+const logToError = (error, req, message) => {
+ logger.error(`
+  IP ADRESİ : ${req.ip} -
+ PATH : ${req.path} -
+ METHOD : ${req.method} -
+ BODY : ${JSON.stringify(req.body)} -
+ PARAMS : ${JSON.stringify(req.params)} -
+ QUERY : ${JSON.stringify(req.query)} -
+ URL : ${req.url} -
+ ERROR MESSAGE : ${error.message} - 
+ ERROR CALLSTACK : ${JSON.stringify(error)} -
+ ERROR TIME : ${Date.now()} -
+ CUSTOM MESSAGE : ${message}
+ `)
+}
+
+const handleValidationErrors = (req) => {
+ const validationErrors = validationResult(req);
+ if (!validationErrors.isEmpty()) {
+  return {
+   message: 'Geçersiz Veri',
+   success: false,
+   error: true,
+   validationErrors: validationErrors.array(),
+   timestamp: Date.now(),
+   code: StatusCodes.BAD_REQUEST
+  }
+ }
+ return null;
+}
 const jsonMovieChange = async (json,score) => {
  console.log('hlepers',score)
  const  jsonChange  = {
@@ -270,6 +303,8 @@ const randomArray =async (max, min, length = 3) => {
 
 
 module.exports = {
+ logToError,
+ handleValidationErrors,
  jsonMovieChange,
  jsonDirectorChange,
  jsonStarChange,

@@ -6,6 +6,7 @@ const configs = require('./config');
 const app = express();
 const router = require('./routers');
 const helpers = require('./utils/helpers');
+const middleware = require('./middleware');
 
 configs.serverConfig.initialServerConfig();
 helpers.uploadsDirControl('./uploads');
@@ -14,6 +15,9 @@ app.use('/uploads', express.static('uploads')); //dışarıdan erişim için
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
+
+
+app.use(middleware.loggerMiddleware);
 
 
 app.use(`${process.env.APP_PREFIX}/movies`, router.movieRouter);
