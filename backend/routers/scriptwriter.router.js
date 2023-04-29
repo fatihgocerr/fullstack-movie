@@ -2,15 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 const {scriptwriterController} = require('../controllers');
+const {scriptwriterValidator} = require('../validations');
 
 router.get('/all', scriptwriterController.getAllScriptwriters);
-router.get('/allPagination', scriptwriterController.getAllScriptwriterWithPagination);
-router.get('/getById/:id', scriptwriterController.getById);
+router.get('/allPagination', scriptwriterValidator.validateListPagination(), scriptwriterController.getAllScriptwriterWithPagination);
+router.get('/getById/:id', scriptwriterValidator.validateGetById(), scriptwriterController.getById);
 
-router.post('/create', scriptwriterController.createScriptwriter)
+router.post('/create', scriptwriterValidator.validateCreate(), scriptwriterController.createScriptwriter)
 
-router.put('/updateById/:id', scriptwriterController.updateById);
-router.delete('/deleteById/:id', scriptwriterController.deleteById);
+router.put('/updateById/:id', scriptwriterValidator.validateUpdateById(), scriptwriterController.updateById);
+router.delete('/deleteById/:id', scriptwriterValidator.validateDeleteById(), scriptwriterController.deleteById);
 
 
 module.exports = router;

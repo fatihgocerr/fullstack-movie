@@ -157,7 +157,6 @@ exports.create = async (req, res) => {
 
 exports.getAll = async () => {
  try {
-
   const score = await animeDal.getScores();
   const json = await animeDal.getAll(
    {},

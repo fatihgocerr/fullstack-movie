@@ -1,11 +1,18 @@
 const baseResponse = require("../dto/baseResponse");
 const starService = require("../services/star.service");
-const { StatusCodes } = require("http-status-codes");
-
+const {StatusCodes} = require("http-status-codes");
+const helpers = require('../utils/helpers')
 
 exports.createStar = async (req, res) => {
  try {
-  //invalid control here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   })
+   return;
+  }
   const json = await starService.createStar(req, res);
   res.status(StatusCodes.CREATED).json({
    ...baseResponse,
@@ -16,7 +23,7 @@ exports.createStar = async (req, res) => {
 
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error, req, 'Error in Create Star')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -31,7 +38,14 @@ exports.createStar = async (req, res) => {
 
 exports.getAllStars = async (req, res) => {
  try {
-  //invalid control here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   })
+   return;
+  }
   const json = await starService.getAllStars();
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -41,7 +55,7 @@ exports.getAllStars = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error, req, 'Error in Get All Stars')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -57,7 +71,14 @@ exports.getAllStars = async (req, res) => {
 
 exports.getAllStarWithPagination = async (req, res) => {
  try {
-  //invalid control here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   })
+   return;
+  }
   const json = await starService.getAllStarWithPagination(req, res);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -67,7 +88,7 @@ exports.getAllStarWithPagination = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error, req, 'Error in Get All Stars With Pagination')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -83,7 +104,14 @@ exports.getAllStarWithPagination = async (req, res) => {
 
 exports.getById = async (req, res) => {
  try {
-  //invalid control here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   })
+   return;
+  }
   const json = await starService.getById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -93,6 +121,7 @@ exports.getById = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
+  helpers.logToError(error, req, 'Error in Get Star By Id')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -107,7 +136,14 @@ exports.getById = async (req, res) => {
 
 exports.updateById = async (req, res) => {
  try {
-  //invalid control here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   })
+   return;
+  }
   const json = await starService.updateById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -118,7 +154,7 @@ exports.updateById = async (req, res) => {
   });
 
  } catch (error) {
-  //log to error
+  helpers.logToError(error, req, 'Error in Update Star By Id')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -133,7 +169,14 @@ exports.updateById = async (req, res) => {
 
 exports.deleteById = async (req, res) => {
  try {
-  //invalid control here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   })
+   return;
+  }
   const json = await starService.deleteById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -143,7 +186,7 @@ exports.deleteById = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error, req, 'Error in Delete Star By Id')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,

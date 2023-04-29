@@ -1,11 +1,18 @@
 const commentService = require('../services/comment.service');
 const { StatusCodes } = require('http-status-codes');
 const baseResponse = require('../dto/baseResponse');
-
+const helpers = require('../utils/helpers');
 
 exports.createComment = async (req, res) => {
  try {
- //valid control here
+ const isInValid = helpers.handleValidationErrors(req);
+ if (isInValid) {
+  return res.status(StatusCodes.BAD_REQUEST).json({
+   ...baseResponse,
+   ...isInValid
+  })
+  return
+ }
   const json = await commentService.createComment(req, res);
   res.status(StatusCodes.CREATED).json({
    ...baseResponse,
@@ -15,7 +22,7 @@ exports.createComment = async (req, res) => {
    code: StatusCodes.CREATED
   })
  } catch (error) {
-  //log to error
+  helpers.logToError(error, req,'Error in createComment');
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -30,7 +37,14 @@ exports.createComment = async (req, res) => {
 
 exports.getAllComments = async (req,res) => {
  try {
- //valid is control here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   })
+   return
+  }
   const json = await commentService.getAllComments()
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -41,7 +55,7 @@ exports.getAllComments = async (req,res) => {
    code:StatusCodes.OK
   })
  } catch (error) {
- //log to error
+ helpers.logToError(error, req,'Error in getAllComments');
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    success:false,
@@ -56,7 +70,14 @@ exports.getAllComments = async (req,res) => {
 
 exports.getAllWithPagination= async(req,res) => {
  try {
- //validation control is here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   })
+   return
+  }
   const json = await commentService.getAllCommentsWithPagination(req,res)
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -67,7 +88,7 @@ exports.getAllWithPagination= async(req,res) => {
    code:StatusCodes.OK
   })
  } catch (error) {
-  //log to error
+  helpers.logToError(error, req,'Error in getAllWithPagination');
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    success:false,
@@ -82,7 +103,14 @@ exports.getAllWithPagination= async(req,res) => {
 
 exports.getById = async( req,res) => {
  try {
-  //valid control is here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   })
+   return
+  }
  const json = await commentService.getById(req);
  res.status(StatusCodes.OK).json({
   ...baseResponse,
@@ -93,7 +121,7 @@ exports.getById = async( req,res) => {
   code:StatusCodes.OK
  })
  } catch (error) {
-  //log to error
+  helpers.logToError(error, req,'Error in getById Comment')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    success:false,
@@ -109,7 +137,14 @@ exports.getById = async( req,res) => {
 
 exports.updateById = async (req,res) => {
  try {
- //valid control is here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   })
+   return
+  }
   const json = await commentService.updateById(req,res);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -120,7 +155,7 @@ exports.updateById = async (req,res) => {
    code:StatusCodes.OK
   })
  } catch (error) {
- //log to error
+ helpers.logToError(error, req,'Error in updateById Comment')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    success:false,
@@ -136,7 +171,14 @@ exports.updateById = async (req,res) => {
 
 exports.deleteById = async (req,res) => {
  try {
- //valid control is here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   })
+   return
+  }
   const json = await commentService.deleteById(req,res)
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -147,7 +189,7 @@ exports.deleteById = async (req,res) => {
    code:StatusCodes.OK
   })
  } catch (error) {
-  //log to error
+ helpers.logToError(error, req,'Error in deleteById Comment')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    success:false,

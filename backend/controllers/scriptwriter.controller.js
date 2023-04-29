@@ -1,11 +1,18 @@
 const baseResponse = require("../dto/baseResponse");
 const scriptwriterService = require("../services/scriptwriter.service");
-const { StatusCodes } = require("http-status-codes");
-
+const {StatusCodes} = require("http-status-codes");
+const helpers = require('../utils/helpers')
 
 exports.createScriptwriter = async (req, res) => {
  try {
-  //invalid control here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   });
+   return
+  }
   const json = await scriptwriterService.createScriptwriter(req, res);
   res.status(StatusCodes.CREATED).json({
    ...baseResponse,
@@ -16,7 +23,7 @@ exports.createScriptwriter = async (req, res) => {
 
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error, req, 'Error in createScriptwriter')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -31,7 +38,14 @@ exports.createScriptwriter = async (req, res) => {
 
 exports.getAllScriptwriters = async (req, res) => {
  try {
-  //invalid control here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   });
+   return
+  }
   const json = await scriptwriterService.getAllScriptwriters();
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -41,7 +55,7 @@ exports.getAllScriptwriters = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error, req, 'Error in getAllScriptwriters')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -57,7 +71,14 @@ exports.getAllScriptwriters = async (req, res) => {
 
 exports.getAllScriptwriterWithPagination = async (req, res) => {
  try {
-  //invalid control here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   });
+   return
+  }
   const json = await scriptwriterService.getAllScriptwriterWithPagination(req, res);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -67,7 +88,7 @@ exports.getAllScriptwriterWithPagination = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error, req, 'Error in getAllScriptwriterWithPagination')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -83,7 +104,14 @@ exports.getAllScriptwriterWithPagination = async (req, res) => {
 
 exports.getById = async (req, res) => {
  try {
-  //invalid control here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   });
+   return
+  }
   const json = await scriptwriterService.getById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -93,6 +121,7 @@ exports.getById = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
+  helpers.logToError(error, req, 'Error in getById Scriptwriter')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -107,7 +136,14 @@ exports.getById = async (req, res) => {
 
 exports.updateById = async (req, res) => {
  try {
-  //invalid control here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   });
+   return
+  }
   const json = await scriptwriterService.updateById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -118,7 +154,7 @@ exports.updateById = async (req, res) => {
   });
 
  } catch (error) {
-  //log to error
+  helpers.logToError(error, req, 'Error in updateById Scriptwriter')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -133,7 +169,14 @@ exports.updateById = async (req, res) => {
 
 exports.deleteById = async (req, res) => {
  try {
-  //invalid control here
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   });
+   return
+  }
   const json = await scriptwriterService.deleteById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -143,7 +186,7 @@ exports.deleteById = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error, req, 'Error in deleteById Scriptwriter')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,

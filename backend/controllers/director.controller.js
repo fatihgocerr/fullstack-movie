@@ -1,11 +1,19 @@
 const baseResponse = require("../dto/baseResponse");
 const directorService = require("../services/director.service");
 const { StatusCodes } = require("http-status-codes");
+const helpers = require("../utils/helpers");
 
 
 exports.createDirector = async (req, res) => {
  try {
- //invalid control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
  const json = await directorService.createDirector(req, res);
  res.status(StatusCodes.CREATED).json({
  ...baseResponse,
@@ -16,7 +24,7 @@ exports.createDirector = async (req, res) => {
 
  });
  } catch (error) {
- //log to error
+ helpers.logToError(error, req, 'Error in Create Director')
  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
  ...baseResponse,
  error: true,
@@ -31,7 +39,14 @@ exports.createDirector = async (req, res) => {
 
 exports.getAllDirectors = async (req, res) => {
  try {
-  //invalid control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await directorService.getAllDirectors();
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -41,7 +56,7 @@ exports.getAllDirectors = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error,req,'Error in Get All Directors')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -57,7 +72,14 @@ exports.getAllDirectors = async (req, res) => {
 
 exports.getAllDirectorWithPagination = async (req, res) => {
  try {
-  //invalid control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await directorService.getAllDirectorWithPagination(req, res);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -67,7 +89,7 @@ exports.getAllDirectorWithPagination = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error,req,'Error in Get All Directors With Pagination');
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -83,7 +105,14 @@ exports.getAllDirectorWithPagination = async (req, res) => {
 
 exports.getById = async (req, res) => {
  try {
-  //invalid control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await directorService.getById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -93,6 +122,7 @@ exports.getById = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
+  helpers.logToError(error,req,'Error in Get Director By Id');
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -107,7 +137,14 @@ exports.getById = async (req, res) => {
 
 exports.updateDirectorById = async (req, res) => {
  try {
-  //invalid control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await directorService.updateDirectorById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -118,7 +155,7 @@ exports.updateDirectorById = async (req, res) => {
   });
 
  } catch (error) {
-  //log to error
+  helpers.logToError(error,req,'Error in Update Director By Id');
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
@@ -133,7 +170,14 @@ exports.updateDirectorById = async (req, res) => {
 
 exports.deleteById = async (req, res) => {
  try {
-  //invalid control here
+  const isInvalid = helpers.handleValidationErrors(req);
+  if (isInvalid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInvalid
+   });
+   return
+  }
   const json = await directorService.deleteById(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
@@ -143,7 +187,7 @@ exports.deleteById = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  //log to error
+  helpers.logToError(error,req,'Error in Delete Director By Id')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
    error: true,
