@@ -208,7 +208,7 @@ exports.login = async (req, res) => {
    const isValid = await helpers.decryptPassword(password, json.password)
    if (isValid) {
     //Doğrulama başarılı
-    return  json
+    return json
    }
   }
   console.log('Hatalı Kullanıcı Adı')
@@ -225,6 +225,10 @@ exports.uploadProfilePicture = async (req, res) => {
  try {
   const {id} = req.params;
   const findUser = await userDal.getById(id);
+  if (!findUser) {
+   throw new Error('Kullanıcı Bulunamadı')
+  }
+
   const str = await fileService.uploadSingleImage(req, res);
   const json = await userDal.updateUserById(id, {profile: {...findUser.profile, profilePicture: str}})
   return {

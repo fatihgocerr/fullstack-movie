@@ -395,39 +395,18 @@ exports.updateScore = async (req) => {
   const {userScore} = req.body;
 
   const findedMovie = await movieDal.getById(id);
-  console.log(findedMovie.userScore)
-  console.log(userScore)
 
   findedMovie.userScore.push(userScore);
-  await movieDal.create(findedMovie)
+  const json = await movieDal.create(findedMovie)
 
-return
-  const json = await movieDal.updateMovieById(id, {
 
-  });
   return {
    ...movieDto,
    id: json._id,
    poster: json.poster,
    bannerPoster: json.bannerPoster,
-   name,
-   genre,
-   visionDate,
-   imdbScore,
-   directorId,
-   stars,
-   scriptwriter,
-   userScore,
-   totalVotes,
-   trailer,
-   tags,
-   summary,
-   budget,
-   boxOffice,
-   year,
-   awards,
-   conditions,
-   series
+   name: json.name,
+   userScore: json.userScore.length >1 ? json.userScore[json.userScore.length -1] : json.userScore,
   }
  } catch (error) {
   throw new Error(error)
