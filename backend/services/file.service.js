@@ -12,6 +12,11 @@ exports.uploadMultipleImage = async (req, res) => {
    } else if (err) {
     reject(err);
    }
+
+   if (Object.keys(req.files).length === 0) {
+    reject('Files not selected');
+    return
+   }
    const ip = await helpers.getHost(req);
    const filePath =await (process.env.FILE_PATH+req.baseUrl.split('/v1/')[1]);
    const poster = await req.files?.['poster']?.[0].filename;
@@ -31,10 +36,14 @@ exports.uploadSingleImage = async (req, res) => {
    } else if (err) {
     reject(err);
    }
+   if (!req.file) {
+    reject('File not selected');
+    return
+   }
    const ip = await helpers.getHost(req);
    const filePath = process.env.FILE_PATH;
    const pp = req.file.filename
-   const fileUrl =`${ip}${filePath}${pp}`;
+   const fileUrl =`${ip}${filePath}pp/${pp}`;
    resolve(fileUrl);
   })
  })

@@ -7,7 +7,8 @@ const genreValidator = require('./genre.validator')
 const scriptwriterValidator = require('./scriptwriter.validator')
 const starValidator = require('./star.validator')
 const userValidator = require('./user.validator')
-
+const uploadsValidator = require('./uploads.validator')
+const scoreValidator = require('./score.validator')
 
 module.exports = {
  animeValidator,
@@ -18,5 +19,7 @@ module.exports = {
  genreValidator,
  scriptwriterValidator,
  starValidator,
- userValidator
+ userValidator,
+ uploadsValidator,
+ scoreValidator
 }

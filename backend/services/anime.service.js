@@ -515,7 +515,7 @@ exports.updateScore = async (req) => {
   console.log(userScore)
 
   findedAnime.userScore.push(userScore);
-  await animeDal.create(findedAnime)
+  const json = await animeDal.create(findedAnime)
 
   // return
   // const json = await animeDal.updateById(id, {
@@ -526,6 +526,8 @@ exports.updateScore = async (req) => {
    id: json._id,
    poster: json.poster,
    bannerPoster: json.bannerPoster,
+   userScore: json.userScore.length >1 ? json.userScore[json.userScore.length -1] : json.userScore,
+
   }
  } catch (error) {
   throw new Error(error)

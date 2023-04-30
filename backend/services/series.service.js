@@ -517,17 +517,14 @@ exports.updateScore = async (req) => {
   console.log(userScore)
 
   findedSeries.userScore.push(userScore);
-  await seriesDal.create(findedSeries)
-
-  return
-  const json = await seriesDal.updateById(id, {
-
-  });
+  const json = await seriesDal.create(findedSeries)
   return {
    ...seriesDto,
    id: json._id,
    poster: json.poster,
    bannerPoster: json.bannerPoster,
+   userScore: json.userScore.length >1 ? json.userScore[json.userScore.length -1] : json.userScore,
+
   }
  } catch (error) {
   throw new Error(error)
