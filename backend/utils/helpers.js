@@ -1,4 +1,4 @@
-
+const jwt = require('jsonwebtoken');
 const dns = require('dns');
 const fs = require('fs');
 const os = require('os');
@@ -37,6 +37,30 @@ const handleValidationErrors = (req) => {
  }
  return null;
 }
+
+const generateToken = (userId, userName, role) => {
+ const token = jwt.sign({
+   userId,
+   userName,
+   role
+  }, process.env.JWT_SECRET,
+  {expiresIn: process.env.JWT_EXPIRES_IN});
+ return token;
+}
+
+const decodeToken = (token) => {
+ const isVerify = {decodeToken: null}
+ try {
+  const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+  isVerify.decodeToken = decodedToken;
+  console.log('decodedToken', decodedToken)
+  return isVerify;
+ } catch (error) {
+  throw new Error(error)
+  return isVerify;
+ }
+}
+
 const jsonMovieChange = async (json,score) => {
  console.log('hlepers',score)
  const  jsonChange  = {
@@ -325,5 +349,7 @@ module.exports = {
  deleteSeriesDatafilter,
  findedAnimeDataPush,
  deleteAnimeDatafilter,
- randomArray
+ randomArray,
+ generateToken,
+ decodeToken
 }

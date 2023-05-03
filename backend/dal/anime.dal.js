@@ -69,6 +69,9 @@ const AnimeDataAccessLayer = {
   return scores
  },
 
+ async count() {
+  return await Anime.countDocuments();
+ }
 
 
 }

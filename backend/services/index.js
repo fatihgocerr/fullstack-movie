@@ -7,6 +7,11 @@ const scriptwriterService = require('./scriptwriter.service');
 const genreService = require('./genre.service');
 const commentService = require('./comment.service');
 const userService = require('./user.service');
+const statisticsService = require('./statistics.service');
+
+
+
+
 module.exports = {
  movieService,
  seriesService,
@@ -17,4 +22,5 @@ module.exports = {
  genreService,
  commentService,
  userService,
+ statisticsService
 }

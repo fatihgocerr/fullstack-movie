@@ -7,9 +7,10 @@ const fileService = require('./file.service');
 
 exports.createUser = async (req, res) => {
  try {
-  const {username, password, email, profile, favorites, watchlist, ratings, friends, settings} = req.body;
+  const {username,role, password, email, profile, favorites, watchlist, ratings, friends, settings} = req.body;
   const user = new User({
    username,
+   role,
    password: await helpers.encryptPassword(password),
    email,
    profile,
@@ -207,14 +208,15 @@ exports.login = async (req, res) => {
   if (!!json) {
    const isValid = await helpers.decryptPassword(password, json.password)
    if (isValid) {
-    //Doğrulama başarılı
-    return json
+    // Doğrulama başarılı
+
+    const token = await helpers.generateToken(json._id, username, json.role)
+    return {userId:json._id, username, role:json.role,token}
    }
   }
   console.log('Hatalı Kullanıcı Adı')
-
   throw new Error('Hatalı Kullanıcı Bilgileri')
-  //jwt vs
+
  } catch (error) {
   throw new Error(error)
  }
