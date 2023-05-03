@@ -69,7 +69,9 @@ const SeriesDataAccessLayer = {
   return scores
  },
 
-
+async count() {
+  return await Series.countDocuments();
+},
 
 }
 

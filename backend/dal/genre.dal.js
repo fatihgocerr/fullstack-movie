@@ -23,7 +23,7 @@ const GenreDataAccessLayer = {
  },
  async deleteById(id) {
   return await Genre.findByIdAndDelete(id)
- }
+ },
 
 };
 

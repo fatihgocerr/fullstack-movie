@@ -69,7 +69,9 @@ const MovieDataAccessLayer = {
   return scores
  },
 
-
+async count() {
+ return await Movie.countDocuments();
+}
 
 }
 

@@ -7,6 +7,9 @@ const scriptwriterController = require('./scriptwriter.controller');
 const genreController = require('./genre.controller');
 const commentController = require('./comment.controller');
 const userController = require('./user.controller');
+const statisticsController = require('./statistics.controller');
+
+
 module.exports = {
  movieController,
  seriesController,
@@ -17,4 +20,5 @@ module.exports = {
  genreController,
  commentController,
  userController,
+ statisticsController
 };

@@ -26,10 +26,11 @@ const UserDataAccessLayer = {
  },
  async findOne(where) {
   return await User.findOne(where);
+ },
+ async count() {
+  return await User.countDocuments();
  }
 }
-
-
 
 
 module.exports = UserDataAccessLayer;
