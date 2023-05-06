@@ -20,8 +20,9 @@ export const RightSideMenu = () => {
   ]);
 
   return (
-    <div className="my-8 col-span-2 m-4">
-      <IsProfile />
+    <>
+      <Profile />
+     {/*  
       <SearchCheck
         title={"Kategoriler"}
         setCategories={setCategories}
@@ -30,25 +31,27 @@ export const RightSideMenu = () => {
 
       <button
         onClick={handleFilter}
-        className="btn btn-primary mt-4 capitalize"
-      >
+        className="btn btn-primary mt-4 capitalize">
         Filtrele
-      </button>
-    </div>
+      </button> */}
+
+
+      
+    </>
   );
 };
 
-const IsProfile = () => {
+const Profile = () => {
   return (
-    <div className="flex justify-end gap-4">
-      <div className="bg-base-300 rounded-full p-4 flex justify-center items-center">
+    <div className="flex justify-end gap-2 ">
+      <div className="bg-base-300 rounded-full h-12 w-12  md:h-14 md:w-14 flex justify-center items-center">
         <div className="indicator">
           <span className="indicator-item  h-2 w-2 rounded-full bg-primary"></span>
           <BsBell size={"1.4rem"} />
         </div>
       </div>
       <img
-        className="h-14 w-14 object-cover rounded-full"
+        className="h-12 w-12  md:h-14 md:w-14 object-cover rounded-full"
         src="https://shotkit.com/wp-content/uploads/bb-plugin/cache/cool-profile-pic-matheus-ferrero-landscape.jpeg"
       />
     </div>
@@ -56,6 +59,7 @@ const IsProfile = () => {
 };
 
 const SearchCheck = ({ categories, title, setCategories }) => {
+  
   const onChange = (e) => {
     setCategories((prev) =>
       prev.map((category) => {

@@ -2,14 +2,14 @@ import React from "react";
 
 export const SearchBar = () => {
   return (
-    <div className="my-8 col-span-8">
+    <>
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
       >
         Search
       </label>
-      <div className="relative">
+      <div className="relative mb-4">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <svg
             aria-hidden="true"
@@ -34,6 +34,6 @@ export const SearchBar = () => {
           placeholder="Filmler, Diziler, Animeler..."
         />
       </div>
-    </div>
+    </>
   );
 };
