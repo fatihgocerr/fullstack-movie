@@ -13,7 +13,7 @@
 
 @layer components{
   .custom-link{
-    @apply grid gap-1 place-items-center sm:flex sm:p-4 sm:gap-3 text-lg  p-2 cursor-pointer border-[#63dad6] hover:bg-primary-focus hover:border-r-4  hover:text-gray-700 hover:font-semibold transition duration-300
+    @apply grid gap-1 place-items-center sm:flex sm:p-4 sm:gap-3   p-2 cursor-pointer border-[#63dad6] hover:bg-primary-focus hover:border-r-4  hover:text-gray-700 hover:font-semibold transition duration-300
   }
 
   .blur-button{

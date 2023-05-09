@@ -5,7 +5,7 @@ import "./index.css";
 import  {store}  from "./slices/store";
 import { Provider } from "react-redux";
 import {BrowserRouter} from "react-router-dom"
-import { Modal } from "./components/Modal";
+import { Modal } from "./components/modalComponents/Modal";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>

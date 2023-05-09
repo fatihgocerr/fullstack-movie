@@ -19,12 +19,12 @@ const Layout = () => {
         <div className="col-span-9 lg:col-span-10 mt-4 mr-2">
           <div className="grid grid-cols-12 ">
 
-          <div className="col-span-9 lg:col-span-10 ">
-             <SearchBar />
-          </div>
-          <div className="col-span-3 lg:col-span-2">
-                <RightSideMenu />
-          </div>
+              <div className="col-span-9 lg:col-span-10 ">
+                <SearchBar />
+              </div>
+              <div className="col-span-3 lg:col-span-2">
+                    <RightSideMenu />
+              </div>
           </div>
       
          

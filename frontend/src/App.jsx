@@ -15,7 +15,6 @@ function App() {
       <Route path="/movies" element={<Movies/>} />
       <Route path="/series"  element={<Series/>} />
       <Route path="/upcoming"  element={<Upcoming/>} />
-      
     </Route>
   </Routes>;
 }
