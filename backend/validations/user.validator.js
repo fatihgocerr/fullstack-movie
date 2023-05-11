@@ -1,15 +1,30 @@
 const { body, param, query } = require('express-validator');
+const {userService} = require("../services");
 
 const userValidator = {
  validateCreate() {
 return [
- body('username').notEmpty().withMessage('username is required'),
- body('email').notEmpty().withMessage('email is required'),
+ // body('username').notEmpty().withMessage('username is required'),
+ // body('email').notEmpty().withMessage('email is required'),
  body('password').notEmpty().withMessage('password is required'),
  body('profile.name').notEmpty().withMessage('profile is required'),
  body('profile.surname').notEmpty().withMessage('profile is required'),
  body('profile.country').notEmpty().withMessage('profile is required'),
- body('profile.language').notEmpty().withMessage('profile is required'),
+ // body('profile.language').notEmpty().withMessage('profile is required'),
+ body('username').not().isEmpty().custom(async (value, {req}) => {
+  const result = await userService.findByUserName(value);
+  if (result) {
+   throw new Error('User Name is already in use');
+  }
+  return true;
+ }),
+ body('email').not().isEmpty().custom(async (value, {req}) => {
+  const result = await userService.findByEmail(value);
+  if (result) {
+   throw new Error('Email is already in use');
+  }
+  return true;
+ }).withMessage('email is already in use'),
 ]
  },
  validateGetById() {

@@ -12,7 +12,7 @@ const scriptwriterValidator = {
    body('biography').notEmpty().withMessage('biography is required'),
    body('gender').notEmpty().withMessage('gender is required'),
    body('awards').notEmpty().withMessage('awards is required'),
-   body('naitonality').notEmpty().withMessage('naitonality is required')
+   body('nationality').notEmpty().withMessage('nationality is required')
   ]
  },
  validateGetById() {

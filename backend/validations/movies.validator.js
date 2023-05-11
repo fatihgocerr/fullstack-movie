@@ -11,11 +11,11 @@ const moviesValidator = {
    body('stars').notEmpty().isMongoId().withMessage('stars is required'),
    body('scriptwriter').notEmpty().isMongoId().withMessage('scriptwriter is required'),
    body('trailer').notEmpty().withMessage('trailer is required'),
-   body('summary').notEmpty().withMessage('summary is required'),
-   body('poster').notEmpty().withMessage('poster is required'),
-   body('bannerPoster').notEmpty().withMessage('bannerPoster is required'),
-   body('budget').notEmpty().withMessage('budget is required'),
-   body('boxOffice').notEmpty().withMessage('boxOffice is required'),
+   // body('summary').notEmpty().withMessage('summary is required'),
+   // body('poster').notEmpty().withMessage('poster is required'),
+   // body('bannerPoster').notEmpty().withMessage('bannerPoster is required'),
+   // body('budget').notEmpty().withMessage('budget is required'),
+   // body('boxOffice').notEmpty().withMessage('boxOffice is required'),
    body('year').notEmpty().withMessage('year is required'),
    body('country').notEmpty().withMessage('country is required'),
    body('language').notEmpty().withMessage('language is required'),
@@ -35,8 +35,8 @@ const moviesValidator = {
   return [
    query('perPage').notEmpty().isNumeric().withMessage('PerPage must be a number'),
    query('page').notEmpty().isNumeric().withMessage('Page must be a number'),
-   query('limit').notEmpty().withMessage('Limit must be a number'),
-   query('sort').notEmpty().isString().withMessage('Sort must be a string'),
+   query('sortBy').isString().withMessage('Limit must be a number'),
+   query('sortDir').isString().withMessage('SortDir must be a string'),
   ]
  },
 }

@@ -22,9 +22,8 @@ const storage = multer.diskStorage({
    cb(null, './uploads');
   }
  },
- filename: function (req, file, cb) {
-  const slugImageName = file.fieldname + '-' + helpers.replaceImageName(file.originalname);
-
+ filename: async function (req, file, cb) {
+  const slugImageName = await file.fieldname + '-' + helpers.replaceImageName(file.originalname);
   cb(null, slugImageName);
  }
 });

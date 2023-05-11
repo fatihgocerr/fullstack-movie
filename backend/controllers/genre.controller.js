@@ -47,7 +47,7 @@ exports.getAllGenres = async (req, res) => {
    return
   }
   const json = await genreService.getAllGenres();
-  console.log(json)
+  // console.log(json)
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,

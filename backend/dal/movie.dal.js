@@ -8,12 +8,13 @@ const MovieDataAccessLayer = {
   return await Movie.find(where)
    .populate(populate);
  },
- async getAllMoviesWithPagination(where = {}, populate, limit, skip, sort) {
-  return await Movie.find()
+ async getAllMoviesWithPagination(where = {}, populate, limit, skip, sort,projections) {
+  return await Movie.find(where)
    .limit(limit)
    .skip(skip)
    .sort(sort)
    .populate(populate)
+   .select(projections)
  },
  async getById(id) {
   return await Movie.findById({_id: id});

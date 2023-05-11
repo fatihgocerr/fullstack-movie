@@ -2,6 +2,7 @@ const Movie = require('../models/movie.model');
 const movieDal = require('../dal/movie.dal');
 const movieDto = require('../dto/movie.dto');
 const helpers = require('../utils/helpers');
+const Director = require('../models/director.model');
 
 const directorDal = require('../dal/director.dal');
 const genreDal = require('../dal/genre.dal');
@@ -24,8 +25,8 @@ exports.createMovie = async (req, res) => {
    trailer,
    tags,
    summary,
-   bannerPoster,
-   poster,
+   // bannerPoster,
+   // poster,
    budget,
    boxOffice,
    year,
@@ -49,8 +50,8 @@ exports.createMovie = async (req, res) => {
    trailer,
    tags,
    summary,
-   poster,
-   bannerPoster,
+   // poster,
+   // bannerPoster,
    budget,
    boxOffice,
    year,
@@ -111,24 +112,29 @@ exports.createMovie = async (req, res) => {
  }
 }
 
-exports.getAllMovies = async () => {
+exports.getAllMovies = async (req) => {
  try {
-
+  const {director,star,scriptwriter,genre} = req.query;
   const score = await movieDal.getScores();
+  let query = {};
+  if (director) query['directorId'] = director;
+  if (star) query['stars'] = star;
+  if (scriptwriter) query['scriptwriter'] = scriptwriter;
+  if (genre) query['genre'] = genre;
   const json = await movieDal.getAllMovies(
-   {},
+    query,
    [
     {
      path: 'directorId',
-     select: 'name'
+     select: 'name surname'
     },
     {
      path: 'stars',
-     select: 'name'
+     select: 'name surname'
     },
     {
      path: 'scriptwriter',
-     select: 'name'
+     select: 'name surname'
     },
     {
      path: 'genre',
@@ -154,10 +160,11 @@ exports.getAllMovies = async () => {
 
 exports.getAllMoviesWithPagination = async (req) => {
  try {
-  const {perpage, page, sortBy, sortDir} = req.query;
+  const {perPage, page, sortBy, sortDir,where} = req.query;
+  console.log('req.query', req.query)
   const score = await movieDal.getScores();
   const json = await movieDal.getAllMoviesWithPagination(
-   {},
+   {where},
    [
     {
      path: 'directorId',
@@ -177,9 +184,10 @@ exports.getAllMoviesWithPagination = async (req) => {
     },
    ]
    ,
-   perpage,
-   perpage * page,
-   {[sortBy]: sortDir}
+   perPage,
+   perPage * page,
+   {[sortBy]: sortDir},
+  { _id: 1, title: 1, genre:1, runTime:1, imdbScore:1, userScore:1, poster:1  }
   );
 
 

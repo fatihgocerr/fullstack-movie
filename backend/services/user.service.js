@@ -20,6 +20,7 @@ exports.createUser = async (req, res) => {
    friends,
    settings
   });
+  // const findUser = await userDal.findOne(username);
   const json = await userDal.create(user);
   return {
    ...userDto,
@@ -35,6 +36,7 @@ exports.createUser = async (req, res) => {
    settings: json.settings
   }
  } catch (error) {
+  console.log(error)
   throw new Error(error)
  }
 }
@@ -175,10 +177,9 @@ exports.deleteUser = async (req, res) => {
  try {
   const {id} = req.params;
   const findUser = await userDal.getById(id);
-
-  await helpers.deleteUserFriendFilter(findUser.friends, userDal, id)
-  console.log('userFriends', findUser.friends)
-  return
+  if (findUser.friends.length > 0) {
+   await helpers.deleteUserFriendFilter(findUser.friends, userDal, id)
+  }
   const json = await userDal.deleteUserById(id);
   return {
    ...userDto,
@@ -211,10 +212,10 @@ exports.login = async (req, res) => {
     // Doğrulama başarılı
 
     const token = await helpers.generateToken(json._id, username, json.role)
+    console.log('json', json.role)
     return {userId:json._id, username, role:json.role,token}
    }
   }
-  console.log('Hatalı Kullanıcı Adı')
   throw new Error('Hatalı Kullanıcı Bilgileri')
 
  } catch (error) {
@@ -284,6 +285,27 @@ exports.addFriend = async (req, res) => {
    addfriendTwo
   }
 
+ } catch (error) {
+  throw new Error(error)
+ }
+}
+
+
+exports.findByEmail = async (email) => {
+ try {
+  const json = await userDal.findOne({email})
+  return json;
+ } catch (error) {
+  throw new Error(error)
+ }
+}
+
+
+
+exports.findByUserName = async (username) => {
+ try {
+  const json = await userDal.findOne({username})
+  return json;
  } catch (error) {
   throw new Error(error)
  }

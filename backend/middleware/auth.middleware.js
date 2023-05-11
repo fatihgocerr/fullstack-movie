@@ -2,6 +2,8 @@ const {StatusCodes} = require('http-status-codes');
 const helpers = require('../utils/helpers');
 const authCheck = (role) => {
  return (req, res, next) => {
+
+  console.log(req.headers.authorization.split(' ')[1])
   try {
    const token =helpers.decodeToken(req.headers.authorization.split(' ')[1]);
 

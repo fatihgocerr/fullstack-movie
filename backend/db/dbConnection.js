@@ -3,6 +3,7 @@ const logger = require( '../utils/logger');
 
 
 //local mongoDb connection
+
 exports.connectToMongoDb = async (host,port,collection,minPoolSize,maxPoolSize,connectTimeoutMs) => {
  try {
   await mongoose.connect(`mongodb://${host}:${port}/${collection}`, {
