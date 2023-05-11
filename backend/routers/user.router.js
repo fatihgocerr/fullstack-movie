@@ -6,7 +6,7 @@ const {userController} = require('../controllers');
 const {userValidator, uploadsValidator} = require('../validations');
 const authCheck = require('../middleware/auth.middleware');
 
-router.get('/gelAllUsers', authCheck(['admin']), userController.getAllUsers);
+router.get('/getAllUsers', authCheck(['admin']), userController.getAllUsers);
 router.get('/getById/:id', authCheck(['admin', 'user']), userValidator.validateGetById(), userController.getUserById);
 router.get('/allPagination', authCheck(['admin']), userValidator.validateListPagination(), userController.getAllUsersWithPagination)
 

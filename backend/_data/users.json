@@ -1,0 +1,145 @@
+[
+  {
+    "_id": "645cd80fe4842adf402f8066",
+    "username": "user",
+    "password": "user",
+    "email": "colettebranch@cuizine.com",
+    "role": "user",
+    "profile": {
+      "name": "Rosanne",
+      "surname": "Mathews",
+      "birthDate": 1998,
+      "profilePicture": "https://picsum.photos/250",
+      "gender": "male",
+      "country": "Belgium",
+      "language": "French"
+    },
+    "favorites": [
+      {
+        "kind": "series",
+        "item": "645cd80f3bcb9e2a63c5fcd0"
+      }
+    ],
+    "watchlist": [
+      {
+        "kind": "movie",
+        "item": "645cd80f6f74ee3ac3651a87",
+        "watchId": "645cd80f5e68066411e72098",
+        "watchDate": 1582425217,
+        "watchDuration": 113
+      }
+    ],
+    "ratings": [
+      {
+        "kind": "movie",
+        "item": "645cd80f393c4c6999b4c673",
+        "rating": 2.5
+      }
+    ],
+    "friends": [
+      "645cd80f784560bfcede71d5",
+      "645cd80f7a757565b1ab32ca"
+    ],
+    "settings": {
+      "language": "German",
+      "notifications": true
+    }
+  },
+  {
+    "_id": "645cd80fd8111750df9dbba3",
+    "username": "admin",
+    "password": "admin",
+    "email": "doyleroach@cuizine.com",
+    "role": "admin",
+    "profile": {
+      "name": "Hawkins",
+      "surname": "Lott",
+      "birthDate": 2003,
+      "profilePicture": "https://picsum.photos/200",
+      "gender": "male",
+      "country": "Lithuania",
+      "language": "Spanish"
+    },
+    "favorites": [
+      {
+        "kind": "series",
+        "item": "645cd80f5e18372be3be7e25"
+      }
+    ],
+    "watchlist": [
+      {
+        "kind": "movie",
+        "item": "645cd80fc821c78b3bca2b7e",
+        "watchId": "645cd80f0f592eec18cf4668",
+        "watchDate": 1600760431,
+        "watchDuration": 212
+      }
+    ],
+    "ratings": [
+      {
+        "kind": "movie",
+        "item": "645cd80fb0f8c81d731ef336",
+        "rating": 9.6
+      }
+    ],
+    "friends": [
+      "645cd80f2c61ebbbc6bdc1e2",
+      "645cd80f69f18ecb299aa221",
+      "645cd80fabe95a37726f8165",
+      "645cd80f4024876444ba3e10"
+    ],
+    "settings": {
+      "language": "French",
+      "notifications": true
+    }
+  },
+  {
+    "_id": "645cd80f2df29bd88d130d20",
+    "username": "other",
+    "password": "other",
+    "email": "lopezramirez@cuizine.com",
+    "role": "user",
+    "profile": {
+      "name": "Ayala",
+      "surname": "Paul",
+      "birthDate": 1999,
+      "profilePicture": "https://picsum.photos/250",
+      "gender": "male",
+      "country": "Saint Vincent and The Grenadines",
+      "language": "German"
+    },
+    "favorites": [
+      {
+        "kind": "series",
+        "item": "645cd80fe08ad90081f29bbe"
+      }
+    ],
+    "watchlist": [
+      {
+        "kind": "series",
+        "item": "645cd80f9cf5f28c5264d538",
+        "watchId": "645cd80fec8d8afca7661d0d",
+        "watchDate": 1633976507,
+        "watchDuration": 251
+      }
+    ],
+    "ratings": [
+      {
+        "kind": "tvShow",
+        "item": "645cd80f6980101966f61b75",
+        "rating": 2.9
+      }
+    ],
+    "friends": [
+      "645cd80ffdebdad5250ffeb1",
+      "645cd80f71f5480674357b8c",
+      "645cd80f210bd428a0143604",
+      "645cd80f288d202baa7b722a",
+      "645cd80f4a90401b0dfb1fc7"
+    ],
+    "settings": {
+      "language": "Spanish",
+      "notifications": true
+    }
+  }
+]

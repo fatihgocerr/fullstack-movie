@@ -5,11 +5,11 @@ const UserDataAccessLayer = {
   return await user.save();
  },
  async getAllUsers(where= {}, populate) {
-  return await User.find(where)
+  return await User.find(where, {password: 0})
    .populate(populate);
  },
  async getAllUsersWithPagination(where = {}, populate, limit, skip,sort) {
-  return await User.find()
+  return await User.find(where, {password: 0})
    .limit(limit)
    .skip(skip)
    .sort(sort)

@@ -7,6 +7,7 @@ exports.createUser = async (req, res) => {
  try {
   const isInValid = helpers.handleValidationErrors(req);
   if (isInValid) {
+   console.log('isInValid', isInValid)
    return res.status(StatusCodes.BAD_REQUEST).json({
     ...baseResponse,
     ...isInValid
@@ -47,6 +48,7 @@ exports.getAllUsers = async (req, res) => {
    return
   }
   const json = await userService.getAllUsers();
+
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -251,6 +253,7 @@ exports.uploadPP = async (req, res) => {
   });
 
  } catch (error) {
+  console.log(error)
   helpers.logToError(error, req, 'Error in Upload Profile Picture')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,

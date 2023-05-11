@@ -7,6 +7,7 @@ exports.createMovie = async (req, res) => {
  try {
   const isInvalid = helpers.handleValidationErrors(req);
   if (isInvalid) {
+   console.log(isInvalid)
    return res.status(StatusCodes.BAD_REQUEST).json({
     ...baseResponse,
     ...isInvalid
@@ -39,7 +40,7 @@ exports.createMovie = async (req, res) => {
 exports.getAllMovies = async (req, res) => {
  try {
   //invalid control here
-  const json = await movieService.getAllMovies();
+  const json = await movieService.getAllMovies(req);
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -66,6 +67,7 @@ exports.getAllMoviesWithPagination = async (req, res) => {
  try {
   const isInvalid = helpers.handleValidationErrors(req);
   if (isInvalid) {
+   // console.log(isInvalid)
    return res.status(StatusCodes.BAD_REQUEST).json({
     ...baseResponse,
     ...isInvalid
@@ -73,6 +75,7 @@ exports.getAllMoviesWithPagination = async (req, res) => {
    return
   }
   const json = await movieService.getAllMoviesWithPagination(req);
+  console.log(json)
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
@@ -131,6 +134,7 @@ exports.updateMovieById = async (req, res) => {
  try {
   const isInValid = helpers.handleValidationErrors(req);
   if ( isInValid ) {
+   console.log(isInValid)
    return res.status(StatusCodes.BAD_REQUEST).json({
     ...baseResponse,
     ...isInValid

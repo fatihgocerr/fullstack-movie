@@ -14,7 +14,7 @@ router.get('/yo', (req, res) => {
 })
 
 router.get('/all', movieController.getAllMovies);
-router.get('/allPagination', moviesValidator.validateUpdateById(), movieController.getAllMoviesWithPagination);
+router.get('/allPagination', moviesValidator.validateListPagination(), movieController.getAllMoviesWithPagination);
 router.get('/getById/:id', moviesValidator.validateGetById(), movieController.getById);
 
 router.post('/create', authCheck(['admin']), moviesValidator.validateCreate(), movieController.createMovie);

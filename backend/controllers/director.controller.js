@@ -25,6 +25,7 @@ exports.createDirector = async (req, res) => {
  });
  } catch (error) {
  helpers.logToError(error, req, 'Error in Create Director')
+  console.log(error)
  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
  ...baseResponse,
  error: true,
@@ -155,6 +156,7 @@ exports.updateDirectorById = async (req, res) => {
   });
 
  } catch (error) {
+  console.log(error)
   helpers.logToError(error,req,'Error in Update Director By Id');
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,

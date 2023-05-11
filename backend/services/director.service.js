@@ -78,15 +78,24 @@ exports.getById = async (req) => {
 exports.updateDirectorById = async (req) => {
  try {
   const {id} = req.params;
-  const body = req.body;
+  const {name, surname, birthDate, birthPlace, deathDate, deathPlace, gender, nationality, biography, awards} = req.body;
+
   const json = await directorDal.updateById(id, {
-   body
+   name, surname, birthDate, birthPlace, deathDate, deathPlace, gender, nationality, biography, awards
   });
   return {
    ...directorDto,
    id: json._id,
-   poster: json.poster,
-   ...body
+  name,
+  surname,
+  birthDate,
+  birthPlace,
+  deathDate,
+  deathPlace,
+   awards,
+   biography,
+   nationality,
+   gender
   }
  } catch (error) {
   throw new Error(error)
@@ -108,4 +117,11 @@ exports.deleteById = async (req) => {
  } catch (error) {
   throw new Error(error)
  }
+}
+
+
+exports.getFullName = async() => {
+ Director.virtual('fullName').get(function () {
+  return this.name + ' ' + this.surname;
+ });
 }

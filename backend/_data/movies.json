@@ -1,0 +1,487 @@
+[
+  {
+    "_id": "645c12ebc97b97852a4b1e4a",
+    "title": "exercitation",
+    "genre": [
+      "645bea767617979d9a3fe1ce",
+      "645bea34463712b7a684902a"
+    ],
+    "released": "2022-02-09",
+    "runtime": "72 min",
+    "imdbScore": 7.8,
+    "directorId": [
+      "645bf949f819357a9236565d"
+    ],
+    "stars": [
+      "645c005ed32327cf36620d8f",
+      "645c005e7105d215b89fc261",
+      "645c005eaed7994376581d98",
+      "645c005e490a4ec18fc94033",
+      "645c005e372a7575eaeffddf",
+      "645c005eca31b1386181340a",
+      "645c005edec4859844b2d063",
+      "645c005e190c7578df698249",
+      "645c005ed5188c8cf255ff6e",
+      "645c005e6590556b641d85fe",
+      "645c005e65f790ff0dd7dfb3",
+      "645c005ec6d9a28b1ab710b2"
+    ],
+    "scriptwriter": [
+      "645c03d3c7f9f30b6b2e48bd"
+    ],
+    "userScore": [
+      1
+    ],
+    "totalVotes": 4702,
+    "trailer": "https://www.youtube.com/watch?v=bc93bf88-d440-45b3-9d69-deda96fbf7ec",
+    "tags": "dolore, consectetur, ea",
+    "summary": "Ut sit anim aliqua Lorem ad consequat.",
+    "poster": "https://picsum.photos/300/450",
+    "bannerPoster": "https://picsum.photos/1600/900",
+    "budget": 8946962,
+    "boxOffice": 261333282,
+    "year": 2014,
+    "awards": "dolore",
+    "conditions": "Diziden de gelebilir",
+    "series": true,
+    "country": "UK",
+    "language": "Spanish",
+    "producer": "Cynthia Combs"
+  },
+  {
+    "_id": "645c12eb6a8f247b011eff4d",
+    "title": "tempor",
+    "genre": [
+      "645bea7602ae1c18f4ce4fb1",
+      "645bea7602ae1c18f4ce4fb1"
+    ],
+    "released": "2022-10-13",
+    "runtime": "167 min",
+    "imdbScore": 8.3,
+    "directorId": [
+      "645bf949d60e57f87dbc8689",
+      "645bf949868797c3b252ffa4"
+    ],
+    "stars": [
+      "645c005e5a29d9354006a4dc",
+      "645c005e0057b473c83d94c7",
+      "645c005ebabf065254a6e798",
+      "645c005ed7fd93669444c744",
+      "645c005e490a4ec18fc94033",
+      "645c005e7e46cbf8ce5bba08",
+      "645c005ebecbfd0979f4c63e",
+      "645c005e2ca0450b706667f8"
+    ],
+    "scriptwriter": [
+      "645c03d30638661c06678b9a"
+    ],
+    "userScore": [
+      2
+    ],
+    "totalVotes": 8960,
+    "trailer": "https://www.youtube.com/watch?v=755d5e44-54b5-4eb9-b2af-f6645d2bc7d6",
+    "tags": "reprehenderit, pariatur, et",
+    "summary": "Occaecat culpa culpa labore ut non sit veniam cupidatat ullamco velit est aliquip.",
+    "poster": "https://picsum.photos/300/450",
+    "bannerPoster": "https://picsum.photos/1600/900",
+    "budget": 4145973,
+    "boxOffice": 453918496,
+    "year": 1980,
+    "awards": "id",
+    "conditions": "Genel İzleyici",
+    "series": true,
+    "country": "Spain",
+    "language": "Italian",
+    "producer": "Leah Alvarado"
+  },
+  {
+    "_id": "645c12ebe088dfbb97b1e936",
+    "title": "nulla",
+    "genre": [
+      "645bea764885c879c50259dd",
+      "645bea7602ae1c18f4ce4fb1"
+    ],
+    "released": "2022-06-18",
+    "runtime": "63 min",
+    "imdbScore": 0.8,
+    "directorId": [
+      "645bf949649d932169e0e15d",
+      "645bf949275754d8e8e271a1"
+    ],
+    "stars": [
+      "645c005e7acfeb30bfe3142b",
+      "645c005ea759578ea53c38db",
+      "645c005e60389f8ad3ff33a7",
+      "645c005e8f430b3d91f24822",
+      "645c005ee6de473c108b4a19",
+      "645c005e2bb84243f17c9c2e",
+      "645c005e65f790ff0dd7dfb3",
+      "645c005e8024fa34d50fe894",
+      "645c005ee97060c863485773",
+      "645c005e12e6794e7b508b58",
+      "645c005e54c156d582842718"
+    ],
+    "scriptwriter": [
+      "645c03d3582176b3ecfdf74d"
+    ],
+    "userScore": [
+      10
+    ],
+    "totalVotes": 996,
+    "trailer": "https://www.youtube.com/watch?v=711e38b3-d0a9-4a66-9396-38f5ec23f6e5",
+    "tags": "dolor, enim, anim",
+    "summary": "Laboris laboris dolore excepteur consequat duis cupidatat quis culpa adipisicing ut laborum duis cillum.",
+    "poster": "https://picsum.photos/300/450",
+    "bannerPoster": "https://picsum.photos/1600/900",
+    "budget": 6368235,
+    "boxOffice": 274210548,
+    "year": 2011,
+    "awards": "in",
+    "conditions": "Genel İzleyici",
+    "series": true,
+    "country": "Spain",
+    "language": "French",
+    "producer": "Burton Obrien"
+  },
+  {
+    "_id": "645c12eb49a4e128cf679c64",
+    "title": "sint",
+    "genre": [
+      "645bea7671edc70ee758824d",
+      "645bea767617979d9a3fe1ce",
+      "645bea3450fa80ee17be7842"
+    ],
+    "released": "2022-07-20",
+    "runtime": "176 min",
+    "imdbScore": 6.9,
+    "directorId": [
+      "645bf94976c6cbed3e8b5020"
+    ],
+    "stars": [
+      "645c005ea59e2251bf50cebd",
+      "645c005ef464a3394983e62c",
+      "645c005e6d99298fff82413f",
+      "645c005e30b148136f0c5fca",
+      "645c005e089a5978f3625c0f",
+      "645c005e6c62cff5f21633ee",
+      "645c005eee8af931f21f845f",
+      "645c005ed32327cf36620d8f",
+      "645c005ea85ff021bbe5ff43",
+      "645c005e878c6aecef6e0ffd",
+      "645c005e60389f8ad3ff33a7"
+    ],
+    "scriptwriter": [
+      "645c03d3982ae04c93ceb8b2",
+      "645c03d32eb641b32a572429"
+    ],
+    "userScore": [
+      2
+    ],
+    "totalVotes": 8583,
+    "trailer": "https://www.youtube.com/watch?v=574972f2-af9f-4c25-89eb-c11ec0b71d0d",
+    "tags": "tempor, et, laborum",
+    "summary": "Sunt veniam eiusmod sit et.",
+    "poster": "https://picsum.photos/300/450",
+    "bannerPoster": "https://picsum.photos/1600/900",
+    "budget": 9113597,
+    "boxOffice": 13279543,
+    "year": 1989,
+    "awards": "laboris",
+    "conditions": "15+ Olumsuz Öğeler",
+    "series": true,
+    "country": "France",
+    "language": "Italian",
+    "producer": "Joann Woods"
+  },
+  {
+    "_id": "645c12ebedd5937adc7c0245",
+    "title": "nostrud",
+    "genre": [
+      "645bea3450fa80ee17be7842",
+      "645bea765fa87618b065614a",
+      "645bea7602ae1c18f4ce4fb1"
+    ],
+    "released": "2022-11-28",
+    "runtime": "131 min",
+    "imdbScore": 1.1,
+    "directorId": [
+      "645bf949eba032cdf9cee7af",
+      "645bf949292dd3f5044bb2f4"
+    ],
+    "stars": [
+      "645c005e3be9c4978fe6f423",
+      "645c005ec6d9190d3385be77",
+      "645c005ec4c85043073d1258",
+      "645c005e9f50c842e33e31c7",
+      "645c005ee6de473c108b4a19",
+      "645c005ed32327cf36620d8f",
+      "645c005e32afdae5d6f59254",
+      "645c005eb916afbf4a063ea4",
+      "645c005ed188018442689742",
+      "645c005e1d4c38786c9d779c",
+      "645c005e5ca214de9adaa182",
+      "645c005e490a4ec18fc94033",
+      "645c005ef9fa72a03e6de3c5",
+      "645c005e504d30cb3aa851f7"
+    ],
+    "scriptwriter": [
+      "645c03d3a4517ba6d76feb07",
+      "645c03d3bffa5822b1efe17e"
+    ],
+    "userScore": [
+      7
+    ],
+    "totalVotes": 2865,
+    "trailer": "https://www.youtube.com/watch?v=220eb11b-7173-40dd-b4af-e7e50aac519e",
+    "tags": "consequat, consequat, sit",
+    "summary": "Excepteur eu consectetur pariatur ipsum esse voluptate Lorem anim ad nulla non magna et labore.",
+    "poster": "https://picsum.photos/300/450",
+    "bannerPoster": "https://picsum.photos/1600/900",
+    "budget": 5815765,
+    "boxOffice": 107770765,
+    "year": 1999,
+    "awards": "aute",
+    "conditions": "Genel İzleyici",
+    "series": false,
+    "country": "France",
+    "language": "Spanish",
+    "producer": "Molly Lindsey"
+  },
+  {
+    "_id": "645c12eb5a7c7d0be8235863",
+    "title": "ullamco",
+    "genre": [
+      "645bea34df962bf6a564cf14",
+      "645bea34905da908f598ad1e"
+    ],
+    "released": "2023-02-19",
+    "runtime": "110 min",
+    "imdbScore": 6.4,
+    "directorId": [
+      "645bf949bac677f27c4cf4d6"
+    ],
+    "stars": [
+      "645c005e7191853cb050367b",
+      "645c005ea5b03fe040292efa",
+      "645c005e65f790ff0dd7dfb3",
+      "645c005ea32f9fbe444f2336",
+      "645c005eb6a2abf1b0d41087",
+      "645c005e7c4c8b8c0b91eefa"
+    ],
+    "scriptwriter": [
+      "645c03d30dd4e320afa1823a",
+      "645c03d33b5c06898897fcdb"
+    ],
+    "userScore": [
+      10
+    ],
+    "totalVotes": 9747,
+    "trailer": "https://www.youtube.com/watch?v=59852386-a01a-4018-a000-343da9956297",
+    "tags": "do, ullamco, cillum",
+    "summary": "Elit non esse voluptate excepteur aute eiusmod ut Lorem eu duis irure.",
+    "poster": "https://picsum.photos/300/450",
+    "bannerPoster": "https://picsum.photos/1600/900",
+    "budget": 3557649,
+    "boxOffice": 204197414,
+    "year": 2002,
+    "awards": "sunt",
+    "conditions": "Genel İzleyici",
+    "series": true,
+    "country": "France",
+    "language": "Italian",
+    "producer": "Mayra Moreno"
+  },
+  {
+    "_id": "645c12ebfa5d12702e8b537f",
+    "title": "pariatur",
+    "genre": [
+      "645bea76ab434870f7624031",
+      "645bea761267e9b8053fba3f"
+    ],
+    "released": "2022-10-10",
+    "runtime": "63 min",
+    "imdbScore": 0.4,
+    "directorId": [
+      "645bf9490dcb6dd0ce6f559f"
+    ],
+    "stars": [
+      "645c005ee1360b3a95408ed7",
+      "645c005ea85ff021bbe5ff43",
+      "645c005e297ce4e89a1449e9",
+      "645c005e8024fa34d50fe894",
+      "645c005efa7d59c33e61d4bb",
+      "645c005ec93ac354730a060c",
+      "645c005ec2c9f2d3f80fc273",
+      "645c005e69be0946f0cace80",
+      "645c005e3be9c4978fe6f423",
+      "645c005e490a4ec18fc94033",
+      "645c005e82d01f6f5b9a179b"
+    ],
+    "scriptwriter": [
+      "645c03d3392631297e483002"
+    ],
+    "userScore": [
+      5
+    ],
+    "totalVotes": 2994,
+    "trailer": "https://www.youtube.com/watch?v=798db8b2-fa64-42e5-84f9-936bea285052",
+    "tags": "consequat, cillum, nisi",
+    "summary": "Ipsum voluptate ipsum excepteur laboris cupidatat ex tempor cupidatat cupidatat duis.",
+    "poster": "https://picsum.photos/300/450",
+    "bannerPoster": "https://picsum.photos/1600/900",
+    "budget": 9186999,
+    "boxOffice": 333078951,
+    "year": 1981,
+    "awards": "cupidatat",
+    "conditions": "Diziden de gelebilir",
+    "series": true,
+    "country": "France",
+    "language": "French",
+    "producer": "Nash Hamilton"
+  },
+  {
+    "_id": "645c12eb74a02d0fe1dce488",
+    "title": "occaecat",
+    "genre": [
+      "645bea760f713f00dddb9ace"
+    ],
+    "released": "2022-04-19",
+    "runtime": "107 min",
+    "imdbScore": 7.6,
+    "directorId": [
+      "645bf949cc89bd6ea4112c72"
+    ],
+    "stars": [
+      "645c005e0315c2e54ca63262",
+      "645c005e286d75d60ba89709",
+      "645c005e32afdae5d6f59254",
+      "645c005ef4ef3290805bff6d",
+      "645c005e10da6a33f2ec87aa",
+      "645c005e5c953bdd2ffb0f68",
+      "645c005eddfbddc969d5a37f",
+      "645c005e393f508201df8abc",
+      "645c005e8024fa34d50fe894",
+      "645c005ea914151b56be0cbc",
+      "645c005ec50e74c20119c82a"
+    ],
+    "scriptwriter": [
+      "645c03d3aa286bb304ab1f7b",
+      "645c03d31fb32e39cbee7427"
+    ],
+    "userScore": [
+      8
+    ],
+    "totalVotes": 8526,
+    "trailer": "https://www.youtube.com/watch?v=8cceba56-5ef7-4a8b-ba20-4cf33147e42f",
+    "tags": "eiusmod, reprehenderit, voluptate",
+    "summary": "Deserunt sunt ex labore fugiat ex.",
+    "poster": "https://picsum.photos/300/450",
+    "bannerPoster": "https://picsum.photos/1600/900",
+    "budget": 6307533,
+    "boxOffice": 465912719,
+    "year": 1996,
+    "awards": "consectetur",
+    "conditions": "Genel İzleyici",
+    "series": false,
+    "country": "UK",
+    "language": "French",
+    "producer": "Walton Tucker"
+  },
+  {
+    "_id": "645c12ebe1f99f402d0b4bdc",
+    "title": "ex",
+    "genre": [
+      "645bea769e8b3bc5d596b5cb"
+    ],
+    "released": "2022-05-19",
+    "runtime": "66 min",
+    "imdbScore": 6,
+    "directorId": [
+      "645bf949753ebc985b52ed10"
+    ],
+    "stars": [
+      "645c005eee8af931f21f845f",
+      "645c005e750250ff1541cb61",
+      "645c005eeba15c107d06c6b4",
+      "645c005ec86acc8e1077306f",
+      "645c005ede6e538186694fc5",
+      "645c005eddcf242995f2d1a6",
+      "645c005e449a4b58938881d2",
+      "645c005e8170c2be8629fc45",
+      "645c005eb432ece1c990cb5b",
+      "645c005eddd895cf5beb6068",
+      "645c005eaed7994376581d98"
+    ],
+    "scriptwriter": [
+      "645c03d3f216b04875a4fe49"
+    ],
+    "userScore": [
+      7
+    ],
+    "totalVotes": 5113,
+    "trailer": "https://www.youtube.com/watch?v=44f9c133-db89-41aa-9027-f04604be226d",
+    "tags": "est, officia, nostrud",
+    "summary": "Quis anim aliqua do sit anim velit eiusmod est ex sunt proident occaecat.",
+    "poster": "https://picsum.photos/300/450",
+    "bannerPoster": "https://picsum.photos/1600/900",
+    "budget": 5897535,
+    "boxOffice": 313622010,
+    "year": 2017,
+    "awards": "dolore",
+    "conditions": "Genel İzleyici",
+    "series": true,
+    "country": "Italy",
+    "language": "French",
+    "producer": "Maureen Cooley"
+  },
+  {
+    "_id": "645c12eb0193475331ab17d0",
+    "title": "officia",
+    "genre": [
+      "645bea7602ae1c18f4ce4fb1",
+      "645bea765fa87618b065614a"
+    ],
+    "released": "2022-03-16",
+    "runtime": "98 min",
+    "imdbScore": 10,
+    "directorId": [
+      "645bf9497877f5d2d70dfca4"
+    ],
+    "stars": [
+      "645c005ebeb4e7d425f52cde",
+      "645c005e6ebdfda8308578ac",
+      "645c005ed4c988109d6d930f",
+      "645c005e96854e7fcf3a3268",
+      "645c005e9f50c842e33e31c7",
+      "645c005e9b860f788facdcc9",
+      "645c005efce5c8bd52186519",
+      "645c005e2e435b769eda7e9c",
+      "645c005eeba15c107d06c6b4",
+      "645c005e925184c58addbcb8",
+      "645c005e84a571582c1e96c6",
+      "645c005e32afdae5d6f59254"
+    ],
+    "scriptwriter": [
+      "645c03d3ca8782484cebe9d3",
+      "645c03d369499efbae46e74a"
+    ],
+    "userScore": [
+      8
+    ],
+    "totalVotes": 5624,
+    "trailer": "https://www.youtube.com/watch?v=352bdf45-d99a-40f7-8c15-5f6b5c415537",
+    "tags": "officia, reprehenderit, incididunt",
+    "summary": "Aliqua voluptate dolore tempor voluptate sit ipsum duis do cupidatat anim sunt ex quis et.",
+    "poster": "https://picsum.photos/300/450",
+    "bannerPoster": "https://picsum.photos/1600/900",
+    "budget": 4704064,
+    "boxOffice": 155495168,
+    "year": 2011,
+    "awards": "ullamco",
+    "conditions": "15+ Olumsuz Öğeler",
+    "series": false,
+    "country": "Spain",
+    "language": "French",
+    "producer": "Workman Kent"
+  }
+]

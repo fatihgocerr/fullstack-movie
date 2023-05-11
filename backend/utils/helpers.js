@@ -7,6 +7,7 @@ const logger = require('./logger');
 const {validationResult} = require('express-validator');
 const {StatusCodes} = require('http-status-codes');
 
+
 const logToError = (error, req, message) => {
  logger.error(`
   IP ADRESİ : ${req.ip} -
@@ -193,7 +194,9 @@ const deleteDatafilter = async (data, dal, id) => {
 const findedSeriesDataPush = async (data, dal, id) => {
  await Promise.all(data.map(async (value) => {
   const findedData = await dal.getById(value);
+  if (findedData.series.includes(id)) return;
   findedData.series.push(id);
+  // findedData.series = findedData.series.filter((_id) => _id !== id);
   await dal.create(findedData);
  }));
 }

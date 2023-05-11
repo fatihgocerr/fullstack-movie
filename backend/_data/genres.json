@@ -1,0 +1,516 @@
+[
+  {
+    "_id": "645bea3450fa80ee17be7842",
+    "name": "Action",
+    "tags": "sunt, enim, ex",
+    "description": "Culpa proident aliquip amet officia occaecat minim anim voluptate cupidatat aliquip dolore veniam.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [
+      "645c12eb49a4e128cf679c64",
+      "645c12ebedd5937adc7c0245"
+    ],
+    "series": [
+      "645c137272e26d17580e5a54"
+    ],
+    "anime": []
+  },
+  {
+    "_id": "645bea34905da908f598ad1e",
+    "name": "Adventure",
+    "tags": "tempor, nostrud, esse",
+    "description": "Quis sint ad dolor qui non incididunt incididunt culpa ad fugiat in pariatur.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [
+      "645c12eb5a7c7d0be8235863"
+    ],
+    "series": [],
+    "anime": []
+  },
+  {
+    "_id": "645bea345fe114eb869bd5db",
+    "name": "Animated",
+    "tags": "ex, nostrud, tempor",
+    "description": "Eiusmod deserunt irure ea incididunt fugiat quis minim qui.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [
+      "645c137272e26d17580e5a54"
+    ],
+    "anime": [
+      "645cdac9092d06c69273a5fe"
+    ]
+  },
+  {
+    "_id": "645bea34463712b7a684902a",
+    "name": "Biography",
+    "tags": "dolore, velit, eiusmod",
+    "description": "Non anim cillum commodo commodo et non veniam sunt sunt.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [
+      "645c12ebc97b97852a4b1e4a"
+    ],
+    "series": [
+      "645c1372c6d5b816b99c439a"
+    ],
+    "anime": []
+  },
+  {
+    "_id": "645bea34df962bf6a564cf14",
+    "name": "Comedy",
+    "tags": "in, proident, duis",
+    "description": "Dolore sunt deserunt sunt commodo veniam veniam nulla adipisicing.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [
+      "645c12eb5a7c7d0be8235863"
+    ],
+    "series": [],
+    "anime": [
+      "645cdac94a7efa75045e3521",
+      "645cdac9936ce0dd7141a417"
+    ]
+  },
+  {
+    "_id": "645bea34dd1849da57048370",
+    "name": "Crime",
+    "tags": "magna, pariatur, reprehenderit",
+    "description": "Cupidatat ad excepteur ex labore ea est consectetur.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [
+      "645c13724953f1656d3e7e2f"
+    ],
+    "anime": [
+      "645cdac9062b7859b40438a1"
+    ]
+  },
+  {
+    "_id": "645bea344d240abe7e2da520",
+    "name": "Dance",
+    "tags": "non, nisi, velit",
+    "description": "Qui esse officia deserunt id reprehenderit sint elit.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [
+      "645c13728e982509b6c16932"
+    ],
+    "anime": [
+      "645cdac9936ce0dd7141a417"
+    ]
+  },
+  {
+    "_id": "645bea347c7e7fc92e250c69",
+    "name": "Disaster",
+    "tags": "nisi, culpa, labore",
+    "description": "Do minim et consequat aute occaecat eu elit.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [
+      "645c1372c6d5b816b99c439a"
+    ],
+    "anime": [
+      "645cdac94a7efa75045e3521"
+    ]
+  },
+  {
+    "_id": "645bea34fcf4bf4972f8223d",
+    "name": "Documentary",
+    "tags": "pariatur, do, dolore",
+    "description": "Enim laboris magna pariatur officia sit do velit sit aliquip aliquip.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [],
+    "anime": []
+  },
+  {
+    "_id": "645bea34271d027e8d8f94ed",
+    "name": "Drama",
+    "tags": "eiusmod, irure, duis",
+    "description": "Est in excepteur ipsum magna aliqua cupidatat Lorem ea est aliquip proident non.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [],
+    "anime": []
+  },
+  {
+    "_id": "645bea760f713f00dddb9ace",
+    "name": "Erotic",
+    "tags": "dolor, minim, eu",
+    "description": "Consectetur nulla nisi veniam non cillum labore nostrud amet labore nostrud commodo.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [
+      "645c12eb74a02d0fe1dce488"
+    ],
+    "series": [
+      "645c137235ecd0c8135cd71a"
+    ],
+    "anime": []
+  },
+  {
+    "_id": "645bea764885c879c50259dd",
+    "name": "Family",
+    "tags": "et, incididunt, ut",
+    "description": "Incididunt irure anim duis aute anim pariatur ullamco amet.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [
+      "645c12ebe088dfbb97b1e936"
+    ],
+    "series": [
+      "645c137235ecd0c8135cd71a"
+    ],
+    "anime": []
+  },
+  {
+    "_id": "645bea765e3f8c874a919bc7",
+    "name": "Fantasy",
+    "tags": "velit, reprehenderit, qui",
+    "description": "Aliquip eu cupidatat laboris deserunt in officia commodo anim commodo mollit.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [],
+    "anime": []
+  },
+  {
+    "_id": "645bea76e0891dfbbf3efa60",
+    "name": "Found Footage",
+    "tags": "anim, sint, veniam",
+    "description": "Nostrud ipsum fugiat et sit ipsum.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [
+      "645c1372f83eb42f1f3c1c6c"
+    ],
+    "anime": []
+  },
+  {
+    "_id": "645bea7693228fd1d7846af1",
+    "name": "Historical",
+    "tags": "voluptate, et, enim",
+    "description": "Sunt sit excepteur deserunt sint sunt commodo officia officia.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [],
+    "anime": []
+  },
+  {
+    "_id": "645bea76ccc98d72d0022e6f",
+    "name": "Horror",
+    "tags": "occaecat, irure, nisi",
+    "description": "Nisi fugiat quis occaecat eiusmod laborum.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [],
+    "anime": [
+      "645cdac9657a136af2b27b2c",
+      "645cdac9936ce0dd7141a417"
+    ]
+  },
+  {
+    "_id": "645bea761267e9b8053fba3f",
+    "name": "Independent",
+    "tags": "ut, consequat, aute",
+    "description": "Qui incididunt ut dolor cupidatat do elit elit eiusmod aliquip.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [
+      "645c12ebfa5d12702e8b537f"
+    ],
+    "series": [],
+    "anime": [
+      "645cdac9a29400f7f037075b"
+    ]
+  },
+  {
+    "_id": "645bea765a3e18b4a6025d68",
+    "name": "Legal",
+    "tags": "adipisicing, ut, eu",
+    "description": "Aliquip ea eu ipsum id Lorem anim ullamco ad incididunt laborum fugiat anim.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [],
+    "anime": [
+      "645cdac9092d06c69273a5fe",
+      "645cdac9a29400f7f037075b"
+    ]
+  },
+  {
+    "_id": "645bea76b11a207ffdf27460",
+    "name": "Live Action",
+    "tags": "nulla, anim, minim",
+    "description": "Labore magna reprehenderit ut qui id do id laborum reprehenderit fugiat dolore culpa reprehenderit.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [],
+    "anime": []
+  },
+  {
+    "_id": "645bea767617979d9a3fe1ce",
+    "name": "Martial Arts",
+    "tags": "do, tempor, irure",
+    "description": "Eu velit consectetur anim dolor irure.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [
+      "645c12ebc97b97852a4b1e4a",
+      "645c12eb49a4e128cf679c64"
+    ],
+    "series": [],
+    "anime": [
+      "645cdac9a0f7df0256d04ab2"
+    ]
+  },
+  {
+    "_id": "645bea76a6b44e0bcd5bd0c5",
+    "name": "Musical",
+    "tags": "ut, deserunt, ea",
+    "description": "Ullamco enim et ut minim proident anim reprehenderit qui non ex dolor ipsum.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [
+      "645c137297fa360d1a7ef8d7"
+    ],
+    "anime": []
+  },
+  {
+    "_id": "645bea7671edc70ee758824d",
+    "name": "Mystery",
+    "tags": "ad, nisi, dolor",
+    "description": "Deserunt sint incididunt id mollit id cillum in exercitation aute ut reprehenderit laborum labore non.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [
+      "645c12eb49a4e128cf679c64"
+    ],
+    "series": [
+      "645c13724953f1656d3e7e2f"
+    ],
+    "anime": []
+  },
+  {
+    "_id": "645bea76c769f9965c542f76",
+    "name": "Noir",
+    "tags": "eu, incididunt, occaecat",
+    "description": "Aliquip deserunt id consectetur dolore incididunt est culpa culpa eu culpa minim enim sunt.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [],
+    "anime": [
+      "645cdac9dbd0da0cd5e8f83f"
+    ]
+  },
+  {
+    "_id": "645bea761c8fb1b2fcc4e6fb",
+    "name": "Performance",
+    "tags": "eu, commodo, amet",
+    "description": "Irure eiusmod aliqua veniam reprehenderit Lorem laboris cupidatat.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [
+      "645c13729c0da3f9c2372bbc"
+    ],
+    "anime": [
+      "645cdac9062b7859b40438a1"
+    ]
+  },
+  {
+    "_id": "645bea76d2b99db64ff231f8",
+    "name": "Political",
+    "tags": "mollit, magna, elit",
+    "description": "Esse consequat esse mollit sunt duis dolor nostrud quis.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [],
+    "anime": [
+      "645cdac9a8871767940b5f44"
+    ]
+  },
+  {
+    "_id": "645bea76937feb6f5352be80",
+    "name": "Romance",
+    "tags": "adipisicing, sit, laborum",
+    "description": "Sint aliqua duis ut proident.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [],
+    "anime": []
+  },
+  {
+    "_id": "645bea7669dfc9ea2489ec13",
+    "name": "Satire",
+    "tags": "sint, deserunt, anim",
+    "description": "Labore tempor sunt quis sint non est ullamco in deserunt irure fugiat incididunt.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [],
+    "anime": [
+      "645cdac9062b7859b40438a1",
+      "645cdac9dbd0da0cd5e8f83f"
+    ]
+  },
+  {
+    "_id": "645bea76cef21245f6fa6f98",
+    "name": "Science Fiction",
+    "tags": "ut, in, esse",
+    "description": "Proident excepteur eu tempor excepteur culpa do pariatur.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [],
+    "anime": []
+  },
+  {
+    "_id": "645bea7630e7ee986412cec7",
+    "name": "Short",
+    "tags": "dolor, qui, officia",
+    "description": "Laboris ut ullamco irure ea sunt duis exercitation occaecat mollit aliqua.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [
+      "645c1372c0a6bbce3565e02d",
+      "645c137235ecd0c8135cd71a"
+    ],
+    "anime": []
+  },
+  {
+    "_id": "645bea76da0db8047d7556a1",
+    "name": "Silent",
+    "tags": "incididunt, irure, mollit",
+    "description": "Excepteur mollit ea laboris laboris nostrud eu Lorem dolore cupidatat adipisicing do aute.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [
+      "645c1372c0a6bbce3565e02d"
+    ],
+    "anime": []
+  },
+  {
+    "_id": "645bea7698a840b460bcd7a2",
+    "name": "Slasher",
+    "tags": "pariatur, consectetur, ea",
+    "description": "Velit aliquip id eiusmod duis laborum.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [],
+    "anime": [
+      "645cdac9a8871767940b5f44"
+    ]
+  },
+  {
+    "_id": "645bea760c29465e9b377a17",
+    "name": "Sports",
+    "tags": "id, nostrud, et",
+    "description": "Lorem ad est pariatur proident esse.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [],
+    "anime": [
+      "645cdac9a8871767940b5f44",
+      "645cdac9a0f7df0256d04ab2"
+    ]
+  },
+  {
+    "_id": "645bea76de2af25933c78f3d",
+    "name": "Spy",
+    "tags": "sit, aliquip, aute",
+    "description": "Sint amet tempor ullamco minim et tempor proident.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [
+      "645c1372253bd60df25022aa"
+    ],
+    "anime": []
+  },
+  {
+    "_id": "645bea769c8370e664310c03",
+    "name": "Superhero",
+    "tags": "adipisicing, sint, qui",
+    "description": "Sunt duis tempor aliquip fugiat dolore cillum eu amet do ipsum ad.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [
+      "645c1372c6d5b816b99c439a"
+    ],
+    "anime": [
+      "645cdac9092d06c69273a5fe"
+    ]
+  },
+  {
+    "_id": "645bea7607ed1c8af0305c08",
+    "name": "Supernatural",
+    "tags": "consectetur, sunt, ut",
+    "description": "Duis ad sint labore nulla pariatur ea commodo tempor officia.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [
+      "645c1372f83eb42f1f3c1c6c"
+    ],
+    "anime": []
+  },
+  {
+    "_id": "645bea763f52698461206576",
+    "name": "Suspense",
+    "tags": "minim, elit, amet",
+    "description": "Excepteur dolore ut officia mollit minim voluptate dolore ullamco aute dolor nulla.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [],
+    "series": [
+      "645c137272e26d17580e5a54",
+      "645c13724953f1656d3e7e2f"
+    ],
+    "anime": []
+  },
+  {
+    "_id": "645bea765fa87618b065614a",
+    "name": "Teen",
+    "tags": "officia, nulla, laboris",
+    "description": "Pariatur ex adipisicing cupidatat dolor esse minim duis nisi aliquip non dolor fugiat ut.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [
+      "645c12ebedd5937adc7c0245",
+      "645c12eb0193475331ab17d0"
+    ],
+    "series": [
+      "645c1372253bd60df25022aa"
+    ],
+    "anime": [
+      "645cdac9a29400f7f037075b"
+    ]
+  },
+  {
+    "_id": "645bea7602ae1c18f4ce4fb1",
+    "name": "Thriller",
+    "tags": "nulla, labore, proident",
+    "description": "Sint mollit dolore Lorem proident qui voluptate mollit culpa elit dolore eiusmod irure.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [
+      "645c12eb6a8f247b011eff4d",
+      "645c12eb6a8f247b011eff4d",
+      "645c12ebe088dfbb97b1e936",
+      "645c12ebedd5937adc7c0245",
+      "645c12eb0193475331ab17d0"
+    ],
+    "series": [],
+    "anime": []
+  },
+  {
+    "_id": "645bea769e8b3bc5d596b5cb",
+    "name": "War",
+    "tags": "aute, reprehenderit, laboris",
+    "description": "Voluptate qui aliqua irure irure.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [
+      "645c12ebe1f99f402d0b4bdc"
+    ],
+    "series": [],
+    "anime": [
+      "645cdac9487636f390b6bf83"
+    ]
+  },
+  {
+    "_id": "645bea76ab434870f7624031",
+    "name": "Western",
+    "tags": "labore, dolore, et",
+    "description": "Culpa ipsum irure ut nulla reprehenderit amet eu excepteur in adipisicing cillum culpa excepteur.",
+    "image": "https://picsum.photos/300/450",
+    "movies": [
+      "645c12ebfa5d12702e8b537f"
+    ],
+    "series": [],
+    "anime": []
+  }
+]

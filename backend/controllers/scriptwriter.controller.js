@@ -23,6 +23,7 @@ exports.createScriptwriter = async (req, res) => {
 
   });
  } catch (error) {
+  console.log(error)
   helpers.logToError(error, req, 'Error in createScriptwriter')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,

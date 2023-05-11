@@ -14,13 +14,13 @@ exports.create= async (req,res) => {
   return
  }
   const json = await seriesService.create(req,res)
-  res.status(StatusCodes.OK).json({
+  res.status(StatusCodes.CREATED).json({
    ...baseResponse,
    data:json,
    success:true,
    error:false,
    timestamp: Date.now(),
-   code:StatusCodes.OK
+   code:StatusCodes.CREATED
   })
  } catch (error) {
  helpers.logToError(error,req,'Error in Create Series');
@@ -202,6 +202,7 @@ exports.uploadImage = async (req, res) => {
  try {
   const isInValid = helpers.handleValidationErrors(req)
   if(isInValid) {
+   console.log('isInValid', isInValid)
    return res.status(StatusCodes.BAD_REQUEST).json({
     ...baseResponse,
     ...isInValid
