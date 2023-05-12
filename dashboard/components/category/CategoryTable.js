@@ -2,12 +2,12 @@ import Table from 'rc-table';
 import React, {useEffect, useState} from 'react';
 import Pagination from "react-js-pagination";
 import {Edit, Trash2, Eye} from "react-feather";
-import PrModal from "@/components/modal/PrModal";
+import PrModal from "../modal/PrModal";
 
 import CategoryViewContent from "../category/categoryModalContent/CategoryViewContent";
-import CategoryEditContent from "@/components/category/categoryModalContent/CategoryEditContent";
-import CategoryDeleteContent from "@/components/category/categoryModalContent/CategoryDeleteContent";
-import {getAllGenres} from "@/services/genres.service";
+import CategoryEditContent from "../category/categoryModalContent/CategoryEditContent";
+import CategoryDeleteContent from "../category/categoryModalContent/CategoryDeleteContent";
+import {getAllGenres} from "../../services/genres.service";
 
 const CategoryTable = ({refTable}) => {
  const [modal, setModal] = useState(false);
