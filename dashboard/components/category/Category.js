@@ -1,7 +1,7 @@
 import React from 'react';
 // import PageComponentTitle from '../common/PageComponentTitle';
 import CategoryTable from './CategoryTable';
-import CategoryTitle from "@/components/category/CategoryTitle";
+import CategoryTitle from "./CategoryTitle";
 
 const Category = () => {
 const [refTable, setRefTable] = React.useState(null);
