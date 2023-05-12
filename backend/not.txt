@@ -1,0 +1,114 @@
+film eklendiğinde
+    -Kategorilere
+    -Yönetmene
+    -Oyunculara
+    -Senariste
+  Filmi ekleyecek
+
+
+-> upload - update poster   +
+-> upload - update bannerposter  +
+-> veri silindiğinde ilgili resimleri silme +
+-> veri silindiğinde ilgili alanlardan silme +
+-> Resim yüklenirlen isimleri ingilzce yapma  ve boşluları - ile değiştirme +
+
+-> User ekle sil listele pagination, avatar yğkle, arkadaş ekle, login tamamlandı
+
+---------------->>>>>>>>>>>>>>>>>>>>>>>ANİME update image image silinmiyor+++++++++
+->Yorum işlemleri,+-+-+-+
+
+
+
+-> jwt kurulumu ve auth middleware
+
+log kaydı ve validation --> log tamam, image validation eklenecek sadece
+
+
+
+* resmi base64 olrak kaydetme ??????
+
+
+--> MongoDB console ile collection drop
+
+-use dbname
+-show collections
+-db.collectionName.drop()
+
+
+
+user id
+username
+password
+profile
+favorites
+saved:[objectFilmId,]
+ratings
+watchHİstory
+friends
+settings
+
+
+
+
+
+
+https://json-generator.com/#
+[
+  '{{repeat(10)}}',
+  {
+    title: '{{lorem(1, "words")}}',
+    genre: ['{{objectId()}}'],
+    released: '{{date(new Date(2022, 0, 1), new Date(), "YYYY-MM-dd")}}',
+    runtime: '{{integer(60, 180)}} min',
+    imdbScore: '{{floating(0, 10, 1, "#.0")}}',
+    directorId: ['{{objectId()}}'],
+    stars: ['{{objectId()}}', '{{objectId()}}'],
+    scriptwriter: ['{{objectId()}}'],
+    userScore: ['{{integer(1, 10)}}'],
+    totalVotes: '{{integer(100, 10000)}}',
+    trailer: 'https://www.youtube.com/watch?v={{guid()}}',
+    tags: '{{lorem(1, "words")}}, {{lorem(1, "words")}}, {{lorem(1, "words")}}',
+    summary: '{{lorem(1, "sentences")}}',
+    poster: 'https://picsum.photos/300/450',
+    bannerPoster: 'https://picsum.photos/1600/900',
+    budget: '{{integer(1000000, 10000000)}}',
+    boxOffice: '{{integer(10000000, 500000000)}}',
+    year: '{{integer(1980, 2022)}}',
+    awards: '{{lorem(1, "words")}}',
+    conditions: '{{random("Genel İzleyici", "15+ Olumsuz Öğeler", "Diziden de gelebilir")}}',
+    series: '{{bool()}}',
+    country: '{{random("USA", "UK", "France", "Spain", "Italy")}}',
+    language: '{{random("English", "French", "Spanish", "Italian")}}',
+    producer: '{{firstName()}} {{surname()}}'
+  }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
