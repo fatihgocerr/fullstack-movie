@@ -1,5 +1,5 @@
 import PageLayout from "@/layouts/PageLayout";
-import Stars from "@/components/Stars/Stars";
+import Stars from "@/components/stars/Stars";
 
 
 export default function StarsPage() {
