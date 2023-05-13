@@ -52,8 +52,8 @@ const MoviesTable = () => {
   },
   {
    title: 'Name',
-   dataIndex: 'name',
-   key: 'name',
+   dataIndex: 'title',
+   key: 'title',
    width: 400,
    className: "text-white bg-gray-800 p-2 border-r-2 border-b-2 rounded-tl-lg rounded-bl-lg",
    // rowClassName: "bg-black-ripon"
@@ -92,9 +92,9 @@ const MoviesTable = () => {
    )
   },
   {
-   title: 'Vision Date',
-   dataIndex: 'visionDate',
-   key: 'visionDate',
+   title: 'Release Date',
+   dataIndex: 'released',
+   key: 'released',
    width: 400,
    // sorter: (a, b) => a.visionDate - b.visionDate,
    className: "text-white bg-gray-800 p-2 border-r-2 border-b-2"
@@ -163,7 +163,6 @@ const MoviesTable = () => {
   // toast.info('Welcome to Movie App')
   window.scrollTo({top: 0, behavior: 'smooth'});
  }, [modal])
-
 
  //Pagination
  const handlePageChange = (pageNumber) => {

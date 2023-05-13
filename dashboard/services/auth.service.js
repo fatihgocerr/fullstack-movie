@@ -8,7 +8,7 @@ export default function LoginServ (data) {
    console.log('datassss',res.data.data)
 
   }).catch((err) => {
-   reject(err.response.data.message)
+   reject(!!err.response.data.message ? err.response.data.message : err)
   })
  })
 }

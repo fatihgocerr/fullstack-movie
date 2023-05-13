@@ -4,9 +4,9 @@ import React, {useState} from "react";
 const ViewMovies = ({data, setModal}) => {
 
  const formItem = [
-  {label: 'Name', key: 'name', type: 'text',selectBox:false},
+  {label: 'Name', key: 'title', type: 'text',selectBox:false},
   {label: 'Genre', key: 'genre', type: 'text',selectBox:true},
-  {label: 'Vision Date', key: 'visionDate', type: 'text',selectBox:false},
+  {label: 'release Date', key: 'released', type: 'text',selectBox:false},
   {label: 'Imdb Score', key: 'imdbScore', type: 'text',selectBox:false},
   {label: 'Director Id', key: 'directorId', type: 'text',selectBox:true},
   {label: 'Stars', key: 'stars', type: 'text',selectBox:true},
