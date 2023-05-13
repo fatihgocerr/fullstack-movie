@@ -7,9 +7,9 @@ import {trChars} from "@/lib/helpers";
 
 const EditMovies = ({data, subData, setModal}) => {
  const [formValues, setFormValues] = useState({
-  name: '',
+  title: '',
   genre: '',
-  visionDate: '',
+  released: '',
   imdbScore: '',
   directorId: '',
   stars: '',
@@ -65,9 +65,9 @@ const EditMovies = ({data, subData, setModal}) => {
  };
 
  const formItem = [
-  {label: 'Name', key: 'name', type: 'text', selectBox: false},
+  {label: 'Name', key: 'title', type: 'text', selectBox: false},
   {label: 'Genre', key: 'genre', type: 'text', selectBox: true},
-  {label: 'Vision Date', key: 'visionDate', type: 'text', selectBox: false},
+  {label: 'Release Date', key: 'released', type: 'text', selectBox: false},
   {label: 'Imdb Score', key: 'imdbScore', type: 'text', selectBox: false},
   {label: 'Director Id', key: 'directorId', type: 'text', selectBox: true},
   {label: 'Stars', key: 'stars', type: 'text', selectBox: true},
@@ -93,9 +93,9 @@ const EditMovies = ({data, subData, setModal}) => {
  useEffect(() => {
   if (data && data.length > 0) {
    const formData = {
-    name: data[0].name,
+    title: data[0].title,
     genre: data[0].genre.map((item) => item._id),
-    visionDate: data[0].visionDate,
+    released: data[0].released,
     imdbScore: data[0].imdbScore,
     directorId: data[0].directorId.map((item) => item._id),
     stars: data[0].stars.map((item) => item._id),
