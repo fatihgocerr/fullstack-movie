@@ -38,6 +38,7 @@ exports.createMovie = async (req, res) => {
 
 
 exports.getAllMovies = async (req, res) => {
+
  try {
   //invalid control here
   const json = await movieService.getAllMovies(req);
@@ -75,7 +76,7 @@ exports.getAllMoviesWithPagination = async (req, res) => {
    return
   }
   const json = await movieService.getAllMoviesWithPagination(req);
-  console.log(json)
+  // console.log(json)
   res.status(StatusCodes.OK).json({
    ...baseResponse,
    data: json,
