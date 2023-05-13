@@ -10,7 +10,8 @@ router.get('/', (req, res) => {
  res.send('Hello World!');
 })
 router.get('/yo', (req, res) => {
- res.send('Bugün kendiniz için ne yaptınız?!');
+ const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+ res.send('Your IP address is: ' + ip);
 })
 
 router.get('/all', movieController.getAllMovies);

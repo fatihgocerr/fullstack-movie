@@ -21,6 +21,7 @@ const logger = require( '../utils/logger');
 // }
 
 //global mongoDb connection
+
 exports.connectToMongoDb = async (host,port,collection,minPoolSize,maxPoolSize,connectTimeoutMs) => {
  try {
   await mongoose.connect(process.env.MONGODB_URI, {
