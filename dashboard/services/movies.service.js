@@ -2,6 +2,7 @@ import {axiosConf} from "@/lib/axiosConf";
 import {authKey} from "@/lib/helpers";
 import {toast} from "react-toastify";
 
+
 export const uploadMultipleImage = (files,id) => {
 
   return new Promise((resolve, reject) => {

@@ -6,7 +6,8 @@ const [totalData, setTotalData] = useState([])
   let config = {
    method: 'get',
    maxBodyLength: Infinity,
-   url: 'https://projectarea.online/api/v1/statistics/allCounts',
+   // url: 'https://projectarea.online/api/v1/statistics/allCounts',
+   url: 'http://localhost:5002/api/v1/statistics/allCounts',
    headers: { }
   };
 

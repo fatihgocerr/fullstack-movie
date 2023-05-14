@@ -3,6 +3,7 @@ import SelectBox from "@/components/common/SelectBox";
 import {updatedMultipleImage, updateSeries} from "@/services/series.service";
 import {toast} from "react-toastify";
 import {ArrowDown, Eye} from "react-feather";
+import {useSelector} from "react-redux";
 
 const EditMovies = ({data, subData, setModal}) => {
  const [formValues, setFormValues] = useState({
@@ -39,6 +40,7 @@ const EditMovies = ({data, subData, setModal}) => {
  const removeSelectedImage = () => {
   setSelectedImage('');
  };
+const authKey = useSelector(state => state.user.user.user.token)
 
  const formItem = [
   {label: 'Name', key: 'name', type: 'text', selectBox: false},
@@ -62,9 +64,6 @@ const EditMovies = ({data, subData, setModal}) => {
   {label: 'Producer', key: 'producer', type: 'text', selectBox: false},
  ]
 
- // useEffect(() => {
- //  setFormValues({...formValues, ...data?.[0]})
- // }, [data])
 
  useEffect(() => {
   if (data && data.length > 0) {
@@ -98,10 +97,7 @@ const EditMovies = ({data, subData, setModal}) => {
 
  const handleSubmit = async (e) => {
   e.preventDefault();
-  console.log(formValues)
-  await updateSeries(formValues, data?.[0]?._id).then((res) => {
-   console.log(res)
-   // console.log('Güncelleme Başarılı Toast Çıkartacaksın')
+  await updateSeries(formValues, data?.[0]?._id, authKey).then((res) => {
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')
    })
@@ -119,7 +115,7 @@ const EditMovies = ({data, subData, setModal}) => {
  }
  const updateImage = async () => {
   await updatedMultipleImage(selectedImage, data?.[0]?._id).then((res) => {
-   console.log(res)
+
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')
    })

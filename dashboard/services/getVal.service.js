@@ -47,11 +47,10 @@ export const getWriters = () => {
  return new Promise((resolve, reject) => {
   axiosConf.get('/scriptwriters/all')
    .then(({data}) => {
-    console.log('data Service', data.data)
+    // console.log('data Service', data.data)
     resolve(data.data);
    }).catch((err) => {
    reject(err);
   })
  })
 }
-

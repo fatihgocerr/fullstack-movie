@@ -99,9 +99,7 @@ const fetchAll = async () => {
  // console.log('allsData', allData)
  const handleSubmit = async (e) => {
   e.preventDefault();
-  // console.log(formValues)
   await addSeries(formValues).then(async (res) => {
-   // console.log('SADDDDDDDDDDDDDDDDDDDDDDDD', res.data._id)
    toast.success('Series Added Successfully')
    if (res.code === 201) {
     await uploadMultipleImage(selectedImage, res.data._id).then((res) => {
