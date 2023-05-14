@@ -1,3 +1,5 @@
+import {useSelector} from "react-redux";
+
 
 
 export const trChars = (str) => {
@@ -21,5 +23,10 @@ export const trChars = (str) => {
 }
 
 
+// const localData = JSON.parse(localStorage.getItem('data'))
+// export const authKey =  localData ? localData.token : null
 
-export const authKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDQyZTA1ZmQxZDE2N2JiOWMzYzFlYzUiLCJ1c2VyTmFtZSI6InVzZXIgMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4MzYyOTk2MCwiZXhwIjoxNjgzNzE2MzYwfQ.uSGEA-2QeVrpOjpSTI24_qORLu4yVqzRWVH2c2por0Y'
+// export const authKey = useSelector(state => state.user.user.token)
+
+
+

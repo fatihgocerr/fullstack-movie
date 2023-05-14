@@ -7,7 +7,7 @@ import {trChars} from "@/lib/helpers";
 
 const EditMovies = ({data, subData, setModal}) => {
  const [formValues, setFormValues] = useState({
-  title: '',
+  name: '',
   genre: '',
   released: '',
   imdbScore: '',
@@ -65,7 +65,7 @@ const EditMovies = ({data, subData, setModal}) => {
  };
 
  const formItem = [
-  {label: 'Name', key: 'title', type: 'text', selectBox: false},
+  {label: 'Name', key: 'name', type: 'text', selectBox: false},
   {label: 'Genre', key: 'genre', type: 'text', selectBox: true},
   {label: 'Release Date', key: 'released', type: 'text', selectBox: false},
   {label: 'Imdb Score', key: 'imdbScore', type: 'text', selectBox: false},
@@ -93,7 +93,7 @@ const EditMovies = ({data, subData, setModal}) => {
  useEffect(() => {
   if (data && data.length > 0) {
    const formData = {
-    title: data[0].title,
+    name: data[0].name,
     genre: data[0].genre.map((item) => item._id),
     released: data[0].released,
     imdbScore: data[0].imdbScore,

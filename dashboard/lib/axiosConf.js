@@ -3,8 +3,8 @@ import axios from "axios";
 
 
 export const axiosConf = axios.create({
-  // baseURL:"http://localhost:5002/api/v1"
-  baseURL:"https://projectarea.online/api/v1"
+  baseURL:"http://localhost:5002/api/v1"
+  // baseURL:"https://projectarea.online/api/v1"
 })
 
 axiosConf.interceptors.response.use((response) => response, (error) => {

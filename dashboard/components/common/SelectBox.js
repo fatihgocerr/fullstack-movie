@@ -5,7 +5,7 @@ const {Option} = Select;
 
 
 const MultiSelectDropdown = ({item, formValues, allData, onchange}) => {
- console.log('item', formValues)
+ // console.log('item', formValues)
  const [selectedItems, setSelectedItems] = useState([]);
  // console.log('formValues', formValues)
  const handleSelectChange = (selectedItems) => {
@@ -19,7 +19,7 @@ const MultiSelectDropdown = ({item, formValues, allData, onchange}) => {
   }
 
  }, [formValues, item.key])
- console.log('formValues[item.key]', formValues[item.key])
+ // console.log('formValues[item.key]', formValues[item.key])
 const data = item.key === 'genre' ? allData?.[0] : item.key === 'stars' ? allData?.[1] : item.key === 'scriptwriter' ? allData?.[2] : item.key === 'directorId' ? allData?.[3] : []
  return (
   <Select

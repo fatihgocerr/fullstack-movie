@@ -1,5 +1,4 @@
 import {axiosConf} from "@/lib/axiosConf";
-import {authKey} from "@/lib/helpers";
 import {toast} from "react-toastify";
 
 
@@ -61,7 +60,7 @@ export const uploadMultipleImage = (files,id) => {
 }
 
 
-export const updateSeries =async (data ,id) => {
+export const updateSeries =async (data ,id, authKey) => {
  return new Promise ((resolve, reject) => {
   axiosConf.put(`/series/updateById/${id}`, data, {
    headers: {

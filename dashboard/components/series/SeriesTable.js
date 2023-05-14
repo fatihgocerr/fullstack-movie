@@ -153,10 +153,9 @@ const SeriesTable = () => {
   getAllSeries().then(res => {
    setData(res.data.data)
    setTableData(res.data.data.slice(0, perPage))
-   console.log(res.data.data)
+
   })
   fetchAll()
-  // toast.info('Welcome to Movie App')
   window.scrollTo({top: 0, behavior: 'smooth'});
  }, [modal])
 
@@ -175,7 +174,7 @@ const SeriesTable = () => {
     return {
      onClick: e => {
       setColumnData([record])
-      console.log(record, rowIndex)
+      // console.log(record, rowIndex)
      }};
    } }
           className='bg-purple-700 p-2 w-full text-center rc-table-custom font-semibold rounded-md'/>

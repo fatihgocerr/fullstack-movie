@@ -52,8 +52,8 @@ const MoviesTable = () => {
   },
   {
    title: 'Name',
-   dataIndex: 'title',
-   key: 'title',
+   dataIndex: 'name',
+   key: 'name',
    width: 400,
    className: "text-white bg-gray-800 p-2 border-r-2 border-b-2 rounded-tl-lg rounded-bl-lg",
    // rowClassName: "bg-black-ripon"
