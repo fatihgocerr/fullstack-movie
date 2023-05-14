@@ -26,7 +26,7 @@ export const trChars = (str) => {
 // const localData = JSON.parse(localStorage.getItem('data'))
 // export const authKey =  localData ? localData.token : null
 
-// export const authKey = useSelector(state => state.user.user.token)
+export const authKey = ''
 
 
 
