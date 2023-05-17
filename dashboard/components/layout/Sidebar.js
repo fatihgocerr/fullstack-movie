@@ -12,7 +12,7 @@ const Sidebar = ({mobileNavsidebar}) => {
     //console.log("sidebar Ref sidebarOutsideClick", sidebarOutsideClick)
     //fix component
     return (
-        <aside className={`${mobileNavsidebar ? 'block' : 'hidden'} sm:flex sm:flex-col z-50`} ref={sidebarRef}>
+        <aside className={`${mobileNavsidebar ? 'block' : 'hidden'} sm:flex sm:flex-col z-50 bg-gray-800 `} ref={sidebarRef}>
             <Logo />
             
             <div className="flex-grow flex flex-col justify-between text-gray-500 bg-gray-800">

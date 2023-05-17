@@ -1,7 +1,7 @@
-
-
+import {useState, useEffect} from "react";
+import {getLatestUsers} from "@/services/statistics.service";
 export default function () {
- const userData = [
+ /*const userData = [
   { name:'Calvin Steward', image:'https://picsum.photos/200', ratio:'8.9'},
   { name:'Ralph Richards', image:'https://picsum.photos/199', ratio:'9.3'},
   { name:'Annette Watson', image:'https://picsum.photos/198', ratio:'7.3'},
@@ -13,7 +13,11 @@ export default function () {
   { name:'Path Patel', image:'https://picsum.photos/192', ratio:'9.1'},
   { name:'Path Patel', image:'https://picsum.photos/191', ratio:'1.3'},
   { name:'Path Patel', image:'https://picsum.photos/190', ratio:'6.6'}
-  ]
+  ]*/
+ const [userData, setUserData] = useState([])
+ useEffect(() => {
+  getLatestUsers().then(r =>setUserData(r))
+ }, [])
  return (
   <div className="row-span-3 bg-white shadow rounded-lg">
    <div className="flex items-center justify-between px-6 py-5 font-semibold border-b border-gray-100">
@@ -34,10 +38,10 @@ export default function () {
      {userData.map((item,index) => (
       <li key={index} className="flex items-center">
        <div className="h-10 w-10 mr-3 bg-gray-100 rounded-full overflow-hidden">
-        <img src={item.image} alt={`${item.name} Profile Picture`}/>
+        <img src={item.profile.profilePicture} alt={`${item.profile.profilePicture} Profile Picture`}/>
        </div>
-       <span className="text-gray-600">{item.name}</span>
-       <span className="ml-auto font-semibold">{item.ratio}</span>
+       <span className="text-gray-600">{item.profile.name + ' ' + item.profile.surname}</span>
+       <span className="ml-auto font-semibold">{item.username}</span>
       </li>
      ))}
 
