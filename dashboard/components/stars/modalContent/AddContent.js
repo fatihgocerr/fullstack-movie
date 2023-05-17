@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import InputBox from "@/components/common/InputBox";
-import {addDirector} from "@/services/directors.service";
 import {create} from '@/services/stars.service'
 import {trChars} from "@/lib/helpers";
 import {toast} from "react-toastify";
+import {useSelector} from "react-redux";
 
 
 const AddMovies = ({setModal,setRefTable}) => {
@@ -55,12 +55,13 @@ const AddMovies = ({setModal,setRefTable}) => {
   {label: 'Awards', key: 'awards', type: 'text', selectBox: false},
   {label: 'Nationality', key: 'nationality', type: 'text', selectBox: false},
  ]
+ const authKey = useSelector(state => state.userSlice.user.token)
 
  const handleSubmit = async (e) => {
   e.preventDefault();
 
 
-  await create(formValues).then(async (res) => {
+  await create(formValues,authKey).then(async (res) => {
    if (res.code === 201) {
     // await uploadMultipleImage(selectedImage, res.data.id).then((res) => {
     // }).catch((err) => {

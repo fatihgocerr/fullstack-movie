@@ -1,18 +1,16 @@
 import Table from 'rc-table';
 import React, {useEffect, useState} from 'react';
 import Pagination from "react-js-pagination";
-import {Edit, Trash2, Eye, User, Users} from "react-feather";
+import {Edit, Trash2, Eye} from "react-feather";
 import PrModal from "@/components/modal/PrModal"
 import {Tooltip} from "antd";
-import ViewContent from "@/components/users/modelContent/ViewContent";
-import EditContent from "@/components/users/modelContent/EditContent";
-import DeleteContent from "@/components/users/modelContent/DeleteContent";
+import {getDirectors, getGenres, getStars, getWriters} from "@/services/getVal.service";
+import ViewContent from "@/components/anime/modalContent/ViewContent";
+import EditContent from "@/components/anime/modalContent/EditContent";
+import DeleteContent from "@/components/anime/modalContent/DeleteContent";
+import {getAllAnime} from '@/services/anime.service'
 
-import {getAll} from "@/services/user.service";
-import {authKey} from "@/lib/helpers";
-import {useSelector} from "react-redux";
-
-const TableIndex = ({refTable}) => {
+const AnimeTable = () => {
  const [modal, setModal] = useState(false);
  const [data, setData] = useState([]);
  const [columnData, setColumnData] = useState([]);
@@ -23,78 +21,104 @@ const TableIndex = ({refTable}) => {
  const [allData, setAllData] = useState([]);
  const modalContent = (
   activeContent === 'view'
-   ? <ViewContent data={columnData} subData={allData} setModal={setModal}/>
+   ? <ViewContent data={columnData} subData={allData}  setModal={setModal}/>
    : activeContent === 'edit'
-    ? <EditContent data={columnData} subData={allData} setModal={setModal}/>
-    : <DeleteContent data={columnData} subData={allData} setModal={setModal}/>
+    ? <EditContent data={columnData} subData={allData}  setModal={setModal}/>
+    : <DeleteContent data={columnData} subData={allData}  setModal={setModal}/>
  )
+ const fetchAll = async () => {
+  const [gData, sData, wData, dData] = await Promise.all([
+   getGenres(),
+   getStars(),
+   getWriters(),
+   getDirectors()
+  ]);
+  // setAllData([{genre:gData}, {stars:sData}, {scriptwriter:wData}, {directorId:dData}])
+  setAllData([gData, sData, wData, dData])
+ }
  const columns = [
   {
    title: '#',
    dataIndex: 'data',
    key: 'data',
    width: 50,
-   render: (text, record, index) => {
-    return <span>{activePage == 1 ? index + 1 : (activePage - 1) * perPage + index + 1}</span>
+   render: (text,record,index) => {
+    return <span>{  activePage == 1 ? index + 1 : (activePage -1 ) * perPage + index + 1}</span>
    },
    className: "text-white bg-gray-800 p-2 border-r-2 border-b-2 rounded-lg",
+   rowClassName: "bg-black-ripon"
   },
   {
-   title: 'User Name',
-   dataIndex: 'username',
-   key: 'username',
+   title: 'Name',
+   dataIndex: 'name',
+   key: 'name',
    width: 400,
    className: "text-white bg-gray-800 p-2 border-r-2 border-b-2 rounded-tl-lg rounded-bl-lg",
-   //name ve surname birleşecek
+   // rowClassName: "bg-black-ripon"
   },
   {
-   title: 'Mail',
-   dataIndex: 'email',
-   key: 'email',
+   title: 'Genres',
+   // dataIndex: 'genre.name',
+   key: 'genre',
    width: 400,
    className: "text-white bg-gray-800 p-2 border-r-2 border-b-2",
-
+   render: (text, record) => (
+    <span>
+      {record.genre.map((g, index) => (
+       <span key={g._id}>
+          {g.name}
+        {index < record.genre.length - 1 ? ", " : ""}
+        </span>
+      ))}
+    </span>
+   )
   },
   {
-   title: 'Friends',
-   dataIndex: 'friends',
-   key: 'friends',
+   title: 'Directors',
+   key: 'directorId',
    width: 400,
    className: "text-white bg-gray-800 p-2 border-r-2 border-b-2",
-   render: (text, record) => {
-    return <span>{record.friends.length}</span>
-   }
-
+   render: (text, record) => (
+    <span>
+      {record.directorId.map((d, index) => (
+       <span key={d._id}>
+          {d.name}
+        {index < record.directorId.length - 1 ? ", " : ""}
+        </span>
+      ))}
+    </span>
+   )
   },
   {
-   title: 'Role',
-   dataIndex: 'role',
-   key: 'role',
+   title: 'Release Date',
+   dataIndex: 'released',
+   key: 'released',
    width: 400,
-   className: "text-white bg-gray-800 p-2 border-r-2 border-b-2",
-   render: (text, record) => {
-    return <div className='flex items-center justify-center gap-4'>
-     <span>{record.role === 'admin' ? <User className='text-emerald-700' /> : <Users className='text-red-400' />} </span>
-     <span>{record.role}</span>
-    </div>
-   }
+   // sorter: (a, b) => a.visionDate - b.visionDate,
+   className: "text-white bg-gray-800 p-2 border-r-2 border-b-2"
   },
   {
-   title: 'Avatar',
-   dataIndex: 'avatar',
-   key: 'avatar',
+   title: 'User Score ',
+   dataIndex: 'userScore',
+   key: 'userScore',
+   width: 400,
+   className: "text-white bg-gray-800 p-2 border-r-2 border-b-2"
+  },
+  {
+   title: 'Poster',
+   dataIndex: 'poster',
+   key: 'poster',
    width: 400,
    image: true,
    className: "text-white bg-gray-800 p-2 border-r-2 border-b-2",
    // render: (text, record) => <img src={record.poster} alt='poster' className="w-20 h-20 "/>
-   render: (text, record) => (
-    <Tooltip title={<img src={record.profile.profilePicture || 'https://picsum.photos/200'} alt="poster" width="200"/>}>
+   render: (text, record) =>(
+    <Tooltip title={<img src={record.poster ||'https://picsum.photos/200'} alt="poster" width="200" />}>
         <span className='cursor-pointer'>
-          {record.profile.profilePicture ? 'User Avatar' : 'No Avatar'}
+          {text ? text : 'No Poster'}
         </span>
     </Tooltip>
-   )
-  },
+   )},
   {
    title: 'Operations',
    dataIndex: '',
@@ -120,23 +144,21 @@ const TableIndex = ({refTable}) => {
 
   },
  ];
- const authKey = useSelector(state => state.userSlice.user.token)
 
  const getData = async () => {
-  await getAll(authKey).then((response) => {
-   setData(response.data)
-   setTableData(response.data.slice(0, perPage))
-  }).catch((err) => {
-   console.log(err)
+  getAllAnime().then((response) => {
+   setData(response.data.data)
+   setTableData(response.data.data.slice(0, perPage))
+  }).catch((error) => {
+   console.log(error);
   })
  }
-
-
  useEffect(() => {
   getData()
+  fetchAll()
+  // toast.info('Welcome to Movie App')
   window.scrollTo({top: 0, behavior: 'smooth'});
- }, [refTable, modal])
-
+ }, [modal])
 
  //Pagination
  const handlePageChange = (pageNumber) => {
@@ -152,9 +174,8 @@ const TableIndex = ({refTable}) => {
     return {
      onClick: e => {
       setColumnData([record])
-     }
-    };
-   }}
+     }};
+   } }
           className='bg-purple-700 p-2 w-full text-center rc-table-custom font-semibold rounded-md'/>
    <Pagination
     activePage={activePage}
@@ -176,4 +197,4 @@ const TableIndex = ({refTable}) => {
  );
 };
 
-export default TableIndex;
+export default AnimeTable;

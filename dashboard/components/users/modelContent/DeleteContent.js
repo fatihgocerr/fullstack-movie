@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import {deleteById} from "@/services/user.service";
 import {Image, Switch} from "antd";
+import {useSelector} from "react-redux";
 
 
 const Delete = ({data, setModal}) => {
@@ -19,10 +20,11 @@ const Delete = ({data, setModal}) => {
   {label: 'Language', key: 'profile.language', type: 'text', selectBox: false},
   {label: 'Notifications', key: 'settings.notifications', type: 'checkbox', selectBox: true},
  ]
+ const authKey = useSelector(state => state.userSlice.user.token)
 
  const handleDelete = () => {
   if (window.confirm('Silmek istediğinize emin misiniz ?')) {
-   deleteById(data[0]?._id).then((res) => {
+   deleteById(data[0]?._id,authKey).then((res) => {
     const toastPromise = new Promise((resolve, reject) => {
      res.code === 200 ? resolve('success') : reject('error')
     })

@@ -3,7 +3,7 @@ import {authKey} from "@/lib/helpers";
 import {toast} from "react-toastify";
 
 
-export const uploadMultipleImage = (files,id) => {
+export const uploadMultipleImage = (files,id,authKey) => {
 
   return new Promise((resolve, reject) => {
     let formData = new FormData();
@@ -13,8 +13,8 @@ export const uploadMultipleImage = (files,id) => {
     axiosConf.post(`/movies/uploadImage/${id}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDQyZTA1ZmQxZDE2N2JiOWMzYzFlYzUiLCJ1c2VyTmFtZSI6InVzZXIgMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4MzExNjQ4MSwiZXhwIjoxNjgzMjAyODgxfQ.k8NmX7EgmXfjokwJfuiMqUWG05E2U7xHZW0i-n67azI'
-          }
+        'Authorization': 'Bearer ' + authKey
+      }
     }).then(({ data }) => {
       resolve(data.data);
     }).catch((err) => {
@@ -27,7 +27,7 @@ export const uploadMultipleImage = (files,id) => {
 }
 
 
-export const addMovie =async (data) => {
+export const addMovie =async (data,authKey) => {
   return new Promise((resolve, reject) => {
     axiosConf.post(`/movies/create`, data, {
       headers: {
@@ -43,7 +43,7 @@ export const addMovie =async (data) => {
   })
 }
 
-export const updateMovie =async (data ,id) => {
+export const updateMovie =async (data ,id,authKey) => {
   return new Promise ((resolve, reject) => {
     axiosConf.put(`/movies/updateById/${id}`, data, {
       headers: {
@@ -61,7 +61,7 @@ export const updateMovie =async (data ,id) => {
 }
 
 
-export const updatedMultipleImage = (files,id) => {
+export const updatedMultipleImage = (files,id,authKey) => {
 
   return new Promise((resolve, reject) => {
     let formData = new FormData();
@@ -83,7 +83,7 @@ export const updatedMultipleImage = (files,id) => {
 }
 
 
-export const deleteMovie =async (id) => {
+export const deleteMovie =async (id,authKey) => {
   return new Promise((resole,reject) => {
   axiosConf.delete('/movies/deleteById/'+id, {
     headers: {
@@ -98,46 +98,4 @@ export const deleteMovie =async (id) => {
   })
   })
 }
-
-
-
-
-
-
-
-
-
-
-//    let data = new FormData();
-//  console.log('files', files[1])
-//   data.append('poster', files[0]);
-//   data.append('bannerPoster', files[1]);
-//   let config = {
-//     method: 'post',
-//     maxBodyLength: Infinity,
-//     url: 'http://localhost:5002/api/v1/movies/uploadImage/644125872f26c4dada55b9a1',
-//     headers: {
-// 'Content-Type': 'multipart/form-data',
-//
-//       'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDQyZTA1ZmQxZDE2N2JiOWMzYzFlYzUiLCJ1c2VyTmFtZSI6InVzZXIgMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4MzExNjQ4MSwiZXhwIjoxNjgzMjAyODgxfQ.k8NmX7EgmXfjokwJfuiMqUWG05E2U7xHZW0i-n67azI'
-//
-//          },
-//     data : data
-//   };
-//
-//   axios.request(config)
-//    .then((response) => {
-//      console.log(JSON.stringify(response.data));
-//    })
-//    .catch((error) => {
-//      console.log(error);
-//    });
-
-
-
-
-
-
-
-
 

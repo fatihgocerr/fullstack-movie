@@ -1,12 +1,12 @@
 import {axiosConf} from "@/lib/axiosConf";
-import {toast} from "react-toastify";
 
 
 
 
-export const getAllSeries =async () => {
+
+export const getAllAnime =async () => {
  return new Promise ((resolve, reject) => {
-  axiosConf.get(`/series/all`).then(( res ) => {
+  axiosConf.get(`/anime/all`).then(( res ) => {
    resolve(res);
   }).catch((err) => {
    console.log('err', err)
@@ -16,9 +16,9 @@ export const getAllSeries =async () => {
 }
 
 
-export const addSeries =async (data,authKey) => {
+export const addAnime =async (data,authKey) => {
  return new Promise((resolve, reject) => {
-  axiosConf.post(`/series/create`, data, {
+  axiosConf.post(`/anime/create`, data, {
    headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + authKey
@@ -40,7 +40,7 @@ export const uploadMultipleImage = (files,id,authKey) => {
   formData.append('poster', files[0] );
   formData.append('bannerPoster', files[1] );
 
-  axiosConf.post(`/series/uploadImage/${id}`, formData, {
+  axiosConf.post(`/anime/uploadImage/${id}`, formData, {
    headers: {
     'Content-Type': 'multipart/form-data',
     'Authorization': 'Bearer ' + authKey
@@ -57,9 +57,9 @@ export const uploadMultipleImage = (files,id,authKey) => {
 }
 
 
-export const updateSeries =async (data ,id, authKey) => {
+export const updateAnime =async (data ,id, authKey) => {
  return new Promise ((resolve, reject) => {
-  axiosConf.put(`/series/updateById/${id}`, data, {
+  axiosConf.put(`/anime/updateById/${id}`, data, {
    headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + authKey
@@ -74,9 +74,9 @@ export const updateSeries =async (data ,id, authKey) => {
 
 
 
-export const deleteSeries =async (id,authKey) => {
+export const deleteAnime =async (id,authKey) => {
  return new Promise((resolve, reject) => {
-  axiosConf.delete(`/series/deleteById/${id}`, {
+  axiosConf.delete(`/anime/deleteById/${id}`, {
    headers: {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + authKey
@@ -97,7 +97,7 @@ export const updatedMultipleImage = (files,id,authKey) => {
   formData.append('poster', files[0] );
   formData.append('bannerPoster', files[1] );
 
-  axiosConf.put(`/series/uploadImage/${id}`, formData, {
+  axiosConf.put(`/anime/uploadImage/${id}`, formData, {
    headers: {
     'Content-Type': 'multipart/form-data',
     'Authorization': 'Bearer ' + authKey

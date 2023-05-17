@@ -17,7 +17,7 @@ export const getAllGenres = async () => {
 
 
 
-export const addGenre = async (data) => {
+export const addGenre = async (data,authKey) => {
  return new Promise((resolve,reject) => {
   axiosConf.post('/genres/create',data,{
    headers: {
@@ -34,7 +34,7 @@ export const addGenre = async (data) => {
 
 
 
-export const updateGenre = async (data,id) => {
+export const updateGenre = async (data,id,authKey) => {
 return new Promise((resolve,reject) => {
  axiosConf.put(`/genres/updateById/${id}`,data,{
   headers: {
@@ -51,7 +51,7 @@ return new Promise((resolve,reject) => {
 
 
 
-export const deleteGenre = async (id) => {
+export const deleteGenre = async (id,authKey) => {
  return new Promise((resolve,reject) => {
   axiosConf.delete(`/genres/deleteById/${id}`,{
    headers: {

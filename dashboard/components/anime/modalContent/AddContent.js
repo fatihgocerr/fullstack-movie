@@ -1,14 +1,16 @@
 import React, {useEffect, useState} from "react";
 import SelectBox from "@/components/common/SelectBox";
 import InputBox from "@/components/common/InputBox";
+import {axiosConf} from "@/lib/axiosConf";
 import {getGenres, getStars, getWriters,getDirectors} from "@/services/getVal.service";
-import {addMovie, uploadMultipleImage} from "@/services/movies.service";
+import fs from "fs";
+import {addAnime, uploadMultipleImage} from "@/services/anime.service";
+
 import {trChars} from "@/lib/helpers";
 import {useSelector} from "react-redux";
 
 
-const AddMovies = () => {
- const authKey  = useSelector(state => state.userSlice.user.token)
+const AddAnime = () => {
  const [formValues, setFormValues] = useState({
   name: '',
   genre: [],
@@ -32,6 +34,9 @@ const AddMovies = () => {
   language: '',
   producer: ''
  });
+ const authKey =  useSelector(state => state.userSlice.user.token)
+
+
  const [allData, setAllData] = useState([]);
  //For Image Preview
  const [selectedImage, setSelectedImage] = useState('');
@@ -72,6 +77,8 @@ const fetchAll = async () => {
  ]);
  // setAllData([{genre:gData}, {stars:sData}, {scriptwriter:wData}, {directorId:dData}])
  setAllData([gData, sData, wData, dData])
+
+
 }
  const formItem = [
   {label: 'Name', key: 'name', type: 'text',selectBox:false},
@@ -98,9 +105,9 @@ const fetchAll = async () => {
  const handleSubmit = async (e) => {
   e.preventDefault();
   // console.log(formValues)
-  await addMovie(formValues,authKey).then(async (res) => {
+  await addAnime(formValues,authKey).then(async (res) => {
    if (res.code === 201) {
-    await uploadMultipleImage(selectedImage, res.data.id,authKey).then((res) => {
+    await uploadMultipleImage(selectedImage, res.data.id, authKey).then((res) => {
     }).catch((err) => {
      console.log('imageupload', err)
     })
@@ -181,4 +188,4 @@ const fetchAll = async () => {
 }
 
 
-export default AddMovies;
+export default AddAnime;

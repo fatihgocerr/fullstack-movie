@@ -1,22 +1,12 @@
 import {useState, useEffect} from "react";
 import {getLatestUsers} from "@/services/statistics.service";
+import {useSelector} from "react-redux";
 export default function () {
- /*const userData = [
-  { name:'Calvin Steward', image:'https://picsum.photos/200', ratio:'8.9'},
-  { name:'Ralph Richards', image:'https://picsum.photos/199', ratio:'9.3'},
-  { name:'Annette Watson', image:'https://picsum.photos/198', ratio:'7.3'},
-  { name:'Calvin Steward', image:'https://picsum.photos/197', ratio:'4.9'},
-  { name:'Ralph Richards', image:'https://picsum.photos/196', ratio:'5.3'},
-  { name: 'Archie Cooper', image: 'https://picsum.photos/195', ratio: '8.3' },
-  {name: 'Jane Lane', image: 'https://picsum.photos/194', ratio: '9.7'},
-  {name:'Bernard Murphy', image:'https://picsum.photos/193', ratio:'9.2'},
-  { name:'Path Patel', image:'https://picsum.photos/192', ratio:'9.1'},
-  { name:'Path Patel', image:'https://picsum.photos/191', ratio:'1.3'},
-  { name:'Path Patel', image:'https://picsum.photos/190', ratio:'6.6'}
-  ]*/
+ const authKey = useSelector(state => state.userSlice.user.token)
+
  const [userData, setUserData] = useState([])
  useEffect(() => {
-  getLatestUsers().then(r =>setUserData(r))
+  getLatestUsers(authKey).then(r =>setUserData(r))
  }, [])
  return (
   <div className="row-span-3 bg-white shadow rounded-lg">

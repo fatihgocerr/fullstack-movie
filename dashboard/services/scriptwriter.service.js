@@ -15,7 +15,7 @@ export const getAll = async () => {
 
 
 
-export const create = async (data) => {
+export const create = async (data,authKey) => {
  return new Promise((resolve,reject)  => {
   axiosConf.post('/scriptwriters/create',data, {
    headers:{
@@ -32,7 +32,7 @@ export const create = async (data) => {
 
 
 
-export const update = async(data,id) => {
+export const update = async(data,id,authKey) => {
  return new Promise((resolve,reject) => {
   axiosConf.put(`/scriptwriters/updateById/${id}`,data, {
    headers:{
@@ -49,7 +49,7 @@ export const update = async(data,id) => {
 
 
 
-export const deleteScriptwriter= async (id) => {
+export const deleteScriptwriter= async (id,authKey) => {
  return new Promise((resolve,reject) => {
   axiosConf.delete(`/scriptwriters/deleteById/${id}`,{
    headers:{

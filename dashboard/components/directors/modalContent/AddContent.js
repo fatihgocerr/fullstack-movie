@@ -3,9 +3,12 @@ import InputBox from "@/components/common/InputBox";
 import {addDirector} from "@/services/directors.service";
 import {trChars} from "@/lib/helpers";
 import {toast} from "react-toastify";
+import {useSelector} from "react-redux";
 
 
 const AddMovies = ({setModal,setRefTable}) => {
+ const authKey = useSelector( state => state.userSlice.user.token)
+
  const [formValues, setFormValues] = useState({
   name: '',
   surname: '',
@@ -58,7 +61,7 @@ const AddMovies = ({setModal,setRefTable}) => {
  const handleSubmit = async (e) => {
   e.preventDefault();
 
-  await addDirector(formValues).then(async (res) => {
+  await addDirector(formValues,authKey).then(async (res) => {
    if (res.code === 201) {
     // await uploadMultipleImage(selectedImage, res.data.id).then((res) => {
     // }).catch((err) => {
