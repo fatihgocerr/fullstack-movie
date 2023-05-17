@@ -34,7 +34,6 @@ const Delete = ({data, setModal}) => {
  const handleDelete = () => {
   if (window.confirm('Silmek istediğinize emin misiniz ?')) {
    deleteDirector(data[0]?._id).then((res) => {
-    console.log('res',res)
     const toastPromise = new Promise((resolve, reject) => {
      res.code === 200 ? resolve('success') : reject('error')
     })

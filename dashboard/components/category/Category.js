@@ -5,7 +5,7 @@ import CategoryTitle from "./CategoryTitle";
 
 const Category = () => {
 const [refTable, setRefTable] = React.useState(null);
- console.log('refTable', refTable)
+
     return (
         <main className="p-6 sm:p-10 space-y-6">
         

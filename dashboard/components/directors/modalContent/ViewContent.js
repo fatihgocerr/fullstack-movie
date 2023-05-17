@@ -3,8 +3,7 @@ import React, {useState} from "react";
 
 const ViewMovies = ({data, setModal}) => {
 
- console.log('val', data?.[0]?.name)
- console.log('val', data)
+
  const formItem = [
   {label: 'Name', key: 'name', type: 'text', selectBox: false},
   {label: 'Surname', key: 'surname', type: 'text', selectBox: false},

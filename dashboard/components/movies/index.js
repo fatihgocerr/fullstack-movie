@@ -3,7 +3,6 @@ import CategoryTable from "@/components/category/CategoryTable";
 
 
 export default function Movies() {
- console.log('Category Index')
  return (
   <main className="p-6 sm:p-10 space-y-6">
 

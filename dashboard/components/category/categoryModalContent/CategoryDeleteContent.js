@@ -7,7 +7,7 @@ const DeleteCategory = ({data, setModal}) => {
 
 const handleDeleteGenre = async () => {
  await deleteGenre(data[0]?._id).then(res => {
-  console.log(res)
+
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')
    })

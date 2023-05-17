@@ -16,7 +16,6 @@ const [user, setUser] = useState(null)
 
  const userSelector = useSelector(state => state.userSlice.user)
 
- console.log('userSelector', userSelector)
  useEffect(() => {
   if (buttonOutsideClick) {
    setUserMenuStatus(false)
@@ -32,7 +31,6 @@ const [user, setUser] = useState(null)
    })
   }
  }, [])
- console.log(user)
 
 
 

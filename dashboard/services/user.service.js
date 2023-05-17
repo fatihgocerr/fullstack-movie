@@ -10,7 +10,6 @@ return new Promise ((resolve,reject) => {
    'Authorization': 'Bearer ' + authKey
   }
  }).then((res) => {
-  console.log('res', res)
   resolve(res.data)
  }).catch((err) => {
   reject(err)
@@ -74,7 +73,6 @@ return new Promise((resolve,reject) => {
    'Authorization': 'Bearer ' + authKey
   }
  }).then(({data}) => {
-  console.log('service data', data)
   resolve(data)
  }).catch((err) => {
   reject(err)
@@ -84,7 +82,6 @@ return new Promise((resolve,reject) => {
 
 
 export const uploadAvatar = async(files, id,authKey) => {
- console.log('files', files)
 return new Promise((resolve,reject) => {
  let formData = new FormData();
  formData.append('pp', files[0] );
@@ -103,7 +100,6 @@ return new Promise((resolve,reject) => {
 
 
 export const updateAvatar = async(files, id) => {
- console.log('files', files)
  return new Promise((resolve,reject) => {
   let formData = new FormData();
   formData.append('pp', files[0] );

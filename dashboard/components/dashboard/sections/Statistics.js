@@ -14,7 +14,6 @@ const [totalData, setTotalData] = useState([])
   axios.request(config)
    .then((response) => {
     setTotalData(response.data.data)
-    console.log(JSON.stringify(response.data.data));
    })
    .catch((error) => {
     console.log(error);

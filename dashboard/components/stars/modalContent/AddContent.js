@@ -58,7 +58,7 @@ const AddMovies = ({setModal,setRefTable}) => {
 
  const handleSubmit = async (e) => {
   e.preventDefault();
-  console.log(formValues)
+
 
   await create(formValues).then(async (res) => {
    if (res.code === 201) {

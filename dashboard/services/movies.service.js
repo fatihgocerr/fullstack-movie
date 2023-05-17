@@ -16,7 +16,6 @@ export const uploadMultipleImage = (files,id) => {
         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDQyZTA1ZmQxZDE2N2JiOWMzYzFlYzUiLCJ1c2VyTmFtZSI6InVzZXIgMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4MzExNjQ4MSwiZXhwIjoxNjgzMjAyODgxfQ.k8NmX7EgmXfjokwJfuiMqUWG05E2U7xHZW0i-n67azI'
           }
     }).then(({ data }) => {
-      console.log('data', data)
       resolve(data.data);
     }).catch((err) => {
       console.log('err', err)
@@ -36,7 +35,6 @@ export const addMovie =async (data) => {
         'Authorization': 'Bearer ' + authKey
       }
     }).then(({ data }) => {
-      console.log('data', data)
       resolve(data);
     }).catch((err) => {
       console.log('err', err)
@@ -44,7 +42,6 @@ export const addMovie =async (data) => {
     })
   })
 }
-console.log('authKey',typeof authKey)
 
 export const updateMovie =async (data ,id) => {
   return new Promise ((resolve, reject) => {
@@ -54,7 +51,6 @@ export const updateMovie =async (data ,id) => {
         'Authorization': 'Bearer ' + authKey
       }
     }).then(({ data }) => {
-      console.log('data', data)
       resolve(data);
     }).catch((err) => {
       console.log('err', err)
@@ -78,7 +74,6 @@ export const updatedMultipleImage = (files,id) => {
         'Authorization': 'Bearer ' + authKey
       }
     }).then(({ data }) => {
-      console.log('data', data)
       resolve(data);
     }).catch((err) => {
       console.log('err', err)
@@ -96,7 +91,6 @@ export const deleteMovie =async (id) => {
       'Authorization': 'Bearer '+ authKey
     }
   }).then(({ data }) => {
-    console.log('data', data)
     resole(data);
   }).catch((err) => {
     console.log('err', err)

@@ -67,15 +67,12 @@ const AddUser = ({setModal, setRefTable}) => {
  ]
  const handleSubmit = async (e) => {
   e.preventDefault();
-  console.log(`formValues`, formValues)
 
   await create(formValues).then(async (res) => {
    if (res.code === 201) {
     await uploadAvatar(selectedImage, res.data.id).then((res) => {
     }).catch((err) => {
-     console.log(`${!!err.response.data.validationErrors?.[0].msg ? err.response.data.validationErrors?.[0].msg : 'image upload failed '}`)
-    })
-    console.log('res', res)
+     })
     toast.success('Created Success')
    }
   }).catch((err) => {

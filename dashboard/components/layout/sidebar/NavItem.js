@@ -10,7 +10,6 @@ const NavItem = ({sidebarStatus, menuTitle, subMenu, subMenuArray, hrefLink, chi
     const subMenuToggle = ()=>{
         setSubMenuToggleStatus(!subMenuToggleStatus)
      router.push(hrefLink);
-     console.log('submenu', subMenuToggleStatus)
       }
       
     useEffect(()=>{

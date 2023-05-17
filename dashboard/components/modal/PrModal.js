@@ -10,7 +10,6 @@ export default function PrModal({
                                  mdlCloseBtn = true
                                 }) {
  //const [vsbModal, setVsbModal] = useState(false)
- console.log('vsbModal', vsbModal)
  let eventFunction = useCallback((event) => {
   if (event.keyCode === 27) {
    setVsbModal(false)
