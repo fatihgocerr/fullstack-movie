@@ -88,9 +88,8 @@ const Edit = ({data, subData, setModal}) => {
 
  const handleSubmit = async (e) => {
   e.preventDefault();
-  console.log('formValues', formValues)
   await updateDirector(formValues, data?.[0]?._id).then((res) => {
-   console.log('res,', res)
+
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')
    })
@@ -108,7 +107,7 @@ const Edit = ({data, subData, setModal}) => {
  }
  const updateImage = async () => {
   await updatedMultipleImage(selectedImage, data?.[0]?._id).then((res) => {
-   console.log(res)
+
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')
    })

@@ -35,6 +35,12 @@
     }
 }
 
+
+.ant-layout {
+    width: fit-content;
+}
+
+
 .custom-select .ant-select-selector {
     border: 2px solid #c084fc !important;
     border-radius: 4px;
@@ -49,4 +55,9 @@
 
 .ant-switch-checked .ant-switch-inner {
     background-color: #008080;
+}
+
+
+.min-vh-100 {
+    min-height: 100vh;
 }

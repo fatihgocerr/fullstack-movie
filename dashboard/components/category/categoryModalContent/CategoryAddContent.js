@@ -28,7 +28,7 @@ const addCategory = ({setModal, setRefTable}) => {
  const handleSubmit = (e) => {
   e.preventDefault();
   addGenre(formValues).then((res) => {
-   console.log(res)
+
    toast.success('Category Added Successfully')
   }).catch((err) => {
    console.log(err)

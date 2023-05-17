@@ -49,7 +49,7 @@ export default function Register() {
   }
 
   const { passwordRepeat, ...newFormValues } = formValues; // passwordRepeat alanı çıkarılır
-  console.log('newFormValues', newFormValues)
+
   await create(newFormValues).then(async (res) => {
     // console.log(`${!!err.response.data.validationErrors?.[0].msg ? err.response.data.validationErrors?.[0].msg : 'image upload failed '}`)
     const toastPromise = new Promise((resolve, reject) => {

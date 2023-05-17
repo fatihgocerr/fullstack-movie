@@ -3,7 +3,6 @@ import {axiosConf} from "@/lib/axiosConf";
 
 // export const getGenre =async () => {
 //  axiosConf.get('/genres/all').then(async ({data}) => {
-//   console.log('data Service', data.data)
 //   return await data.data
 //  }).catch((err) => {
 //   return err

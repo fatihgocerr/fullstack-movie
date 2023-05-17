@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Eye, EyeOff} from "react-feather";
 import {toast} from "react-toastify";
 import LoginServ from "@/services/auth.service";
@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {Watermark} from "antd";
 import {login} from "@/store/slice/user";
+import {shuffle} from "@/lib/helpers";
 export default function Login() {
  const [formValues, setFormValues] = useState({
   username: '',
@@ -14,15 +15,32 @@ export default function Login() {
  const [showPass, setShowPass] = useState(false);
  const dispatch = useDispatch();
  const router = useRouter();
+ const [imageSrc, setImageSrc] = useState('')
 
-const logData  = useSelector((state) => state.user)
- console.log('logData',logData)
+
+ const loginMedia =[
+  {src:'./login/1.gif'},
+  {src:'./login/2.gif'},
+  {src:'./login/3.gif'},
+  {src:'./login/4.gif'},
+  {src:'./login/5.gif'},
+  {src:'./login/6.gif'},
+ ]
+
+ useEffect(() => {
+  setImageSrc (shuffle(loginMedia)[0].src)
+ }, [])
  const handleSubmit = (e) => {
+  if (formValues.username === '' || formValues.password === '' || formValues.password.length < 6 || formValues.username.length < 5) {
+   toast('Please fill all the fields')
+   return;
+  }
   e.preventDefault();
   LoginServ(formValues).then((res) => {
    if (res.role === 'admin') {
-   dispatch(login({isLoggedIn:true, user:res}))
+   dispatch(login(res))
    localStorage.setItem('data',JSON.stringify(res))
+
    router.push('/')
     toast.success('Login Successfully, Redirecting to Dashboard')
    } else {
@@ -37,14 +55,7 @@ const logData  = useSelector((state) => state.user)
 
  }
 
-const loginMedia =[
- {src:'./login/1.gif'},
- {src:'./login/2.gif'},
- {src:'./login/3.gif'},
- {src:'./login/4.gif'},
- {src:'./login/5.gif'},
- {src:'./login/6.gif'},
-]
+
  const handleInputChange = (e, key) => {
   const {value} = e.target;
   setFormValues((prevVal) => ({
@@ -54,10 +65,9 @@ const loginMedia =[
   // console.log('formValues',formValues)
  }
 
-
  return (
   <Watermark height={50} width={40} image="./popcorn.svg" >
-  <div className='flex items-center justify-center w-full h-screen bg-slate-700 '>
+  <div className='flex items-center justify-center w-full min-vh-100 bg-slate-700 '>
 
    <div className='flex  w-[700px] h-[500px] rounded-md overflow-hidden shadow-xl shadow-cyan-500 mx-2'>
 
@@ -74,7 +84,8 @@ const loginMedia =[
      <div className='  '>
       <img
        className='   w-56 h-56 object-cover '
-       src={loginMedia[Math.floor(Math.random() * loginMedia.length)].src} //shufle yapılacak
+       // src={loginMedia[Math.floor(Math.random() * loginMedia.length)].src} //shufle yapılacak
+       src={imageSrc}
        alt='login'
       />
      </div>

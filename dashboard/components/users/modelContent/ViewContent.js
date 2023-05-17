@@ -21,7 +21,6 @@ const ViewMovies = ({data, setModal}) => {
  // console.log('formItem', data[0]['username'])
  // console.log('fItem', formItem[0]['key'])
 
- console.log('formItem', data[0]['settings']['notifications'])
 
  return (
   <div className="flex-row justify-center items-center space-y-3 relative p-4 w-full bg-slate-200 rounded-md">

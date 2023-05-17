@@ -139,7 +139,6 @@ const TableIndex = ({refTable}) => {
 
  const getData = async () => {
   await getAll().then((response) => {
-   console.log('All Directors', response.data)
    setData(response.data)
    setTableData(response.data.slice(0, perPage))
   }).catch((err) => {
@@ -167,7 +166,7 @@ const TableIndex = ({refTable}) => {
     return {
      onClick: e => {
       setColumnData([record])
-      console.log(record, rowIndex)
+
      }
     };
    }}

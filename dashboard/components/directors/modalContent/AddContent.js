@@ -57,7 +57,6 @@ const AddMovies = ({setModal,setRefTable}) => {
 
  const handleSubmit = async (e) => {
   e.preventDefault();
-  console.log(formValues)
 
   await addDirector(formValues).then(async (res) => {
    if (res.code === 201) {

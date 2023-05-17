@@ -151,8 +151,6 @@ const MoviesTable = () => {
   axiosConf.get('/movies/all').then((response) => {
    setData(response.data.data)
    setTableData(response.data.data.slice(0, perPage))
-   console.log('response data', response.data.data[0].genre?.[0].name)
-   // console.log(JSON.stringify(response.data.data));
   }).catch((error) => {
    console.log(error);
   })
@@ -178,7 +176,6 @@ const MoviesTable = () => {
     return {
      onClick: e => {
       setColumnData([record])
-      console.log(record, rowIndex)
      }};
    } }
           className='bg-purple-700 p-2 w-full text-center rc-table-custom font-semibold rounded-md'/>

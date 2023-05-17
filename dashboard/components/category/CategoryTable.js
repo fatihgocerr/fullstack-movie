@@ -112,7 +112,6 @@ useEffect(() => {
   },
  ];
  useEffect(() => {
-  console.log('columnData', columnData)
   // columnData.length > 0 && setModal(true)
  }, [columnData]);
 
@@ -134,7 +133,7 @@ useEffect(() => {
      onClick: e => {
       // if (e.target.parentElement.cellIndex === 5) {
       setColumnData([record])
-      console.log(record, rowIndex)
+
      }
      // }
 

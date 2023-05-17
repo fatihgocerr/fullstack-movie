@@ -122,9 +122,8 @@ const EditMovies = ({data, subData, setModal}) => {
 
  const handleSubmit = async (e) => {
   e.preventDefault();
-  console.log(formValues)
   await updateMovie(formValues, data?.[0]?._id).then((res) => {
-   console.log('sadjkasjkdasjkdjk',res)
+
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')
    })
@@ -142,7 +141,7 @@ const EditMovies = ({data, subData, setModal}) => {
  }
  const updateImage = async () => {
   await updatedMultipleImage(selectedImage, data?.[0]?._id).then((res) => {
-   console.log(res)
+
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')
    })

@@ -1,9 +1,8 @@
 import {axiosConf} from "@/lib/axiosConf";
-import {authKey} from "@/lib/helpers";
+// https://www.serifaydin.com/post/react-projelerinde-derinlemesine-redux-redux-toolkit-ve-birazda-usereducer-hooks-kavram%C4%B1
 
 
-
-export const getAll = async() => {
+export const getAll = async(authKey) => {
 return new Promise ((resolve,reject) => {
  axiosConf.get(`/users/getAllUsers`,{
   headers: {
@@ -11,7 +10,6 @@ return new Promise ((resolve,reject) => {
    'Authorization': 'Bearer ' + authKey
   }
  }).then((res) => {
-  console.log('res', res)
   resolve(res.data)
  }).catch((err) => {
   reject(err)
@@ -19,7 +17,7 @@ return new Promise ((resolve,reject) => {
 })
 }
 
-export const getById = async(id) => {
+export const getById = async(id,authKey) => {
 return new Promise((resolve,reject) => {
  axiosConf.get(`/users/getById/${id}`,{
   headers:{
@@ -35,7 +33,7 @@ return new Promise((resolve,reject) => {
 }
 
 
-export const create = async(data) => {
+export const create = async(data,authKey) => {
 return new Promise((resolve,reject) => {
  axiosConf.post(`/users/create`, data, {
   headers: {
@@ -51,7 +49,7 @@ return new Promise((resolve,reject) => {
 }
 
 
-export const update = async(data,id) => {
+export const update = async(data,id,authKey) => {
  return new Promise((resolve,reject) => {
   axiosConf.put(`/users/updateById/${id}`, data, {
    headers: {
@@ -67,7 +65,7 @@ export const update = async(data,id) => {
 }
 
 
-export const deleteById = async(id) => {
+export const deleteById = async(id,authKey) => {
 return new Promise((resolve,reject) => {
  axiosConf.delete(`/users/deleteById/${id}`, {
   headers: {
@@ -75,7 +73,6 @@ return new Promise((resolve,reject) => {
    'Authorization': 'Bearer ' + authKey
   }
  }).then(({data}) => {
-  console.log('service data', data)
   resolve(data)
  }).catch((err) => {
   reject(err)
@@ -84,8 +81,7 @@ return new Promise((resolve,reject) => {
 }
 
 
-export const uploadAvatar = async(files, id) => {
- console.log('files', files)
+export const uploadAvatar = async(files, id,authKey) => {
 return new Promise((resolve,reject) => {
  let formData = new FormData();
  formData.append('pp', files[0] );
@@ -104,7 +100,6 @@ return new Promise((resolve,reject) => {
 
 
 export const updateAvatar = async(files, id) => {
- console.log('files', files)
  return new Promise((resolve,reject) => {
   let formData = new FormData();
   formData.append('pp', files[0] );

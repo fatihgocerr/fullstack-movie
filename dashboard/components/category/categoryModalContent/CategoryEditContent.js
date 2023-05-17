@@ -39,7 +39,7 @@ const addCategory = ({data, setModal}) => {
  }, [data])
  const handleSubmit = async (e) => {
   e.preventDefault();
-  console.log('formValues', formValues)
+
   // console.log('askdsadkslalk', )
   await updateGenre(formValues,data[0]?._id).then( res => {
    const toastPromise = new Promise((resolve, reject) => {

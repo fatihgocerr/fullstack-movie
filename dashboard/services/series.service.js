@@ -7,7 +7,6 @@ import {toast} from "react-toastify";
 export const getAllSeries =async () => {
  return new Promise ((resolve, reject) => {
   axiosConf.get(`/series/all`).then(( res ) => {
-   console.log('res', res)
    resolve(res);
   }).catch((err) => {
    console.log('err', err)
@@ -25,7 +24,6 @@ export const addSeries =async (data) => {
     'Authorization': 'Bearer ' + authKey
    }
   }).then(({data}) => {
-   console.log('data', data)
    resolve(data);
   }).catch((err) => {
    console.log('err', err)
@@ -48,7 +46,6 @@ export const uploadMultipleImage = (files,id) => {
     'Authorization': 'Bearer ' + authKey
    }
   }).then(({ data }) => {
-   console.log('datas', data)
    resolve(data.data);
   }).catch((err) => {
    console.log('errs', err)
@@ -85,7 +82,6 @@ export const deleteSeries =async (id) => {
     'Authorization': 'Bearer ' + authKey
    }
   }).then(({data}) => {
-   console.log('data', data)
    resolve(data);
   }).catch((err) => {
    console.log('err', err)
@@ -107,7 +103,6 @@ export const updatedMultipleImage = (files,id) => {
     'Authorization': 'Bearer ' + authKey
    }
   }).then(({ data }) => {
-   console.log('data', data)
    resolve(data.data);
   }).catch((err) => {
    console.log('err', err)

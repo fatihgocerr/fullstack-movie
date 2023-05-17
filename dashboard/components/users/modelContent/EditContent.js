@@ -153,10 +153,8 @@ setModal(false)
  };
 
  const SwitchChange = (e) => {
-  console.log('e', e)
   setFormValues({...formValues, settings: {...formValues.settings, notifications: e}})
  }
- console.log('formValues', formValues)
  return (
   <>
    {!changeBtn ? (
