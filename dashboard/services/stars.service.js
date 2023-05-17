@@ -1,5 +1,5 @@
 import {axiosConf} from "@/lib/axiosConf";
-import {authKey} from "@/lib/helpers";
+
 
 
 
@@ -15,7 +15,7 @@ export const getAll = async () => {
 
 
 
-export const create = async (data) => {
+export const create = async (data,authKey) => {
  return new Promise((resolve,reject)  => {
   axiosConf.post('/stars/create',data, {
    headers:{
@@ -32,7 +32,7 @@ export const create = async (data) => {
 
 
 
-export const update = async(data,id) => {
+export const update = async(data,id,authKey) => {
  return new Promise((resolve,reject) => {
   axiosConf.put(`/stars/updateById/${id}`,data, {
    headers:{
@@ -49,7 +49,7 @@ export const update = async(data,id) => {
 
 
 
-export const deleteStar= async (id) => {
+export const deleteStar= async (id,authKey) => {
  return new Promise((resolve,reject) => {
   axiosConf.delete(`/stars/deleteById/${id}`,{
    headers:{

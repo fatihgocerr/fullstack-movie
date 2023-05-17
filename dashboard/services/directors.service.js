@@ -1,6 +1,4 @@
 import {axiosConf} from "@/lib/axiosConf";
-import {authKey} from "@/lib/helpers";
-
 
 
 export const getAll = async () => {
@@ -15,7 +13,7 @@ export const getAll = async () => {
 
 
 
-export const addDirector = async (data) => {
+export const addDirector = async (data,authKey) => {
  return new Promise((resolve,reject) => {
   axiosConf.post('/directors/create', data, {
    headers: {
@@ -32,7 +30,7 @@ export const addDirector = async (data) => {
 
 
 
-export const getDirector = async (id) => {
+export const getDirector = async (id,authKey) => {
  return new Promise((resolve,reject) => {
   axiosConf.get(`/director/getById/${id}`).then(({data}) => {
    resolve(data)
@@ -44,7 +42,7 @@ export const getDirector = async (id) => {
 
 
 
-export const deleteDirector = async(id) => {
+export const deleteDirector = async(id,authKey) => {
  return new Promise((resolve,reject) => {
   axiosConf.delete(`/directors/deleteById/${id}`, {
    headers:{
@@ -61,7 +59,7 @@ export const deleteDirector = async(id) => {
 
 
 
-export const updateDirector = async(data,id) => {
+export const updateDirector = async(data,id,authKey) => {
  return new Promise((resolve,reject) => {
   axiosConf.put(`/directors/updateById/${id}`,data, {
    headers:{

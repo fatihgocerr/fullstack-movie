@@ -4,6 +4,7 @@ import {create, uploadAvatar} from '@/services/user.service';
 import {trChars} from "@/lib/helpers";
 import {toast} from "react-toastify";
 import SingleBox from "@/components/common/SingleBox";
+import {useSelector} from "react-redux";
 
 
 const AddUser = ({setModal, setRefTable}) => {
@@ -65,10 +66,12 @@ const AddUser = ({setModal, setRefTable}) => {
   {label: 'Language', key: 'profile.language', type: 'text', selectBox: false},
   {label: 'Notifications', key: 'settings.notifications', type: 'checkbox', selectBox: true},
  ]
+ const authKey = useSelector(state => state.userSlice.user.token)
+
  const handleSubmit = async (e) => {
   e.preventDefault();
 
-  await create(formValues).then(async (res) => {
+  await create(formValues,authKey).then(async (res) => {
    if (res.code === 201) {
     await uploadAvatar(selectedImage, res.data.id).then((res) => {
     }).catch((err) => {

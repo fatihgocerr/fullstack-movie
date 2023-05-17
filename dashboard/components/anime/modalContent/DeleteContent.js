@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {message} from "antd";
 import {toast} from "react-toastify";
-import {deleteMovie} from "@/services/movies.service";
+import {deleteAnime} from "@/services/anime.service";
 import {useSelector} from "react-redux";
 
 
-const DeleteMovies = ({data, setModal}) => {
+const DeleteAnime = ({data, setModal}) => {
  const [formValues, setFormValues] = useState({
   name: '',
   genre: '',
@@ -29,6 +29,7 @@ const DeleteMovies = ({data, setModal}) => {
   language: '',
   producer: ''
  });
+ const authKey =  useSelector(state => state.userSlice.user.token)
 
  const formItem = [
   {label: 'Name', key: 'name', type: 'text', selectBox: false},
@@ -51,12 +52,12 @@ const DeleteMovies = ({data, setModal}) => {
   {label: 'Language', key: 'language', type: 'text', selectBox: false},
   {label: 'Producer', key: 'producer', type: 'text', selectBox: false},
  ]
-const authKey = useSelector(state => state.userSlice.user.token)
+
  const handleDelete = () => {
   if (window.confirm('Silmek istediğinize emin misiniz ?')) {
    // console.log('Delete confirmed');
    // console.log(data[0]?._id)
-   deleteMovie(data[0]?._id,authKey).then((res) => {
+   deleteAnime(data[0]?._id,authKey).then((res) => {
     const toastPromise = new Promise((resolve, reject) => {
      res.code === 200 ? resolve('success') : reject('error')
     })
@@ -126,4 +127,4 @@ const authKey = useSelector(state => state.userSlice.user.token)
 }
 
 
-export default DeleteMovies;
+export default DeleteAnime;

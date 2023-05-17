@@ -1,8 +1,8 @@
-import CategoryTitle from "@/components/category/CategoryTitle";
-import CategoryTable from "@/components/category/CategoryTable";
 
+import AnimeTable from "@/components/anime/AnimeTable";
+import AnimeTitle from "@/components/anime/AnimeTitle";
 
-export default function Movies() {
+export default function MoviesHome() {
  return (
   <main className="p-6 sm:p-10 space-y-6">
 
@@ -12,19 +12,20 @@ export default function Movies() {
     {/*    titleDescription='List, view and edit'*/}
     {/*    buttonTitle='Create new Category'*/}
     {/*/>*/}
-    <CategoryTitle />
+    <AnimeTitle />
    </div>
 
    <section className="grid md:grid-cols-1 xl:grid-cols-1 gap-6">
 
     <div className="flex-grow items-center p-8 bg-white shadow rounded-lg">
-     <CategoryTable />
+     <AnimeTable />
     </div>
 
    </section>
 
 
   </main>
+
  );
 
 }

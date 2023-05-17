@@ -6,6 +6,7 @@ import fs from "fs";
 import {addSeries, uploadMultipleImage} from "@/services/series.service";
 import {trChars} from "@/lib/helpers";
 import {toast} from "react-toastify";
+import {useSelector} from "react-redux";
 
 
 const AddSeries = () => {
@@ -96,13 +97,15 @@ const fetchAll = async () => {
   {label: 'Producer', key: 'producer', type: 'text',selectBox:false},
   {label: 'Parent', key: 'parent', type: 'text',selectBox:false},
  ]
+ const authKey = useSelector(state => state.userSlice.user.token)
+
  // console.log('allsData', allData)
  const handleSubmit = async (e) => {
   e.preventDefault();
-  await addSeries(formValues).then(async (res) => {
+  await addSeries(formValues,authKey).then(async (res) => {
    toast.success('Series Added Successfully')
    if (res.code === 201) {
-    await uploadMultipleImage(selectedImage, res.data._id).then((res) => {
+    await uploadMultipleImage(selectedImage, res.data._id,authKey).then((res) => {
   toast('Image Uploaded Successfully')
     }).catch((err) => {
      console.log('err', err)

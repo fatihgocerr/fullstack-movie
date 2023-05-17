@@ -33,12 +33,11 @@ return new Promise((resolve,reject) => {
 }
 
 
-export const create = async(data,authKey) => {
+export const create = async(data) => {
 return new Promise((resolve,reject) => {
  axiosConf.post(`/users/create`, data, {
   headers: {
    'Content-Type': 'application/json',
-   'Authorization': 'Bearer ' + authKey
   }
  }).then(({data}) => {
   resolve(data)

@@ -1,8 +1,8 @@
 import React, {useState} from "react";
+import {useSelector} from "react-redux";
 
 
 const ViewMovies = ({data, setModal}) => {
-
 
  const formItem = [
   {label: 'Name', key: 'name', type: 'text', selectBox: false},

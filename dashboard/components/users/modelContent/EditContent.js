@@ -4,6 +4,7 @@ import {ArrowDown, Check, Eye} from "react-feather";
 import {trChars} from "@/lib/helpers";
 import {Image, Switch} from "antd";
 import {updateAvatar,update} from "@/services/user.service";
+import {useSelector} from "react-redux";
 
 const Edit = ({data, subData, setModal}) => {
  const [formValues, setFormValues] = useState({
@@ -90,11 +91,12 @@ const Edit = ({data, subData, setModal}) => {
   }
  }, [data]);
 
+ const authKey = useSelector(state => state.userSlice.user.token)
 
  const handleSubmit = async (e) => {
   e.preventDefault();
   // console.log('formValues', formValues)
-  await update(formValues, data?.[0]?._id).then((res) => {
+  await update(formValues, data?.[0]?._id,authKey).then((res) => {
    // console.log('res,', res)
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')

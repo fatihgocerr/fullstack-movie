@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import {addGenre} from "@/services/genres.service";
 import {toast} from "react-toastify";
+import {useSelector} from "react-redux";
 
 
 const addCategory = ({setModal, setRefTable}) => {
+ const authKey = useSelector( state => state.userSlice.user.token)
  const [formValues, setFormValues] = useState({
   name: '',
   description: '',
@@ -27,7 +29,7 @@ const addCategory = ({setModal, setRefTable}) => {
  ]
  const handleSubmit = (e) => {
   e.preventDefault();
-  addGenre(formValues).then((res) => {
+  addGenre(formValues,authKey).then((res) => {
 
    toast.success('Category Added Successfully')
   }).catch((err) => {

@@ -1,38 +1,49 @@
 import React, {useEffect, useState} from "react";
 import SelectBox from "@/components/common/SelectBox";
-import {updatedMultipleImage} from "@/services/movies.service";
+import {updatedMultipleImage, updateAnime} from "@/services/anime.service";
 import {toast} from "react-toastify";
 import {ArrowDown, Eye} from "react-feather";
 import {trChars} from "@/lib/helpers";
-import {updateDirector} from "@/services/directors.service";
 import {useSelector} from "react-redux";
 
-const Edit = ({data, subData, setModal}) => {
- const authKey = useSelector( state => state.userSlice.user.token)
-
+const EditAnime = ({data, subData, setModal}) => {
  const [formValues, setFormValues] = useState({
   name: '',
-  surname: '',
-  birthDate: '',
-  birthPlace: '',
-  deathDate: '',
-  deathPlace: '',
-  biography: '',
-  gender: '',
+  genre: '',
+  released: '',
+  imdbScore: '',
+  directorId: '',
+  stars: '',
+  scriptwriter: '',
+  trailer: '',
+  tags: '',
+  summary: '',
+  poster: '',
+  bannerPoster: '',
+  budget: '',
+  boxOffice: '',
+  year: '',
   awards: '',
-  nationality: '',
+  conditions: '',
+  series: '',
+  country: '',
+  language: '',
+  producer: ''
  });
-
  const [changeBtn, setChangeBtn] = useState(false);
  //For Image Preview
  const [selectedImage, setSelectedImage] = useState('');
- const imageChange = async (e) => {
+ // const imageChange = (e) => {
+ //  if (e.target.files && e.target.files.length > 0) {
+ //   setSelectedImage(e.target.files);
+ //  }
+ // };
+ const imageChange =async (e) => {
   if (e.target.files && e.target.files.length > 0) {
    function renameFile(file, newFileName) {
-    const modifiedFile = new File([file], newFileName, {type: file.type});
+    const modifiedFile = new File([file], newFileName, { type: file.type });
     return modifiedFile;
    }
-
    let imageData = [];
    for (const file of e.target.files) {
     // console.log('file',file)
@@ -43,28 +54,39 @@ const Edit = ({data, subData, setModal}) => {
    // console.log('imageData',imageData)
 
 
+
    // console.log('e.target.files',e.target.files)
    setSelectedImage(imageData);
    setFormValues({...formValues, poster: imageData[0], bannerPoster: imageData[1]})
   }
  };
+const authKey =  useSelector(state => state.userSlice.user.token)
 
  const removeSelectedImage = () => {
   setSelectedImage('');
  };
+
  const formItem = [
   {label: 'Name', key: 'name', type: 'text', selectBox: false},
-  {label: 'Surname', key: 'surname', type: 'text', selectBox: false},
-  {label: 'Birth Date', key: 'birthDate', type: 'text', selectBox: false},
-  {label: 'Birth Place', key: 'birthPlace', type: 'text', selectBox: false},
-  {label: 'Death Date', key: 'deathDate', type: 'text', selectBox: false},
-  {label: 'Death Place', key: 'deathPlace', type: 'text', selectBox: false},
-  {label: 'Biography', key: 'biography', type: 'text', selectBox: false},
-  {label: 'Gender', key: 'gender', type: 'text', selectBox: false},
+  {label: 'Genre', key: 'genre', type: 'text', selectBox: true},
+  {label: 'Release Date', key: 'released', type: 'text', selectBox: false},
+  {label: 'Imdb Score', key: 'imdbScore', type: 'text', selectBox: false},
+  {label: 'Director Id', key: 'directorId', type: 'text', selectBox: true},
+  {label: 'Stars', key: 'stars', type: 'text', selectBox: true},
+  {label: 'Scriptwriter', key: 'scriptwriter', type: 'text', selectBox: true},
+  {label: 'Trailer', key: 'trailer', type: 'text', selectBox: false},
+  {label: 'Tags', key: 'tags', type: 'text', selectBox: false},
+  {label: 'Summary', key: 'summary', type: 'text', selectBox: false},
+  {label: 'Budget', key: 'budget', type: 'text', selectBox: false},
+  {label: 'Box Office', key: 'boxOffice', type: 'text', selectBox: false},
+  {label: 'Year', key: 'year', type: 'text', selectBox: false},
   {label: 'Awards', key: 'awards', type: 'text', selectBox: false},
-  {label: 'Nationality', key: 'nationality', type: 'text', selectBox: false},
+  {label: 'Conditions', key: 'conditions', type: 'text', selectBox: false},
+  {label: 'Series', key: 'series', type: 'text', selectBox: false},
+  {label: 'Country', key: 'country', type: 'text', selectBox: false},
+  {label: 'Language', key: 'language', type: 'text', selectBox: false},
+  {label: 'Producer', key: 'producer', type: 'text', selectBox: false},
  ]
-
 
  // useEffect(() => {
  //  setFormValues({...formValues, ...data?.[0]})
@@ -73,16 +95,27 @@ const Edit = ({data, subData, setModal}) => {
  useEffect(() => {
   if (data && data.length > 0) {
    const formData = {
-    name: data?.[0]?.name,
-    surname: data?.[0]?.surname,
-    birthDate: data?.[0]?.birthDate,
-    birthPlace: data?.[0]?.birthPlace,
-    deathDate: data?.[0]?.deathDate,
-    deathPlace: data?.[0]?.deathPlace,
-    biography: data?.[0]?.biography,
-    gender: data?.[0]?.gender,
-    awards: data?.[0]?.awards,
-    nationality: data?.[0]?.nationality
+    name: data[0].name,
+    genre: data[0].genre.map((item) => item._id),
+    released: data[0].released,
+    imdbScore: data[0].imdbScore,
+    directorId: data[0].directorId.map((item) => item._id),
+    stars: data[0].stars.map((item) => item._id),
+    scriptwriter: data[0].scriptwriter.map((item) => item._id),
+    trailer: data[0].trailer,
+    tags: data[0].tags,
+    summary: data[0].summary,
+    poster: data[0].poster,
+    bannerPoster: data[0].bannerPoster,
+    budget: data[0].budget,
+    boxOffice: data[0].boxOffice,
+    year: data[0].year,
+    awards: data[0].awards,
+    conditions: data[0].conditions,
+    series: data[0].series,
+    country: data[0].country,
+    language: data[0].language,
+    producer: data[0].producer
    };
    setFormValues(formData);
   }
@@ -91,7 +124,7 @@ const Edit = ({data, subData, setModal}) => {
 
  const handleSubmit = async (e) => {
   e.preventDefault();
-  await updateDirector(formValues, data?.[0]?._id,authKey).then((res) => {
+  await updateAnime(formValues, data?.[0]?._id, authKey).then((res) => {
 
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')
@@ -109,15 +142,15 @@ const Edit = ({data, subData, setModal}) => {
 
  }
  const updateImage = async () => {
-  await updatedMultipleImage(selectedImage, data?.[0]?._id,authKey).then((res) => {
+  await updatedMultipleImage(selectedImage, data?.[0]?._id).then((res) => {
 
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')
    })
    toast.promise(toastPromise, {
-    pending: 'Delete is Pending...',
-    success: 'Delete is Successfly 👌',
-    error: 'Delete is Failed 🤯'
+    pending: 'Update is Pending...',
+    success: 'Update is Successfly 👌',
+    error: 'Update is Failed 🤯'
    })
    setModal(false)
   }).catch((err) => {
@@ -162,22 +195,22 @@ const Edit = ({data, subData, setModal}) => {
        ))}
       </div>
       <div className='flex-col  w-[20%] relative'>
-
-       <div
-        className="flex flex-col  relative w-full  space-y-3 items-center justify-center gap-4 overflow-auto my-2 p-2">
-        <label className='text-xl w-32 font-bold text-center '>
-         Avatar
-        </label>
-        <img
-         src={`https://picsum.photos/200`}
-         className="w-32 h-32  mr-1 rounded-full border-2 border-purple-600/50"
-         alt={`avatar`}/>
-       </div>
+       {['poster', 'bannerPoster'].map((item, index) => (
+        <div key={index}
+             className="flex-col  relative w-full  space-y-3 items-center justify-center gap-4 overflow-auto my-2 p-2">
+         <label className='text-xl w-32 font-bold text-center '>
+          {item}
+         </label>
+         <img
+          src={`${data?.[0]?.[item] || 'https://picsum.photos/200'} `}
+          className="w-32 h-32  mr-1 rounded-xl border-2 border-purple-600/50"
+          alt={`${data?.[0]?.[item]}`}/>
+        </div>
+       ))}
 
        <button className={`${changeBtn ? 'bg-red-600' : 'bg-orange-400'} ml-2 w-32 p-2 rounded-md text-white`}
                type={'button'}
-        // onClick={() => setChangeBtn(!changeBtn)}>
-               onClick={() => toast('yakında')}>
+               onClick={() => setChangeBtn(!changeBtn)}>
         {changeBtn ? ' CANCEL' : 'Change Image'}
        </button>
 
@@ -207,7 +240,7 @@ const Edit = ({data, subData, setModal}) => {
          </div>
          <div className='w-full flex items-center justify-center'>
           <img
-           src={`${data?.[0]?.[item] || 'https://picsum.photos/200'} `}
+           src={`${data?.[0]?.[item] ||'https://picsum.photos/200'} `}
            className="w-32 h-32  mr-1 rounded-xl border-2 border-purple-600/50"
            alt={`${data?.[0]?.[item]}`}/>
          </div>
@@ -260,7 +293,7 @@ const Edit = ({data, subData, setModal}) => {
       <button className={`bg-emerald-700 w-32 p-2 rounded-md text-white ${selectedImage ? 'visible' : 'hidden'}`}
               type={'button'}
 
-              onClick={() => null}>
+              onClick={() => updateImage()}>
        Update Image
       </button>
 
@@ -280,4 +313,4 @@ const Edit = ({data, subData, setModal}) => {
 }
 
 
-export default Edit;
+export default EditAnime;

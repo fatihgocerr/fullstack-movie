@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import SelectBox from "@/components/common/SelectBox";
-import {updatedMultipleImage, updateMovie} from "@/services/movies.service";
+import {updatedMultipleImage} from "@/services/movies.service";
 import {toast} from "react-toastify";
 import {ArrowDown, Eye} from "react-feather";
 import {trChars} from "@/lib/helpers";
 import {update} from "@/services/scriptwriter.service";
+import {useSelector} from "react-redux";
 
 const Edit = ({data, subData, setModal}) => {
  const [formValues, setFormValues] = useState({
@@ -85,11 +86,12 @@ const Edit = ({data, subData, setModal}) => {
   }
  }, [data]);
 
+ const authKey = useSelector(state => state.userSlice.user.token)
 
  const handleSubmit = async (e) => {
   e.preventDefault();
   console.log('formValues', formValues)
-  await update(formValues, data?.[0]?._id).then((res) => {
+  await update(formValues, data?.[0]?._id,authKey).then((res) => {
    console.log('res,',res)
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')
@@ -107,7 +109,7 @@ const Edit = ({data, subData, setModal}) => {
 
  }
  const updateImage = async () => {
-  await updatedMultipleImage(selectedImage, data?.[0]?._id).then((res) => {
+  await updatedMultipleImage(selectedImage, data?.[0]?._id,authKey).then((res) => {
    console.log(res)
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')

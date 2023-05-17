@@ -4,8 +4,10 @@ import {updatedMultipleImage, updateMovie} from "@/services/movies.service";
 import {toast} from "react-toastify";
 import {ArrowDown, Eye} from "react-feather";
 import {trChars} from "@/lib/helpers";
+import {useSelector} from "react-redux";
 
 const EditMovies = ({data, subData, setModal}) => {
+ const authKey = useSelector(state => state.userSlice.user.token)
  const [formValues, setFormValues] = useState({
   name: '',
   genre: '',
@@ -122,7 +124,7 @@ const EditMovies = ({data, subData, setModal}) => {
 
  const handleSubmit = async (e) => {
   e.preventDefault();
-  await updateMovie(formValues, data?.[0]?._id).then((res) => {
+  await updateMovie(formValues, data?.[0]?._id,authKey).then((res) => {
 
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')
@@ -140,7 +142,7 @@ const EditMovies = ({data, subData, setModal}) => {
 
  }
  const updateImage = async () => {
-  await updatedMultipleImage(selectedImage, data?.[0]?._id).then((res) => {
+  await updatedMultipleImage(selectedImage, data?.[0]?._id,authKey).then((res) => {
 
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')

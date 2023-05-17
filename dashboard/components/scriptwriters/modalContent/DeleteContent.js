@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import {deleteScriptwriter} from "@/services/scriptwriter.service";
+import {useSelector} from "react-redux";
 
 
 const Delete = ({data, setModal}) => {
@@ -30,10 +31,11 @@ const Delete = ({data, setModal}) => {
   {label: 'Nationality', key: 'nationality', type: 'text', selectBox: false},
  ]
 
+ const authKey = useSelector(state => state.userSlice.user.token)
 
  const handleDelete = () => {
   if (window.confirm('Silmek istediğinize emin misiniz ?')) {
-   deleteScriptwriter(data[0]?._id).then((res) => {
+   deleteScriptwriter(data[0]?._id, authKey).then((res) => {
     console.log('res',res)
     const toastPromise = new Promise((resolve, reject) => {
      res.code === 200 ? resolve('success') : reject('error')

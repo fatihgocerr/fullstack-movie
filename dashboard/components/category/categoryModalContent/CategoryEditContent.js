@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {updateGenre} from "@/services/genres.service";
 import {toast} from "react-toastify";
+import {useSelector} from "react-redux";
 
 
 const addCategory = ({data, setModal}) => {
+ const authKey = useSelector(state => state.userSlice.user.token)
  const [formValues, setFormValues] = useState({
   name: '',
   description: '',
@@ -41,7 +43,7 @@ const addCategory = ({data, setModal}) => {
   e.preventDefault();
 
   // console.log('askdsadkslalk', )
-  await updateGenre(formValues,data[0]?._id).then( res => {
+  await updateGenre(formValues,data[0]?._id,authKey).then( res => {
    const toastPromise = new Promise((resolve, reject) => {
     res.code === 200 ? resolve('success') : reject('error')
    })
