@@ -7,6 +7,7 @@ const authCheck = require("../middleware/auth.middleware");
 
 router.get('/allCounts', statisticsController.getAllCounts)
 router.get('/getGenre', statisticsController.getGenreCounts)
+router.get('/getLatestUsers', statisticsController.getLatestUsers)
 
 
 module.exports = router;

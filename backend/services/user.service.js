@@ -138,6 +138,7 @@ exports.getById = async (req) => {
    ratings: json.ratings,
    friends: json.friends,
    settings: json.settings,
+   role: json.role,
    createdAt: json.createdAt,
    updatedAt: json.updatedAt
   }

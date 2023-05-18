@@ -8,6 +8,9 @@ const genreRouter = require('./genre.router')
 const commentRouter = require('./comment.router')
 const userRouter = require('./user.router')
 const statisticsRouter = require('./statistics.router')
+const searchRouter = require('./search.router')
+
+
 
 module.exports = {
  movieRouter,
@@ -19,5 +22,6 @@ module.exports = {
  genreRouter,
  commentRouter,
  userRouter,
- statisticsRouter
+ statisticsRouter,
+ searchRouter
 }

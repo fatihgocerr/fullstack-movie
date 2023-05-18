@@ -8,7 +8,7 @@ const genreService = require('./genre.service');
 const commentService = require('./comment.service');
 const userService = require('./user.service');
 const statisticsService = require('./statistics.service');
-
+const searchService = require('./search.service');
 
 
 
@@ -22,5 +22,6 @@ module.exports = {
  genreService,
  commentService,
  userService,
- statisticsService
+ statisticsService,
+ searchService
 }

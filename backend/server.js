@@ -30,6 +30,7 @@ app.use(`${process.env.APP_PREFIX}/genres`, router.genreRouter);
 app.use(`${process.env.APP_PREFIX}/comments`, router.commentRouter);
 app.use(`${process.env.APP_PREFIX}/users`, router.userRouter);
 app.use(`${process.env.APP_PREFIX}/statistics`, router.statisticsRouter);
+app.use(`${process.env.APP_PREFIX}/search`, router.searchRouter);
 
 //mongoose connection and server start
 db.dbConnection.connectToMongoDb(

@@ -165,8 +165,12 @@ exports.getAllMoviesWithPagination = async (req) => {
   if (director) query['directorId'] = director;
   if (star) query['stars'] = star;
   if (scriptwriter) query['scriptwriter'] = scriptwriter;
-  if (genre) query['genre.name'] = genre;
-  // console.log(query)
+
+  const genres = await genreDal.findOne({name: genre});
+  if (genres) {
+   return genres.movies
+  }
+
   const score = await movieDal.getScores();
   const json = await movieDal.getAllMoviesWithPagination(
    query,

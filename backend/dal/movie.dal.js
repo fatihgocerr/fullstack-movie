@@ -8,7 +8,7 @@ const MovieDataAccessLayer = {
   return await Movie.find(where)
    .populate(populate);
  },
- async getAllMoviesWithPagination(where = {}, populate, limit, skip, sort,projections) {
+ async getAllMoviesWithPagination(where = {}, populate, limit, skip, sort, projections) {
   return await Movie.find(where)
    .limit(limit)
    .skip(skip)
@@ -29,7 +29,7 @@ const MovieDataAccessLayer = {
  async getScore(id) {
   const scores = await Movie.aggregate([
    {
-    $addFields: { totalVotes : { $size: "$userScore" } }
+    $addFields: {totalVotes: {$size: "$userScore"}}
    },
    {
     $unwind: "$userScore" // userScore alanını ayrıştır
@@ -38,7 +38,7 @@ const MovieDataAccessLayer = {
     $group: {
      _id: "$_id",
      average: {$avg: "$userScore"}, // userScore alanının ortalamasını hesapla
-     totalVotes: { $first: "$totalVotes" } // totalVotes alanını ilk değer olarak ata
+     totalVotes: {$first: "$totalVotes"} // totalVotes alanını ilk değer olarak ata
     }
    }
   ]);
@@ -54,7 +54,7 @@ const MovieDataAccessLayer = {
   const scores = await Movie.aggregate([
    {
     $addFields: {
-     totalVotes: { $size: "$userScore" } // userScore dizisinin uzunluğunu hesapla ve totalVotes alanına ekle
+     totalVotes: {$size: "$userScore"} // userScore dizisinin uzunluğunu hesapla ve totalVotes alanına ekle
     }
    },
    {
@@ -64,15 +64,15 @@ const MovieDataAccessLayer = {
     $group: {
      _id: "$_id",
      average: {$avg: "$userScore"}, // userScore alanının ortalamasını hesapla,
-     totalVotes: { $first: "$totalVotes" } // totalVotes alanını ilk değer olarak ata
+     totalVotes: {$first: "$totalVotes"} // totalVotes alanını ilk değer olarak ata
     }
    }]);
   return scores
  },
 
-async count() {
- return await Movie.countDocuments();
-}
+ async count() {
+  return await Movie.countDocuments();
+ },
 
 }
 
