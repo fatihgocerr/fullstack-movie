@@ -19,6 +19,10 @@ app.use(express.json());
 
 app.use(middleware.loggerMiddleware);
 
+app.get('/', (req, res) => {
+ res.sendFile(__dirname + '/index.page.html' );
+})
+
 
 app.use(`${process.env.APP_PREFIX}/movies`, router.movieRouter);
 app.use(`${process.env.APP_PREFIX}/series`, router.seriesRouter);
