@@ -29,6 +29,10 @@ const UserDataAccessLayer = {
  },
  async count() {
   return await User.countDocuments();
+ },
+ async getLatestUsers(limit) {
+  // return await User.find({}).sort({createdAt: -1}).limit(limit).select({password: 0, settings: 0, email: 0, updatedAt: 0, favorites: 0, __v: 0, watchlist:0, ratings:0,friends:0 })
+  return await User.find({}).sort({createdAt: -1}).limit(limit).select('username profile.name profile.surname profile.profilePicture role createdAt')
  }
 }
 

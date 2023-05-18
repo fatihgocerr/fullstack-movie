@@ -8,6 +8,8 @@ const genreController = require('./genre.controller');
 const commentController = require('./comment.controller');
 const userController = require('./user.controller');
 const statisticsController = require('./statistics.controller');
+const searchController = require('./search.controller');
+
 
 
 module.exports = {
@@ -20,5 +22,6 @@ module.exports = {
  genreController,
  commentController,
  userController,
- statisticsController
+ statisticsController,
+ searchController
 };

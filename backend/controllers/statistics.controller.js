@@ -39,7 +39,6 @@ exports.getGenreCounts = async (req, res) => {
    code: StatusCodes.OK
   });
  } catch (error) {
-  console.log(error)
   helpers.logToError(error, req, 'Error in Get Lengths')
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
    ...baseResponse,
@@ -51,3 +50,29 @@ exports.getGenreCounts = async (req, res) => {
   })
  }
 }
+
+
+exports.getLatestUsers = async (req, res) => {
+try {
+ const json = await statisticsService.getLatestUsers(req, res);
+ res.status(StatusCodes.OK).json({
+  ...baseResponse,
+  data: json,
+  success: true,
+  timestamp: Date.now(),
+  code: StatusCodes.OK
+ });
+} catch (error) {
+helpers.logToError(error, req, 'Error in Get Lastest Users')
+res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+...baseResponse,
+success: false,
+error: true,
+timestamp: Date.now(),
+code: StatusCodes.INTERNAL_SERVER_ERROR,
+message: error.message
+})
+}
+}
+
+

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const movieSchema = new Schema({
-   title: {type: String,   },
+   name: {type: String, text: true, index: true,  },
   genre: [{type: Schema.Types.ObjectId, ref: 'Genre'}],
    released: {type: String,   },
    runtime: {type: String,   },

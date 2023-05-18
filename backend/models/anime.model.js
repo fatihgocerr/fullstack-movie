@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const animeSchema = new Schema({
- name: {type: String,  },
+ name: {type: String, text: true, index: true,  },
  genre: [{type: Schema.Types.ObjectId, ref: 'Genre'}],
  visionDate: {type: String,  },
  imdbScore: {type: Number,  },

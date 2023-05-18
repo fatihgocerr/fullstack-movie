@@ -24,6 +24,12 @@ const GenreDataAccessLayer = {
  async deleteById(id) {
   return await Genre.findByIdAndDelete(id)
  },
+ async findOne(where) {
+  return await Genre.findOne(where).populate({
+   path: 'movies',
+   select: 'name -_id poster imdbScore userScore'
+  });
+ }
 
 };
 
