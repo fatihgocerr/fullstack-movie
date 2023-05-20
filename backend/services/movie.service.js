@@ -220,7 +220,7 @@ exports.getAllMoviesWithPagination = async (req) => {
    ]
    ,
    perPage,
-   perPage * page,
+   perPage * page -1,
    {[sortBy]: sortDir},
    {_id: 1, name: 1, genre: 1, runTime: 1, imdbScore: 1, userScore: 1, poster: 1, released:1, createdAt:1}
   );
