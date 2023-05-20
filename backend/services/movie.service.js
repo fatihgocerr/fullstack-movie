@@ -166,7 +166,7 @@ exports.getAllMoviesWithPagination = async (req) => {
   if (director) query['directorId'] = director;
   if (star) query['stars'] = star;
   if (scriptwriter) query['scriptwriter'] = scriptwriter;
-  console.log('genre', !!genre)
+
 // birden fazla tür varsa ayrı ayrı sorgulayıp kesişen filmleri buluyoruz
   let filteredMovie = [];
   if (!!genre) {
@@ -186,7 +186,6 @@ exports.getAllMoviesWithPagination = async (req) => {
      return array.findIndex((item) => item.toString() === stringValue) !== index;
     });
 
-    console.log('duplicateValues', await duplicateValues);
     for (const duplicateValue of duplicateValues) {
      if (!filteredMovie.includes(duplicateValue)) {
       filteredMovie.push(duplicateValue) // aynı filmleri bir kez olacak şekilde ekliyoruz
