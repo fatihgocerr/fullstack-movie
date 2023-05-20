@@ -9,7 +9,6 @@ const MovieDataAccessLayer = {
    .populate(populate);
  },
  async getAllMoviesWithPagination(where = {}, populate, limit, skip, sort, projections) {
-  console.log('where', where)
   return await Movie.find(where)
    .limit(limit)
    .skip(skip)

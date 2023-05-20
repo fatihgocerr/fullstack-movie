@@ -222,9 +222,8 @@ exports.getAllMoviesWithPagination = async (req) => {
    perPage,
    perPage * page,
    {[sortBy]: sortDir},
-   {_id: 1, name: 1, genre: 1, runTime: 1, imdbScore: 1, userScore: 1, poster: 1}
+   {_id: 1, name: 1, genre: 1, runTime: 1, imdbScore: 1, userScore: 1, poster: 1, released:1, createdAt:1}
   );
-
 
   for (const item of json) { // her bir film için puanı hesaplıyoruz
    const movieScore = score.find(s => s._id.toString() === item._id.toString());
@@ -233,7 +232,8 @@ exports.getAllMoviesWithPagination = async (req) => {
     item.totalVotes = movieScore.totalVotes;
    }
   }
-  const totalCount = json.length; // Toplam veri sayısı
+  const totalCount = await Movie.countDocuments(where);
+  // const totalCount = json.length; // Toplam veri sayısı
   const totalPages = Math.ceil(totalCount / perPage); // Toplam sayfa sayısı
 
   return {data:json, totalCount, totalPages}
