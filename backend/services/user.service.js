@@ -203,9 +203,23 @@ exports.deleteUser = async (req, res) => {
 
 exports.login = async (req, res) => {
  try {
-  const {username, password} = req.body
+  const {username, email, password} = req.body
 
-  const json = await userDal.findOne({username})
+  let query;
+
+  if (email) {
+   query = { email };
+  } else if (username) {
+   query = { username };
+  } else {
+   // Hata durumu veya gerekli parametre eksikliği
+   return res.status(400).json({ error: 'Email or username is required' });
+  }
+
+  const json = await userDal.findOne(query);
+  // console.log('user', user);
+  // return user;
+
 
   if (!!json) {
    const isValid = await helpers.decryptPassword(password, json.password)
@@ -213,7 +227,7 @@ exports.login = async (req, res) => {
     // Doğrulama başarılı
 
     const token = await helpers.generateToken(json._id, username, json.role)
-    console.log('json', json.role)
+    // console.log('json', json.role)
     return {userId:json._id, username, role:json.role,token}
    }
   }
