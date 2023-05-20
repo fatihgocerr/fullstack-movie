@@ -196,7 +196,7 @@ exports.getAllMoviesWithPagination = async (req) => {
     query['genre'] = data?.[0]._id
    }
   }
-
+console.log('perPage', perPage)
   const score = await movieDal.getScores();
   const json = await movieDal.getAllMoviesWithPagination(
    where = !!genre ?  (genre.includes(',') ? {_id: {$in: filteredMovie}} : query) : query, //genre kontolü yaptık
@@ -217,10 +217,9 @@ exports.getAllMoviesWithPagination = async (req) => {
      path: 'genre',
      select: 'name'
     },
-   ]
-   ,
+   ],
    perPage,
-   perPage * page -1,
+   ( page -1) * perPage , //page -1 olmasının sebebi 0 dan başlaması
    {[sortBy]: sortDir},
    {_id: 1, name: 1, genre: 1, runTime: 1, imdbScore: 1, userScore: 1, poster: 1, released:1, createdAt:1}
   );
