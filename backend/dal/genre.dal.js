@@ -1,4 +1,5 @@
 const Genre = require('../models/genre.model');
+const movieDal = require("./movie.dal");
 
 
 const GenreDataAccessLayer = {
@@ -29,8 +30,24 @@ const GenreDataAccessLayer = {
    path: 'movies',
    select: 'name -_id poster imdbScore userScore'
   });
+ },
+ async find(where) {
+  return await Genre.find(where)
+   // .limit(limit)
+   // .skip(skip)
+   // .sort(sort)
  }
 
 };
 
 module.exports = GenreDataAccessLayer;
+
+
+
+
+
+
+
+
+
+

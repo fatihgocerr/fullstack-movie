@@ -3,6 +3,7 @@ const movieDal = require('../dal/movie.dal');
 const movieDto = require('../dto/movie.dto');
 const helpers = require('../utils/helpers');
 const Director = require('../models/director.model');
+const Genre = require('../models/genre.model');
 
 const directorDal = require('../dal/director.dal');
 const genreDal = require('../dal/genre.dal');
@@ -166,14 +167,40 @@ exports.getAllMoviesWithPagination = async (req) => {
   if (star) query['stars'] = star;
   if (scriptwriter) query['scriptwriter'] = scriptwriter;
 
-  const genres = await genreDal.findOne({name: genre});
-  if (genres) {
-   return genres.movies
+// birden fazla tür varsa ayrı ayrı sorgulayıp kesişen filmleri buluyoruz
+  let filteredMovie = [];
+  if (genre.includes(',')) {
+   splitGenre = genre.split(',')
+   // console.log('splitGenre', splitGenre)
+   const data = await Genre.find({name: {$in: splitGenre}}) // ilgili kategorileri buluyoruz
+   //
+   // console.log('data', data)
+   let allMovies = data.reduce((movies, genre) => {
+    return [...movies, ...genre.movies]
+   }, [])// ilgili kategorilere ait tüm filmleri bir array içerisine atıyoruz
+
+
+   const duplicateValues = allMovies.filter((value, index, array) => {
+    const stringValue = value.toString();
+    return array.findIndex((item) => item.toString() === stringValue) !== index;
+   });
+
+   console.log('duplicateValues', await duplicateValues);
+   for (const duplicateValue of duplicateValues) {
+    if (!filteredMovie.includes(duplicateValue)) {
+     filteredMovie.push(duplicateValue) // aynı filmleri bir kez olacak şekilde ekliyoruz
+    }
+   }
+  } else { // tek bir tür varsa ona ait filmleri buluyoruz
+   let data = await Genre.find({name: {$in: genre}})
+   query['genre'] = data?.[0]._id
   }
 
+
   const score = await movieDal.getScores();
+
   const json = await movieDal.getAllMoviesWithPagination(
-   query,
+   where = genre.includes(',') ? {_id: {$in: filteredMovie}} : query,
    [
     {
      path: 'directorId',
@@ -196,11 +223,11 @@ exports.getAllMoviesWithPagination = async (req) => {
    perPage,
    perPage * page,
    {[sortBy]: sortDir},
-   {_id: 1, title: 1, genre: 1, runTime: 1, imdbScore: 1, userScore: 1, poster: 1}
+   {_id: 1, name: 1, genre: 1, runTime: 1, imdbScore: 1, userScore: 1, poster: 1}
   );
 
 
-  for (const item of json) {
+  for (const item of json) { // her bir film için puanı hesaplıyoruz
    const movieScore = score.find(s => s._id.toString() === item._id.toString());
    if (movieScore) {
     item.userScore = movieScore.average;
