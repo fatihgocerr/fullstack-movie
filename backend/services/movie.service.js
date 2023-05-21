@@ -196,7 +196,6 @@ exports.getAllMoviesWithPagination = async (req) => {
     query['genre'] = data?.[0]._id
    }
   }
-console.log('perPage', perPage)
   const score = await movieDal.getScores();
   const json = await movieDal.getAllMoviesWithPagination(
    where = !!genre ?  (genre.includes(',') ? {_id: {$in: filteredMovie}} : query) : query, //genre kontolü yaptık
