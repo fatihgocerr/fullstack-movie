@@ -77,7 +77,7 @@ exports.createMovie = async (req, res) => {
     helpers.findedDataPush(findedStars, starDal, json._id),
     helpers.findedDataPush(findedScriptwriters, scriptwriterDal, json._id)
    ])
-   console.log('Movie created successfully')
+   // console.log('Movie created successfully')
   } catch (error) {
    console.log(error)
   }
@@ -401,7 +401,7 @@ exports.updateImage = async (req) => {
  try {
   const {id} = req.params;
   const str = await fileService.uploadMultipleImage(req);
-  console.log(str)
+  // console.log(str)
   //multiple field upload
   const updateFields = {};
   if (str[0] !== false) {
@@ -461,7 +461,7 @@ exports.getScore = async (req) => {
  try {
   const {id} = req.params;
   const scores = await movieDal.getScore(id);
-  console.log('scores', scores)
+  // console.log('scores', scores)
   return scores
 
  } catch (error) {

@@ -6,7 +6,7 @@ const userSchema = new Schema({
  username: {type: String, required: true},
  password: {type: String, required: true},
  email: {type: String, required: true},
- role: {type: String, required: true},
+ role: {type: String},
  profile: {
   name: {type: String},
   surname: {type: String},
@@ -17,11 +17,11 @@ const userSchema = new Schema({
   language: {type: String}
  },
  favorites: [{
-  kind: {type: String, required: true},
+  kind: {type: String, },
   item: {type: Schema.Types.ObjectId, refPath: 'favorites.kind'}
  }],
  watchlist: [{
-  kind: {type: String, required: true},
+  kind: {type: String,},
   item: {
    type: Schema.Types.ObjectId,
    refPath: 'watchlist.kind',
@@ -31,12 +31,12 @@ const userSchema = new Schema({
   watchDuration: {type: Number,},
  }],
  ratings: [{
-  kind: {type: String, required: true},
+  kind: {type: String, },
   item: {
    type: Schema.Types.ObjectId,
    refPath: 'ratings.kind',
   },
-  rating: {type: Number, required: true}
+  rating: {type: Number, }
  }],
  friends: [{
   type: Schema.Types.ObjectId,
