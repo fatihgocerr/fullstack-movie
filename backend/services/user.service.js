@@ -10,7 +10,7 @@ exports.createUser = async (req, res) => {
   const {username,role, password, email, profile, favorites, watchlist, ratings, friends, settings} = req.body;
   const user = new User({
    username,
-   role,
+   role : 'user',
    password: await helpers.encryptPassword(password),
    email,
    profile,
