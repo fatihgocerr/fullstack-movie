@@ -26,7 +26,6 @@ exports.createUser = async (req, res) => {
    ...userDto,
    id: json._id,
    username: json.username,
-   password: json.password,
    email: json.email,
    profile: json.profile,
    favorites: json.favorites,
