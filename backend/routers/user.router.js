@@ -10,7 +10,7 @@ router.get('/getAllUsers', authCheck(['admin']), userController.getAllUsers);
 router.get('/getById/:id', authCheck(['admin', 'user']), userValidator.validateGetById(), userController.getUserById);
 router.get('/allPagination', authCheck(['admin']), userValidator.validateListPagination(), userController.getAllUsersWithPagination)
 
-router.post('/create', authCheck(['admin']), userValidator.validateCreate(), userController.createUser);
+router.post('/create', userValidator.validateCreate(), userController.createUser);
 
 router.put('/updateById/:id', authCheck(['admin', 'user']), userValidator.validateUpdateById(), userController.updateUserById);
 router.delete('/deleteById/:id', authCheck(['admin']), userValidator.validateDeleteById(), userController.deleteUserById);

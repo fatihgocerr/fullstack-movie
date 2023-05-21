@@ -85,13 +85,50 @@ https://json-generator.com/#
 
 
 
+server {
+    listen 80;
+    server_name _;
+    return 301 https://$host$request_uri;
+        }
+server {
+ server_name projectarea.online www.projectarea.online;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                # try_files $uri $uri/ =404;
+
+        proxy_pass http://localhost:5002; #whatever port your app runs on
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+}
+listen 80;
+}
+
+server {
+    server_name dashboard.projectarea.online www.dashboard.projectarea.online;
+    location / {
+        client_max_body_size 200M;
+        proxy_pass http://127.0.0.1:3000;
+    proxy_set_header        X-Real-IP          $remote_addr;
+    proxy_set_header        X-Forwarded-For    $proxy_add_x_forwarded_for;
+}
+listen 80;
+}
 
 
 
 
+ginx durdurun: sudo service nginx stop
 
+Certbot paketini kaldırın: sudo apt remove certbot
 
+Certbot'un kurulumu sırasında oluşturulan dosyaları ve dizinleri silin:
 
+/etc/letsencrypt dizinini silmek için: sudo rm -r /etc/letsencrypt
+/var/lib/letsencrypt dizinini silmek için: sudo rm -r /var/lib/letsencrypt
+/var/log/letsencrypt dizinini silmek için: sudo rm -r /var/log/letsencrypt
 
 
 

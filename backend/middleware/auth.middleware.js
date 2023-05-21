@@ -3,10 +3,13 @@ const helpers = require('../utils/helpers');
 const authCheck = (role) => {
  return (req, res, next) => {
 
-  console.log(req.headers.authorization.split(' ')[1])
+   if (!req.headers.authorization) {
+    return res.status(StatusCodes.UNAUTHORIZED).json({
+     message: ' Unauthorized',
+    });
+   }
   try {
    const token =helpers.decodeToken(req.headers.authorization.split(' ')[1]);
-
    const userRole = token.decodeToken.role;
    if (!role.includes(userRole)) {
     throw new Error('Unauthorized access');

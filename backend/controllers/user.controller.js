@@ -7,7 +7,6 @@ exports.createUser = async (req, res) => {
  try {
   const isInValid = helpers.handleValidationErrors(req);
   if (isInValid) {
-   console.log('isInValid', isInValid)
    return res.status(StatusCodes.BAD_REQUEST).json({
     ...baseResponse,
     ...isInValid
