@@ -383,7 +383,7 @@ const sendMail = async (email, subject , verifyToken,user,timestamp) => {
   if (err) {
    console.log(err);
   } else {
-   console.log('Email sent: ' + info.response);
+   // console.log('Email sent: ' + info.response);
   }
  });
 }
