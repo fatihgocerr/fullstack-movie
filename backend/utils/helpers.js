@@ -371,7 +371,7 @@ const sendMail = async (email, subject , verifyToken,user,timestamp) => {
       </head>
       <body>
         <h1>Hesap Onayı</h1>
-        <p>Hesabınızı onaylamak için aşağıdaki linke tıklayın:
+        <p>Hesabınızı Onaylamak İçin Aşağıdaki Linke Tıklayın: 
 <!--        <a href="https://projectarea.online/confirm?token=${verifyToken}&user=${user}&timestamp=${timestamp}">Onay Linki</a>-->
         <a href="https://projectarea.online/api/v1/users/confirm?token=${verifyToken}&user=${user}&timestamp=${timestamp}">Onay Linki</a>
         </p>

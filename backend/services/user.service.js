@@ -283,18 +283,19 @@ exports.register = async (req, res) => {
   if (!!json) {
    await helpers.sendMail(email, 'Hesap Onayı', verifyCode, json._id, timestamp)
   }
-  return {
-   ...userDto,
-   id: json._id,
-   username: json.username,
-   email: json.email,
-   profile: json.profile,
-   favorites: json.favorites,
-   watchlist: json.watchlist,
-   ratings: json.ratings,
-   friends: json.friends,
-   settings: json.settings
-  }
+  // return {
+  //  ...userDto,
+  //  id: json._id,
+  //  username: json.username,
+  //  email: json.email,
+  //  profile: json.profile,
+  //  favorites: json.favorites,
+  //  watchlist: json.watchlist,
+  //  ratings: json.ratings,
+  //  friends: json.friends,
+  //  settings: json.settings
+  // }
+  return 'Hesap Onaylama Başarılı'
  } catch (error) {
   console.log(error)
   throw new Error(error)
