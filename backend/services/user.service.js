@@ -295,7 +295,7 @@ exports.register = async (req, res) => {
   //  friends: json.friends,
   //  settings: json.settings
   // }
-  return 'Hesap Onaylama Başarılı'
+  return 'Kayıt İşlemi Başarılı, Lütfen mail adresinizi kontrol ediniz'
  } catch (error) {
   console.log(error)
   throw new Error(error)
