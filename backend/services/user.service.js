@@ -219,7 +219,7 @@ exports.login = async (req, res) => {
   // console.log('user', user);
   // return user;
 
-
+   console.log('json', json)
   if (!!json) {
    const isValid = await helpers.decryptPassword(password, json.password)
    if (isValid) {
@@ -227,7 +227,7 @@ exports.login = async (req, res) => {
 
     const token = await helpers.generateToken(json._id, username, json.role)
     // console.log('json', json.role)
-    return {userId:json._id, username, role:json.role,token}
+    return {userId:json._id, username, role:json.role,token, avatar: json.profile.profilePicture, name: json.profile.name, surname: json.profile.surname }
    }
   }
   throw new Error('Hatalı Kullanıcı Bilgileri')
