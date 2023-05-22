@@ -88,19 +88,13 @@ const searchAccessLayer = {
 
   const searchRegex = new RegExp(where, 'i'); // i = büyük küçük harf duyarlılığı olmadan ara
 
-  const movieResults = await Movie.find({ name: searchRegex }).select({ name: 1, type: 'movie', imdbScore:1, poster:1 });
-  const animeResults = await Anime.find({ name: searchRegex }).select({ name: 1, type: 'anime',  imdbScore:1, poster:1 });
-  const seriesResults = await Series.find({ name: searchRegex }).select({ name: 1, type: 'series',  imdbScore:1, poster:1 });
+  const movieResults = await Movie.find({ name: searchRegex }).select({ name: 1, type: 'movie', imdbScore:1, poster:1, year:1 });
+  const animeResults = await Anime.find({ name: searchRegex }).select({ name: 1, type: 'anime',  imdbScore:1, poster:1, year:1 });
+  const seriesResults = await Series.find({ name: searchRegex }).select({ name: 1, type: 'series',  imdbScore:1, poster:1, year:1 });
 
   const results = [...movieResults, ...animeResults, ...seriesResults];
 
   return results;
-
-
-
-
-  console.log('results',results)
-  // return results
  }
 }
 

@@ -11,6 +11,8 @@ router.get('/getById/:id', authCheck(['admin', 'user']), userValidator.validateG
 router.get('/allPagination', authCheck(['admin']), userValidator.validateListPagination(), userController.getAllUsersWithPagination)
 
 router.post('/create', userValidator.validateCreate(), userController.createUser);
+router.post('/register', userValidator.validateCreate(), userController.register);
+router.get('/confirm',userController.confirm)
 
 router.put('/updateById/:id', authCheck(['admin', 'user']), userValidator.validateUpdateById(), userController.updateUserById);
 router.delete('/deleteById/:id', authCheck(['admin']), userValidator.validateDeleteById(), userController.deleteUserById);

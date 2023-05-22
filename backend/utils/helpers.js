@@ -6,7 +6,9 @@ const bcrypt = require('bcrypt');
 const logger = require('./logger');
 const {validationResult} = require('express-validator');
 const {StatusCodes} = require('http-status-codes');
+const crypto = require('crypto');
 
+const {createTransport} = require("nodemailer");
 
 const logToError = (error, req, message) => {
  logger.error(`
@@ -329,6 +331,67 @@ const randomArray =async (max, min, length = 3) => {
 }
 
 
+const mailVerifyToken = async () => {
+ return await crypto.randomBytes(32).toString('hex');
+}
+const sendMail = async (email, subject , verifyToken,user,timestamp) => {
+
+
+ const transporter = createTransport({
+  service: 'gmail',
+  auth: {
+   user: process.env.EMAIL,
+   pass: process.env.EMAIL_PASSWORD
+  }
+ });
+
+ const mailOptions = {
+  from: process.env.EMAIL,
+  to: email,
+  subject: subject,
+  html: `<html>
+      <head>
+        <style>
+          body {
+            background-color: #334155;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+          }
+
+          h1, p {
+            color: #008080;
+            text-align: center;
+          }
+          a {
+          font: bold 14px Arial;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>Hesap Onayı</h1>
+        <p>Hesabınızı Onaylamak İçin Aşağıdaki Linke Tıklayın: 
+<!--        <a href="https://projectarea.online/confirm?token=${verifyToken}&user=${user}&timestamp=${timestamp}">Onay Linki</a>-->
+        <a href="https://projectarea.online/api/v1/users/confirm?token=${verifyToken}&user=${user}&timestamp=${timestamp}">Onay Linki</a>
+        </p>
+      </body>
+    </html>`
+ };
+
+ await transporter.sendMail(mailOptions, (err, info) => {
+  if (err) {
+   console.log(err);
+  } else {
+   // console.log('Email sent: ' + info.response);
+  }
+ });
+}
+
+
+// sendMail().then(r => console.log(r)).catch(e => console.log(e))
+
+
 module.exports = {
  logToError,
  handleValidationErrors,
@@ -354,5 +417,7 @@ module.exports = {
  deleteAnimeDatafilter,
  randomArray,
  generateToken,
- decodeToken
+ decodeToken,
+ mailVerifyToken,
+ sendMail
 }
