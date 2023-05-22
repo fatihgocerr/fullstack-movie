@@ -7,10 +7,10 @@ const fileService = require('./file.service');
 
 exports.createUser = async (req, res) => {
  try {
-  const {username,role, password, email, profile, favorites, watchlist, ratings, friends, settings} = req.body;
+  const {username, role, password, email, profile, favorites, watchlist, ratings, friends, settings} = req.body;
   const user = new User({
    username,
-   role : 'user',
+   role: 'user',
    password: await helpers.encryptPassword(password),
    email,
    profile,
@@ -207,12 +207,12 @@ exports.login = async (req, res) => {
   let query;
 
   if (email) {
-   query = { email };
+   query = {email};
   } else if (username) {
-   query = { username };
+   query = {username};
   } else {
    // Hata durumu veya gerekli parametre eksikliği
-   return res.status(400).json({ error: 'Email or username is required' });
+   return res.status(400).json({error: 'Email or username is required'});
   }
 
   const json = await userDal.findOne(query);
@@ -226,11 +226,113 @@ exports.login = async (req, res) => {
 
     const token = await helpers.generateToken(json._id, username, json.role)
     // console.log('json', json.role)
-    return {userId:json._id, username, role:json.role,token, avatar: json.profile.profilePicture, name: json.profile.name, surname: json.profile.surname }
+    return {
+     userId: json._id,
+     username,
+     role: json.role,
+     token,
+     avatar: json.profile.profilePicture,
+     name: json.profile.name,
+     surname: json.profile.surname
+    }
    }
   }
   throw new Error('Hatalı Kullanıcı Bilgileri')
 
+ } catch (error) {
+  throw new Error(error)
+ }
+}
+
+
+exports.register = async (req, res) => {
+ try {
+  const {username, role, password, email, profile, favorites, watchlist, ratings, friends, settings} = req.body;
+
+  // console.log('req.body', req.body)
+  const verifyCode = await helpers.mailVerifyToken();
+
+
+  const user = new User({
+   username,
+   role: 'user',
+   password: await helpers.encryptPassword(password),
+   email,
+   profile,
+   favorites,
+   watchlist,
+   ratings,
+   friends,
+   settings,
+   isVerified: false,
+   verifyCode: verifyCode
+  });
+  // const findUser = await userDal.findOne(username);
+
+
+// Kullanıcı kaydının oluşturulduğu zaman damgası
+  const registrationTime = new Date();
+
+// Zaman damgasını hesaplayın
+  const timestamp = registrationTime.getTime();
+  const json = await userDal.create(user);
+  if (!!json) {
+   await helpers.sendMail(email, 'Hesap Onayı', verifyCode, json._id, timestamp)
+  }
+  return {
+   ...userDto,
+   id: json._id,
+   username: json.username,
+   email: json.email,
+   profile: json.profile,
+   favorites: json.favorites,
+   watchlist: json.watchlist,
+   ratings: json.ratings,
+   friends: json.friends,
+   settings: json.settings
+  }
+ } catch (error) {
+  console.log(error)
+  throw new Error(error)
+ }
+}
+
+exports.confirmEmail = async (req, res) => {
+ try {
+  const {token, user, timestamp} = req.query;
+
+  // Doğrulama linkinin geçerlilik süresi (örneğin, 24 saat)
+  const validityPeriod = 24 * 60 * 60 * 1000; // 24 saat * 60 dakika * 60 saniye * 1000 milisaniye
+
+  const currentTime = new Date().getTime();
+  if (currentTime - timestamp > validityPeriod) {
+   throw new Error('Doğrulama süresi geçti')
+  }
+
+  const findUser = await userDal.getById(user);
+  if (!findUser) {
+   throw new Error('Kullanıcı Bulunamadı')
+  }
+  if (findUser.verifyCode !== token) {
+   throw new Error('Doğrulama kodu hatalı')
+
+  }
+  if (findUser.isVerified) {
+   throw new Error("Kullanıcı zaten doğrulanmış")
+  }
+  const json = await userDal.updateUserById(user, {isVerified: true})
+  return {
+   ...userDto,
+   id: json._id,
+   username: json.username,
+   email: json.email,
+   profile: json.profile,
+   favorites: json.favorites,
+   watchlist: json.watchlist,
+   ratings: json.ratings,
+   friends: json.friends,
+   settings: json.settings
+  }
  } catch (error) {
   throw new Error(error)
  }
@@ -312,7 +414,6 @@ exports.findByEmail = async (email) => {
   throw new Error(error)
  }
 }
-
 
 
 exports.findByUserName = async (username) => {

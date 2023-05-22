@@ -232,6 +232,66 @@ exports.login = async (req, res) => {
 }
 
 
+exports.register = async (req, res) => {
+ try {
+  const isInValid = helpers.handleValidationErrors(req);
+  if (isInValid) {
+   return res.status(StatusCodes.BAD_REQUEST).json({
+    ...baseResponse,
+    ...isInValid
+   })
+   return
+  }
+  const json = await userService.register(req, res);
+  res.status(StatusCodes.CREATED).json({
+   ...baseResponse,
+   data: json,
+   success: true,
+   timestamp: Date.now(),
+   code: StatusCodes.CREATED,
+  });
+ } catch (error) {
+  console.log(error);
+  helpers.logToError(error, req, 'Error in Create User')
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+   ...baseResponse,
+   error: true,
+   success: false,
+   timestamp: Date.now(),
+   code: StatusCodes.INTERNAL_SERVER_ERROR,
+   message: error.message,
+  });
+ }
+}
+
+exports.confirm = async (req, res) => {
+ try {
+  const json = await userService.confirmEmail(req, res);
+  res.status(StatusCodes.OK).json({
+   ...baseResponse,
+   data: json,
+   success: true,
+   timestamp: Date.now(),
+   code: StatusCodes.OK,
+  });
+ } catch (error) {
+ helpers.logToError(error, req, 'Error in Confirm User')
+ res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+  ...baseResponse,
+  error: true,
+  success: false,
+  timestamp: Date.now(),
+  code: StatusCodes.INTERNAL_SERVER_ERROR,
+  message: error.message,
+ });
+ }
+}
+
+
+
+
+
+
 exports.uploadPP = async (req, res) => {
  try {
   const isInValid = helpers.handleValidationErrors(req);

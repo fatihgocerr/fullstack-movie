@@ -45,7 +45,9 @@ const userSchema = new Schema({
  settings: {
   language: {type: String,},
   notifications: {type: Boolean},
- }
+ },
+ isVerified: {type: Boolean},
+ verifyCode: {type: String},
 }, {
  timestamps: true,
  minimize: true,
