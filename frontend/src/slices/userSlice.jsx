@@ -1,26 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  value: 0,
+  userInfo: localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo'))
+    : null,
 }
 
-export const counterSlice = createSlice({
-  name: 'counter',
+const authSlice = createSlice({
+  name: 'auth',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1
+    setCredentials: (state, action) => {
+      state.userInfo = action.payload
+      localStorage.setItem('userInfo', JSON.stringify(action.payload))
     },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+    logout: (state, action) => {
+      state.userInfo = null
+      localStorage.removeItem('userInfo')
     },
   },
 })
 
-// Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { setCredentials, logout } = authSlice.actions
 
-export default counterSlice.reducer
+export default authSlice.reducer

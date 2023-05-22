@@ -10,18 +10,25 @@
   box-sizing: border-box;
 }
 
-
-@layer components{
-  .custom-link{
-    @apply grid gap-1 place-items-center sm:flex sm:p-4 sm:gap-3   p-2 cursor-pointer border-[#63dad6] hover:bg-primary-focus hover:border-r-4  hover:text-gray-700 hover:font-semibold transition duration-300
-  }
-
-  .blur-button{
-    @apply text-white bg-white/10  backdrop-blur-sm py-2 px-4 inline-flex items-center gap-2 rounded-md hover:bg-black/50
-  }
+body {
+  background-color: #1e293b;
 }
 
+@layer components {
+  .custom-link {
+    @apply flex flex-col md:flex-row justify-center items-center  p-3 gap-1 md:p-6 md:gap-3 hover:bg-primary/30 hover:text-primary;
+  }
 
+  .blur-button {
+    @apply text-white bg-white/10  backdrop-blur-sm py-1 px-2 md:py-2 md:px-4 inline-flex items-center gap-2 rounded-md hover:bg-black/50;
+  }
+  .tag-category {
+    @apply cursor-pointer  border-primary text-primary text-sm font-light border rounded-xl p-1 px-2 transition-all duration-200 hover:bg-primary hover:text-[#212121];
+  }
+  .form-text {
+    @apply w-[100%] p-2 rounded-md bg-transparent outline-none text-white border-b-2 placeholder-slate-400;
+  }
+}
 
 .modal-enter {
   opacity: 0;

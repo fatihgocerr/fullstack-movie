@@ -1,53 +1,46 @@
 import React, { useState } from 'react'
 import { Dashboard } from '../components/Dashboard'
-import { openModal } from '../slices/modalSlice';
-import { useDispatch } from 'react-redux';
-import { SearchCheck } from '../components/SearchCheck';
-import { MovieList } from '../components/MovieList';
-
+import { SearchCheck } from '../components/SearchCheck'
+import { MovieList } from '../components/MovieList'
 
 export const Index = () => {
   const [categories, setCategories] = useState([
     {
-      name: "Aksiyon",
+      name: 'Mystery',
       checked: true,
     },
     {
-      name: "Macera",
+      name: 'Martial Arts',
       checked: true,
     },
     {
-      name: "Komedi",
+      name: 'Action',
       checked: true,
     },
-  ]);
+  ])
 
   const movies = [
     {
-      src:"https://tr.web.img4.acsta.net/pictures/21/10/13/11/52/2707524.jpg",
-      rate:"7.0"
-    }
+      src: 'https://tr.web.img4.acsta.net/pictures/21/10/13/11/52/2707524.jpg',
+      rate: '7.0',
+    },
   ]
 
-  const dispatch = useDispatch();
-  const openModalDispatch = () =>dispatch(openModal("register"));
   return (
-    <div className='grid grid-cols-12 gap-2'>
-      <div className='col-span-12 lg:col-span-10'>
+    <div className="grid grid-cols-12 gap-2">
+      <div className="col-span-12 lg:col-span-10">
         <Dashboard />
-        <MovieList movies={movies} title={"Trendlerde"} />
+        <MovieList movies={movies} title={'Trendlerde'} />
       </div>
-      <div className='order-first col-span-12  lg:order-last lg:col-span-2 '>
+      <div className="order-first col-span-12  lg:order-last lg:col-span-2 ">
         <SearchCheck
-         title={"Kategoriler"}
-         setCategories={setCategories}
-         categories={categories}
-         />
+          title={'Kategoriler'}
+          setCategories={setCategories}
+          categories={categories}
+        />
       </div>
 
-
-      
-      {/* <button onClick={openModalDispatch}>register</button> */} 
+      {/* <button onClick={openModalDispatch}>register</button> */}
     </div>
   )
 }

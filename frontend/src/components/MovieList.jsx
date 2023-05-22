@@ -27,7 +27,7 @@ export const MovieList = ({title, link, movies}) => {
   )
 }
 
-export const Rate = ({rate, className})=> <span className={`text-sm   ${className}`}>
-                          <BsFillStarFill className='inline mb-1 mr-1 text-sm text-orange-300' />
+export const Rate = ({rate, className})=> <span className={`  ${className}`}>
+                          <BsFillStarFill className='inline mb-1 mr-1  text-orange-300' />
                           {rate}
 </span>

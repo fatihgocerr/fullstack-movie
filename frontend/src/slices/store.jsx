@@ -1,10 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit'
-import  counterSlice  from './userSlice'
-import  modalSlice  from './modalSlice'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import modalSlice from './modalSlice'
+import userSlice from './userSlice'
+import { apiSlice } from './apiSlice'
 
 export const store = configureStore({
   reducer: {
-    counterSlice,
-    modalSlice
+    modalSlice,
+    [apiSlice.reducerPath]: apiSlice.reducer,
+
+    userSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
+  devTools: true,
 })
