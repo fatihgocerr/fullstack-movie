@@ -10,98 +10,97 @@ const scriptwriterDal = require('../dal/scriptwriter.dal');
 const fileService = require('./file.service');
 
 
-
 exports.create = async (req, res) => {
  try {
   const {
    name,
    genre,
-   visionDate ,
+   visionDate,
    imdbScore,
    directorId,
    stars,
    scriptwriter,
    userScore,
    totalVotes,
-   trailer ,
+   trailer,
    tags,
-   summary ,
-   poster ,
+   summary,
+   poster,
    bannerPoster,
    budget,
    boxOffice,
    year,
-   awards ,
-   conditions ,
+   awards,
+   conditions,
    series,
    seriesSeason,
    seriesEpisode,
-   seriesEpisodeName ,
-   seriesEpisodeSummary ,
-   seriesEpisodePoster ,
-   seriesEpisodeTrailer ,
-   seriesEpisodeVisionDate ,
+   seriesEpisodeName,
+   seriesEpisodeSummary,
+   seriesEpisodePoster,
+   seriesEpisodeTrailer,
+   seriesEpisodeVisionDate,
    seriesEpisodeImdbScore,
    seriesEpisodeUserScore,
    seriesEpisodeTotalVotes,
-   seriesEpisodeAwards ,
+   seriesEpisodeAwards,
    seriesEpisodeTags,
    seriesEpisodeBudget,
    seriesEpisodeBoxOffice,
    seriesEpisodeYear,
-   seriesEpisodeConditions ,
+   seriesEpisodeConditions,
    seriesEpisodeDirectorId,
    seriesEpisodeScriptwriterId,
    seriesEpisodeStars,
    seriesEpisodeId,
    county,
-   language ,
-   producer ,
+   language,
+   producer,
   } = req.body;
   const animeData = new Anime({
    name,
    genre,
-   visionDate ,
+   visionDate,
    imdbScore,
    directorId,
    stars,
    scriptwriter,
-   userScore: await helpers.randomArray(6,1,10000),
+   userScore: await helpers.randomArray(6, 1, 10000),
    totalVotes,
-   trailer ,
+   trailer,
    tags,
-   summary ,
-   poster ,
+   summary,
+   poster,
    bannerPoster,
    budget,
    boxOffice,
    year,
-   awards ,
-   conditions ,
+   awards,
+   conditions,
    series,
    seriesSeason,
    seriesEpisode,
-   seriesEpisodeName ,
-   seriesEpisodeSummary ,
-   seriesEpisodePoster ,
-   seriesEpisodeTrailer ,
-   seriesEpisodeVisionDate ,
+   seriesEpisodeName,
+   seriesEpisodeSummary,
+   seriesEpisodePoster,
+   seriesEpisodeTrailer,
+   seriesEpisodeVisionDate,
    seriesEpisodeImdbScore,
    seriesEpisodeUserScore,
    seriesEpisodeTotalVotes,
-   seriesEpisodeAwards ,
+   seriesEpisodeAwards,
    seriesEpisodeTags,
    seriesEpisodeBudget,
    seriesEpisodeBoxOffice,
    seriesEpisodeYear,
-   seriesEpisodeConditions ,
+   seriesEpisodeConditions,
    seriesEpisodeDirectorId,
    seriesEpisodeScriptwriterId,
    seriesEpisodeStars,
    seriesEpisodeId,
    county,
-   language ,
-   producer ,
+   language,
+   producer,
   });
 
   const findedDirectors = await helpers.findedDataMap(directorId, directorDal);
@@ -163,15 +162,18 @@ exports.getAll = async () => {
    [
     {
      path: 'directorId',
-     select: 'name'
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+
     },
     {
      path: 'stars',
-     select: 'name'
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+
     },
     {
      path: 'scriptwriter',
-     select: 'name'
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+
     },
     {
      path: 'genre',
@@ -187,7 +189,7 @@ exports.getAll = async () => {
     item.totalVotes = animeScore.totalVotes;
    }
   }
-  return  json
+  return json
  } catch (error) {
   console.log(error)
   throw new Error(error)
@@ -204,15 +206,18 @@ exports.getAllWithPagination = async (req) => {
    [
     {
      path: 'directorId',
-     select: 'name'
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+
     },
     {
      path: 'stars',
-     select: 'name'
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+
     },
     {
      path: 'scriptwriter',
-     select: 'name'
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+
     },
     {
      path: 'genre',
@@ -245,7 +250,7 @@ exports.getById = async (req) => {
   const json = await animeDal.getById(id);
   const score = await animeDal.getScore(id);
 
-  const jsonChange = await helpers.jsonMovieChange(json,score);
+  const jsonChange = await helpers.jsonMovieChange(json, score);
   return {
    ...animeDto,
    ...jsonChange
@@ -261,92 +266,92 @@ exports.updateById = async (req) => {
   const {
    name,
    genre,
-   visionDate ,
+   visionDate,
    imdbScore,
    directorId,
    stars,
    scriptwriter,
    userScore,
    totalVotes,
-   trailer ,
+   trailer,
    tags,
-   summary ,
-   poster ,
+   summary,
+   poster,
    bannerPoster,
    budget,
    boxOffice,
    year,
-   awards ,
-   conditions ,
+   awards,
+   conditions,
    series,
    seriesSeason,
    seriesEpisode,
-   seriesEpisodeName ,
-   seriesEpisodeSummary ,
-   seriesEpisodePoster ,
-   seriesEpisodeTrailer ,
-   seriesEpisodeVisionDate ,
+   seriesEpisodeName,
+   seriesEpisodeSummary,
+   seriesEpisodePoster,
+   seriesEpisodeTrailer,
+   seriesEpisodeVisionDate,
    seriesEpisodeImdbScore,
    seriesEpisodeUserScore,
    seriesEpisodeTotalVotes,
-   seriesEpisodeAwards ,
+   seriesEpisodeAwards,
    seriesEpisodeTags,
    seriesEpisodeBudget,
    seriesEpisodeBoxOffice,
    seriesEpisodeYear,
-   seriesEpisodeConditions ,
+   seriesEpisodeConditions,
    seriesEpisodeDirectorId,
    seriesEpisodeScriptwriterId,
    seriesEpisodeStars,
    seriesEpisodeId,
    county,
-   language ,
-   producer ,
+   language,
+   producer,
   } = req.body;
   const json = await animeDal.updateById(id, {
    name,
    genre,
-   visionDate ,
+   visionDate,
    imdbScore,
    directorId,
    stars,
    scriptwriter,
    userScore,
    totalVotes,
-   trailer ,
+   trailer,
    tags,
-   summary ,
-   poster ,
+   summary,
+   poster,
    bannerPoster,
    budget,
    boxOffice,
    year,
-   awards ,
-   conditions ,
+   awards,
+   conditions,
    series,
    seriesSeason,
    seriesEpisode,
-   seriesEpisodeName ,
-   seriesEpisodeSummary ,
-   seriesEpisodePoster ,
-   seriesEpisodeTrailer ,
-   seriesEpisodeVisionDate ,
+   seriesEpisodeName,
+   seriesEpisodeSummary,
+   seriesEpisodePoster,
+   seriesEpisodeTrailer,
+   seriesEpisodeVisionDate,
    seriesEpisodeImdbScore,
    seriesEpisodeUserScore,
    seriesEpisodeTotalVotes,
-   seriesEpisodeAwards ,
+   seriesEpisodeAwards,
    seriesEpisodeTags,
    seriesEpisodeBudget,
    seriesEpisodeBoxOffice,
    seriesEpisodeYear,
-   seriesEpisodeConditions ,
+   seriesEpisodeConditions,
    seriesEpisodeDirectorId,
    seriesEpisodeScriptwriterId,
    seriesEpisodeStars,
    seriesEpisodeId,
    county,
-   language ,
-   producer ,
+   language,
+   producer,
   });
   return {
    ...animeDto,
@@ -355,45 +360,45 @@ exports.updateById = async (req) => {
    bannerPoster: json.bannerPoster,
    name,
    genre,
-   visionDate ,
+   visionDate,
    imdbScore,
    directorId,
    stars,
    scriptwriter,
    userScore,
    totalVotes,
-   trailer ,
+   trailer,
    tags,
-   summary ,
+   summary,
    budget,
    boxOffice,
    year,
-   awards ,
-   conditions ,
+   awards,
+   conditions,
    series,
    seriesSeason,
    seriesEpisode,
-   seriesEpisodeName ,
-   seriesEpisodeSummary ,
-   seriesEpisodePoster ,
-   seriesEpisodeTrailer ,
-   seriesEpisodeVisionDate ,
+   seriesEpisodeName,
+   seriesEpisodeSummary,
+   seriesEpisodePoster,
+   seriesEpisodeTrailer,
+   seriesEpisodeVisionDate,
    seriesEpisodeImdbScore,
    seriesEpisodeUserScore,
    seriesEpisodeTotalVotes,
-   seriesEpisodeAwards ,
+   seriesEpisodeAwards,
    seriesEpisodeTags,
    seriesEpisodeBudget,
    seriesEpisodeBoxOffice,
    seriesEpisodeYear,
-   seriesEpisodeConditions ,
+   seriesEpisodeConditions,
    seriesEpisodeDirectorId,
    seriesEpisodeScriptwriterId,
    seriesEpisodeStars,
    seriesEpisodeId,
    county,
-   language ,
-   producer ,
+   language,
+   producer,
   }
  } catch (error) {
   throw new Error(error)
@@ -417,10 +422,10 @@ exports.deleteById = async (req) => {
 
    //ilgili alanlardan dizinin id'sini siler
    await Promise.all([
-    helpers.deleteAnimeDatafilter(findedDirectors, directorDal,findedAnime._id),
-    helpers.deleteAnimeDatafilter(findedGenres, genreDal,findedAnime._id),
-    helpers.deleteAnimeDatafilter(findedStars, starDal,findedAnime._id),
-    helpers.deleteAnimeDatafilter(findedScriptwriters, scriptwriterDal,findedAnime._id)
+    helpers.deleteAnimeDatafilter(findedDirectors, directorDal, findedAnime._id),
+    helpers.deleteAnimeDatafilter(findedGenres, genreDal, findedAnime._id),
+    helpers.deleteAnimeDatafilter(findedStars, starDal, findedAnime._id),
+    helpers.deleteAnimeDatafilter(findedScriptwriters, scriptwriterDal, findedAnime._id)
    ]);
 
    const jsonChange = await helpers.jsonMovieChange(json);
@@ -526,7 +531,7 @@ exports.updateScore = async (req) => {
    id: json._id,
    poster: json.poster,
    bannerPoster: json.bannerPoster,
-   userScore: json.userScore.length >1 ? json.userScore[json.userScore.length -1] : json.userScore,
+   userScore: json.userScore.length > 1 ? json.userScore[json.userScore.length - 1] : json.userScore,
 
   }
  } catch (error) {
@@ -538,7 +543,7 @@ exports.getScore = async (req) => {
  try {
   const {id} = req.params;
   const scores = await animeDal.getScore(id);
-  console.log('scores',scores)
+  console.log('scores', scores)
   return scores
 
  } catch (error) {

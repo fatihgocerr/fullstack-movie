@@ -159,15 +159,18 @@ exports.getAll = async () => {
    [
     {
      path: 'directorId',
-     select: 'name'
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+
     },
     {
      path: 'stars',
-     select: 'name'
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+
     },
     {
      path: 'scriptwriter',
-     select: 'name'
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+
     },
     {
      path: 'genre',
@@ -200,15 +203,18 @@ exports.getAllWithPagination = async (req) => {
    [
     {
      path: 'directorId',
-     select: 'name'
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+
     },
     {
      path: 'stars',
-     select: 'name'
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+
     },
     {
      path: 'scriptwriter',
-     select: 'name'
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+
     },
     {
      path: 'genre',

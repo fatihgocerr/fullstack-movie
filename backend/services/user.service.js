@@ -219,7 +219,6 @@ exports.login = async (req, res) => {
   // console.log('user', user);
   // return user;
 
-   console.log('json', json)
   if (!!json) {
    const isValid = await helpers.decryptPassword(password, json.password)
    if (isValid) {

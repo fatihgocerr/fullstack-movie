@@ -127,15 +127,19 @@ exports.getAllMovies = async (req) => {
    [
     {
      path: 'directorId',
-     select: 'name surname'
+     select: { fullName: { $concat: ['$name', ' ', '$surname']}, image:1},
     },
+    // {
+    //  path: 'stars',
+    //  select: 'name surname'
+    // },
     {
      path: 'stars',
-     select: 'name surname'
+     select: { fullName: { $concat: ['$name', ' ', '$surname']}, image:1},
     },
     {
      path: 'scriptwriter',
-     select: 'name surname'
+     select: { fullName: { $concat: ['$name', ' ', '$surname']}, image:1},
     },
     {
      path: 'genre',
@@ -202,15 +206,18 @@ exports.getAllMoviesWithPagination = async (req) => {
    [
     {
      path: 'directorId',
-     select: 'name'
+          select: { fullName: { $concat: ['$name', ' ', '$surname']}, image:1},
+
     },
     {
      path: 'stars',
-     select: 'name'
+          select: { fullName: { $concat: ['$name', ' ', '$surname']}, image:1},
+
     },
     {
      path: 'scriptwriter',
-     select: 'name'
+          select: { fullName: { $concat: ['$name', ' ', '$surname']}, image:1},
+
     },
     {
      path: 'genre',
