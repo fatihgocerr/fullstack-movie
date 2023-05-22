@@ -220,7 +220,11 @@ exports.login = async (req, res) => {
   // return user;
 
   if (!!json) {
+   if (json.isVerified === false) {
+    throw new Error('Hesabınızı doğrulamadınız, lütfen mail adresinizi kontrol ediniz ')
+   }
    const isValid = await helpers.decryptPassword(password, json.password)
+
    if (isValid) {
     // Doğrulama başarılı
 
