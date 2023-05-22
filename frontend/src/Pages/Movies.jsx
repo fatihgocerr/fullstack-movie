@@ -5,6 +5,7 @@ import { baseUrl } from '../apiService'
 import axios from 'axios'
 import { Pagination } from '../components/Pagination'
 import { Sort } from '../components/Sort'
+import { Link } from 'react-router-dom'
 
 export const Movies = () => {
   const [{ perPage, totalPages, page }, setPage] = useState({
@@ -54,7 +55,11 @@ export const Movies = () => {
 
         <div className="grid grid-cols-3 lg:grid-cols-6 gap-2">
           {movies.map((movie, i) => (
-            <div key={i} className="relative ">
+            <Link
+              to={`/moviedetail/${movie._id}`}
+              key={i}
+              className="relative "
+            >
               <img
                 className="rounded-md transition-all duration-200 hover:opacity-70 cursor-pointer"
                 src={movie.poster}
@@ -65,7 +70,7 @@ export const Movies = () => {
                 }
                 rate={movie.imdbScore}
               />
-            </div>
+            </Link>
           ))}
         </div>
 

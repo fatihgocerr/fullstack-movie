@@ -1,52 +1,46 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Rate } from './MovieList'
-import axios from 'axios'
+import { queryResults } from '../apiService'
 
 export const SearchBar = () => {
-  const [data, setData] = useState([])
+  const [result, setResult] = useState([])
   const [query, setQuery] = useState('')
-  const handleQuery = (e) => {
-    setQuery(e.target.value)
-  }
+  const [debouncedTerm, setDebouncedTerm] = useState(query)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setQuery(debouncedTerm), 1000)
+    return () => clearTimeout(timer)
+  }, [debouncedTerm])
 
   useEffect(() => {
     if (query !== '') dataFetch()
   }, [query])
 
-  const dataFetch = async () => {
-    const options = {
-      method: 'GET',
-      url: `https://moviesdatabase.p.rapidapi.com/titles/search/keyword/${query}`,
-      headers: {
-        'X-RapidAPI-Key': 'df0cc163a3mshb1706c81b5c4e50p1f0273jsn53680d108ca5',
-        'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com',
-      },
-    }
-
+  const dataFetch = useCallback(async () => {
     try {
-      const response = await axios.request(options)
-      setData(response.data.results || [])
+      const data = await queryResults(query)
+      setResult(data || [])
     } catch (error) {
       console.error(error)
     }
-  }
+  })
 
   return (
     <div className="block sm:relative w-full">
       <label
         htmlFor="default-search"
-        className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+        className=" text-sm font-medium text-gray-900 sr-only dark:text-white"
       >
         Search
       </label>
-      <div className="relative mb-4">
+      <div className="relative ">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <Icon />
         </div>
         <input
           autoComplete="off"
-          value={query}
-          onChange={handleQuery}
+          onChange={(e) => setDebouncedTerm(e.target.value)}
+          value={debouncedTerm}
           type="search"
           id="default-search"
           className="block w-full p-2 pl-10 outline-none text-gray-900 border border-gray-300 rounded-full bg-gray-50 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 font-semibold dark:placeholder-gray-400 dark:text-white "
@@ -54,24 +48,19 @@ export const SearchBar = () => {
         />
       </div>
       <ul className="bg-base-300 w-[75%] sm:w-full rounded-lg  absolute top-[5.7rem] sm:top-12 z-10  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-        {query && data.map((movie, i) => <MovieResult key={i} {...movie} />)}
+        {query && result.map((movie, i) => <MovieResult key={i} {...movie} />)}
       </ul>
     </div>
   )
 }
 
-const MovieResult = ({ titleText, primaryImage, releaseYear, titleType }) => (
-  <li className=" flex gap-2 p-2 hover:bg-slate-600 cursor-pointer rounded-lg">
-    <img src={primaryImage?.url} className="w-20 h-20 object-cover" />
+const MovieResult = ({ name, poster }) => (
+  <li className=" flex gap-2 p-2 hover:bg-primary/30 cursor-pointer rounded-lg">
+    <img src={poster} className="w-14 h-20 object-contain" />
 
-    <div className="flex flex-col justify-around flex-wrap">
+    <div className="flex flex-col  flex-wrap">
       <Rate rate={'7.0'} />
-      <h6>
-        {titleText?.text} ({releaseYear?.year})
-      </h6>
-      <p className="flex flex-wrap gap-x-2 items-center text-slate-700 whitespace-">
-        {titleType?.text}
-      </p>
+      <h6>{name}</h6>
     </div>
   </li>
 )

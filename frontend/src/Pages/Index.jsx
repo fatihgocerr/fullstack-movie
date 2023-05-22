@@ -4,20 +4,7 @@ import { SearchCheck } from '../components/SearchCheck'
 import { MovieList } from '../components/MovieList'
 
 export const Index = () => {
-  const [categories, setCategories] = useState([
-    {
-      name: 'Mystery',
-      checked: true,
-    },
-    {
-      name: 'Martial Arts',
-      checked: true,
-    },
-    {
-      name: 'Action',
-      checked: true,
-    },
-  ])
+  const [categories, setCategories] = useState([])
 
   const movies = [
     {
@@ -27,20 +14,9 @@ export const Index = () => {
   ]
 
   return (
-    <div className="grid grid-cols-12 gap-2">
-      <div className="col-span-12 lg:col-span-10">
-        <Dashboard />
-        <MovieList movies={movies} title={'Trendlerde'} />
-      </div>
-      <div className="order-first col-span-12  lg:order-last lg:col-span-2 ">
-        <SearchCheck
-          title={'Kategoriler'}
-          setCategories={setCategories}
-          categories={categories}
-        />
-      </div>
-
-      {/* <button onClick={openModalDispatch}>register</button> */}
+    <div className="">
+      <Dashboard />
+      <MovieList movies={movies} title={'Trendlerde'} />
     </div>
   )
 }

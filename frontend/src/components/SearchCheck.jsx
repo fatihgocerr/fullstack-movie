@@ -26,9 +26,11 @@ export const SearchCheck = ({ categories, title, setCategories }) => {
   return (
     <div>
       <div className="flex justify-between items-center  mb-4">
-        <h1 className="text-lg text-white tracking-wide">{title}</h1>
+        <h1 className="text-lg text-white tracking-wide text-center w-full">
+          {title}
+        </h1>
       </div>
-      <div className="bg-base-300 rounded-2xl p-4 flex flex-col gap-4 h-[285px] scroll-smooth  overflow-x-hidden overflox-y-auto">
+      <div className="bg-base-300 rounded-2xl p-4 flex flex-col gap-2 h-[285px] scroll-smooth  overflow-x-hidden overflox-y-auto">
         {categories.map((category, i) => {
           return (
             <label

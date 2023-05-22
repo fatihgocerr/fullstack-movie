@@ -7,6 +7,7 @@ import { Movies } from './Pages/Movies'
 import { Series } from './Pages/Series'
 import { Upcoming } from './Pages/Upcoming'
 import { MovieDetail } from './Pages/MovieDetail'
+import { Page404 } from './Pages/Page404'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/moviedetail/:id" element={<MovieDetail />} />
         <Route path="/series" element={<Series />} />
         <Route path="/upcoming" element={<Upcoming />} />
+        <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>
   )

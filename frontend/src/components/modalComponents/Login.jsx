@@ -36,6 +36,7 @@ export const Login = () => {
       dispatch(setCredentials({ ...data }))
       dispatch(closeModal())
     } catch ({ data }) {
+      console.log(data)
       toast.error(data.message)
     }
   }
@@ -63,7 +64,7 @@ export const Login = () => {
   return (
     <div className="bg-base-300 rounded-md lg:h-[500px] lg:w-[800px] lg:grid  lg:grid-cols-2">
       <div>
-        <h2 className="pl-4 pt-5 text-2xl text-white text-center font-bold">
+        <h2 className="p-2 pt-5 text-2xl text-white text-center font-bold">
           {rememberedName ? `Hoş Geldin ${rememberedName}` : 'Hoş Geldiniz!'}
         </h2>
         {rememberedName && (
@@ -75,7 +76,7 @@ export const Login = () => {
           </h6>
         )}
 
-        <div className="flex flex-col gap-4 items-center justify-start p-6 ">
+        <div className="flex flex-col gap-4 items-center justify-start p-10 ">
           {!rememberedName && (
             <Input
               setForm={setForm}
@@ -109,7 +110,7 @@ export const Login = () => {
           </label>
           <button
             onClick={handleForm}
-            className="border-2 py-2 px-10 rounded-md text-slate-100 hover:text-primary hover:border-primary"
+            className="bg-primary drop-shadow-lg text-base-300 rounded-md font-semibold px-6 p-2"
           >
             Giriş Yap
           </button>

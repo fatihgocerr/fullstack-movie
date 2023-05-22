@@ -16,7 +16,7 @@ body {
 
 @layer components {
   .custom-link {
-    @apply flex flex-col md:flex-row justify-center items-center  p-3 gap-1 md:p-6 md:gap-3 hover:bg-primary/30 hover:text-primary;
+    @apply flex flex-row justify-center items-center  gap-3 p-6 hover:bg-primary/30 hover:text-primary;
   }
 
   .blur-button {

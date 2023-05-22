@@ -1,5 +1,7 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { useParams, useNavigate } from 'react-router-dom'
+import { baseUrl } from '../apiService'
 import {
   MdOutlineFavoriteBorder,
   MdOutlineFavorite,
@@ -9,13 +11,24 @@ import {
 
 import { Rate } from '../components/MovieList'
 export const MovieDetail = () => {
+  const [movie, setMovie] = useState({})
+  const navigate = useNavigate()
   let { id } = useParams()
 
+  useEffect(() => {
+    axios
+      .get(baseUrl + `/movies/getById/${id}`)
+      .then(({ data }) => {
+        setMovie(data.data)
+      })
+      .catch((err) => navigate('/Page404'))
+  }, [id])
+  console.log(movie)
   return (
-    <div className=" mobile:bg-red-300">
-      <div className="aspect-w-16 aspect-h-4">
+    <div className=" mobile:bg-red-300 mb-10">
+      <div className="aspect-w-16 aspect-h-6">
         <iframe
-          src="https://www.youtube.com/embed/r9jwGansp1E"
+          src={movie.trailer}
           frameBorder="0"
           className="w-full rounded-lg"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -25,9 +38,9 @@ export const MovieDetail = () => {
       <div className="flex flex-col gap-4  mt-4 justify-center lg:justify-between lg:items-end lg:flex-row">
         <div className="flex gap-4 items-center flex-col lg:flex-row text-white">
           <p className="text-sm sm:text-lg text-center">
-            Top Gun: Maverick • 2022 • 2h 10m
+            {movie.name} • 2022 • 2h 10m
           </p>
-          <Rate className={'font-medium text-lg'} rate={'7.2'} />
+          <Rate className={'font-medium text-lg'} rate={movie.imdbScore} />
           <div className="flex gap-2">
             <span className="tag-category">Aksiyon</span>
             <span className="tag-category">Macera</span>
@@ -46,12 +59,7 @@ export const MovieDetail = () => {
           </div>
         </div>
       </div>
-      <p className="mt-4">
-        After thirty years, Maverick is still pushing the envelope as a top
-        naval aviator, but must confront ghosts of his past when he leads TOP
-        GUN's elite graduates on a mission that demands the ultimate sacrifice
-        from those chosen to fly it.
-      </p>
+      <p className="mt-4">{movie.summary}</p>
       <div className="divider  my-1"></div>
       Yönetmen: <span className="text-primary"> Joseph Kosinski</span>
       <div className="divider my-1"></div>

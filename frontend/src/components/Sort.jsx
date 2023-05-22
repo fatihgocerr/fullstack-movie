@@ -28,7 +28,7 @@ export const Sort = ({ title, setSort }) => {
   ]
 
   return (
-    <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-4 my-4">
+    <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-4 mb-4">
       <h1 className="text-xl">{title}</h1>
       <div className="flex gap-2">
         {options.map((filter, i) => (

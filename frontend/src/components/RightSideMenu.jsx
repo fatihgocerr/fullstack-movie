@@ -1,42 +1,33 @@
 import React, { useEffect, useState, useRef } from 'react'
-
+import { HiOutlineLogout } from 'react-icons/hi'
 import { BsBell } from 'react-icons/bs'
 import { AiFillSetting } from 'react-icons/ai'
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { MdOutlineFavoriteBorder, MdBookmarkBorder } from 'react-icons/md'
 import { openModal } from '../slices/modalSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUser } from '../apiService'
+import { logout } from '../slices/userSlice'
 
 export const RightSideMenu = () => {
   const dispatch = useDispatch()
   const openRegister = () => dispatch(openModal('register'))
   const openLogin = () => dispatch(openModal('login'))
   const { userInfo } = useSelector((state) => state.userSlice)
-  const [user, setUser] = useState({})
-
-  useEffect(() => {
-    if (userInfo !== null) {
-      getUser({ setUser, userInfo })
-    }
-  }, [userInfo])
 
   return (
-    <div className="w-full h-full flex justify-center items-center gap-2 -mt-2">
+    <div>
       {userInfo !== null ? (
-        <Profile user={user} />
+        <Profile user={userInfo} />
       ) : (
-        <>
-          <button
-            className="bg-gray hover:text-primary text-lg"
-            onClick={openLogin}
-          >
+        <div className="relative w-40  flex gap-2 items-center justify-center cursor-pointer  p-2 text-lg  rounded-md ">
+          <button className="bg-gray hover:text-primary " onClick={openLogin}>
             Giriş
-          </button>{' '}
-          /{' '}
-          <button className="hover:text-primary text-lg" onClick={openRegister}>
+          </button>
+          /
+          <button className="hover:text-primary " onClick={openRegister}>
             Kayıt Ol
           </button>
-        </>
+        </div>
       )}
     </div>
   )
@@ -44,6 +35,7 @@ export const RightSideMenu = () => {
 
 const Profile = ({ user }) => {
   const refProfile = useRef(null)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true)
@@ -61,28 +53,36 @@ const Profile = ({ user }) => {
   return (
     <div
       ref={refProfile}
-      className={`relative hover:bg-gray-900  flex gap-2 items-center cursor-pointer  p-2 rounded-md ${
+      className={`relative w-40 hover:bg-gray-900  flex gap-2 items-center justify-center cursor-pointer  p-2 text-sm  rounded-md ${
         show && 'bg-gray-900 '
       }`}
     >
       <img
-        className="h-12 w-12 object-cover cursor-pointer rounded-full "
-        src={user?.profile?.profilePicture}
+        className="h-7 w-7 object-cover cursor-pointer rounded-full "
+        src={user?.avatar}
       />{' '}
-      {user.username}
+      {`${user?.name} ${user?.surname}`}
+      <MdOutlineKeyboardArrowDown />
       {show && (
-        <ul className="bg-gray-900  absolute top-[4.1rem] w-full left-0 p-2 z-50  rounded-md ">
-          <li className="hover:bg-base-100 p-2 text-primary flex items-center gap-2">
+        <ul className="bg-gray-900  absolute top-12 w-full left-0 p-2 z-50  rounded-md ">
+          <li className="hover:bg-primary/30 p-2 text-primary flex items-center gap-2">
             <BsBell /> Bildirimler
           </li>
-          <li className="hover:bg-base-100 p-2  flex items-center gap-2">
+          <li className="hover:bg-primary/30 p-2  flex items-center gap-2">
             <AiFillSetting /> Ayarlar
           </li>
-          <li className="hover:bg-base-100 p-2  flex items-center gap-2">
+          <li className="hover:bg-primary/30 p-2  flex items-center gap-2">
             <MdOutlineFavoriteBorder /> Beğenilenler
           </li>
-          <li className="hover:bg-base-100 p-2  flex items-center gap-2">
+          <li className="hover:bg-primary/30 p-2  flex items-center gap-2">
             <MdBookmarkBorder /> Kaydedilenler
+          </li>
+
+          <li
+            onClick={() => dispatch(logout())}
+            className="hover:bg-primary/30 p-2  flex items-center gap-2"
+          >
+            <HiOutlineLogout /> Çıkış
           </li>
         </ul>
       )}

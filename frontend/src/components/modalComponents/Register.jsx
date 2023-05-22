@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { baseUrl } from '../../apiService'
-import { closeModal } from '../../slices/modalSlice'
+import { openModal } from '../../slices/modalSlice'
 import { useDispatch } from 'react-redux'
 import { Input } from '../Input'
 const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{7,}$/
@@ -38,7 +38,7 @@ export const Register = () => {
       toast.error('Kullanıcı adı  en az 5 haneli olmalı')
     } else {
       axios
-        .post(baseUrl + '/users/create', {
+        .post(baseUrl + '/users/register', {
           username,
           email,
           password,
@@ -50,8 +50,11 @@ export const Register = () => {
           },
         })
         .then((user) => {
-          dispatch(closeModal())
-          toast.success('Kayıdınız başarıyla yapılmıştır. Lütfen giriş yapınız')
+          console.log(user)
+          dispatch(openModal('login'))
+          toast.success(
+            'Kayıdınız başarıyla yapılmıştır. Lütfen emailinizi kontrol ediniz.'
+          )
         })
         .catch((err) => {
           if (err.response.data.message.includes('role')) {
