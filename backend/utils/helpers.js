@@ -65,12 +65,14 @@ const decodeToken = (token) => {
 }
 
 const jsonMovieChange = async (json,score) => {
- console.log('hlepers',score)
+ // console.log('hlepers',score)
  const  jsonChange  = {
   id: json._id,
   name: json.name,
   genre: json.genre,
   visionDate: json.visionDate,
+  year: json.year,
+  duration: json.duration,
   imdbScore: json.imdbScore,
   directorId: json.directorId,
   stars: json.stars,

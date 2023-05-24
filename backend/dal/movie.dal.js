@@ -16,8 +16,9 @@ const MovieDataAccessLayer = {
    .populate(populate)
    .select(projections)
  },
- async getById(id) {
-  return await Movie.findById({_id: id});
+ async getById(id,populate) {
+  return await Movie.findById({_id: id})
+   .populate(populate);
  },
  async updateMovieById(id, body) {
   return await Movie.findByIdAndUpdate({_id: id}, body);
