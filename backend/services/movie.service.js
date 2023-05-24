@@ -127,7 +127,7 @@ exports.getAllMovies = async (req) => {
    [
     {
      path: 'directorId',
-     select: { fullName: { $concat: ['$name', ' ', '$surname']}, image:1},
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
     },
     // {
     //  path: 'stars',
@@ -135,11 +135,11 @@ exports.getAllMovies = async (req) => {
     // },
     {
      path: 'stars',
-     select: { fullName: { $concat: ['$name', ' ', '$surname']}, image:1},
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
     },
     {
      path: 'scriptwriter',
-     select: { fullName: { $concat: ['$name', ' ', '$surname']}, image:1},
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
     },
     {
      path: 'genre',
@@ -202,21 +202,21 @@ exports.getAllMoviesWithPagination = async (req) => {
   }
   const score = await movieDal.getScores();
   const json = await movieDal.getAllMoviesWithPagination(
-   where = !!genre ?  (genre.includes(',') ? {_id: {$in: filteredMovie}} : query) : query, //genre kontolü yaptık
+   where = !!genre ? (genre.includes(',') ? {_id: {$in: filteredMovie}} : query) : query, //genre kontolü yaptık
    [
     {
      path: 'directorId',
-          select: { fullName: { $concat: ['$name', ' ', '$surname']}, image:1},
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
 
     },
     {
      path: 'stars',
-          select: { fullName: { $concat: ['$name', ' ', '$surname']}, image:1},
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
 
     },
     {
      path: 'scriptwriter',
-          select: { fullName: { $concat: ['$name', ' ', '$surname']}, image:1},
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
 
     },
     {
@@ -225,9 +225,9 @@ exports.getAllMoviesWithPagination = async (req) => {
     },
    ],
    perPage,
-   ( page -1) * perPage , //page -1 olmasının sebebi 0 dan başlaması
+   (page - 1) * perPage, //page -1 olmasının sebebi 0 dan başlaması
    {[sortBy]: sortDir},
-   {_id: 1, name: 1, genre: 1, runTime: 1, imdbScore: 1, userScore: 1, poster: 1, released:1, createdAt:1}
+   {_id: 1, name: 1, genre: 1, runTime: 1, imdbScore: 1, userScore: 1, poster: 1, released: 1, createdAt: 1}
   );
 
   for (const item of json) { // her bir film için puanı hesaplıyoruz
@@ -241,7 +241,7 @@ exports.getAllMoviesWithPagination = async (req) => {
   // const totalCount = json.length; // Toplam veri sayısı
   const totalPages = Math.ceil(totalCount / perPage); // Toplam sayfa sayısı
 
-  return {data:json, totalCount, totalPages}
+  return {data: json, totalCount, totalPages}
  } catch (error) {
   throw new Error(error)
  }
@@ -250,7 +250,26 @@ exports.getAllMoviesWithPagination = async (req) => {
 exports.getById = async (req) => {
  try {
   const {id} = req.params;
-  const json = await movieDal.getById(id);
+  const json = await movieDal.getById(id,
+   [
+    {
+     path: 'directorId',
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+    },
+    {
+     path: 'stars',
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+    },
+    {
+     path: 'scriptwriter',
+     select: {fullName: {$concat: ['$name', ' ', '$surname']}, image: 1},
+    },
+    {
+     path: 'genre',
+     select: 'name'
+    }
+   ]
+  );
   const score = await movieDal.getScore(id);
 
   const jsonChange = await helpers.jsonMovieChange(json, score);
